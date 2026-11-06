@@ -1,0 +1,43 @@
+{
+  "best_model": "StackingEnsemble",
+  "selection_rule": "highest mean outer-fold nested-CV R2; holdout metrics were not used for selection",
+  "seed": 42,
+  "permutation_model": "StackingEnsemble",
+  "ridge_coefficients_are_auxiliary_comparator": true,
+  "n_features_total": 634,
+  "n_pca_components": 627,
+  "n_pca_components_for_linear_comparator": 627,
+  "n_physchem_selected": 7,
+  "physchem_names": [
+    "MolWt",
+    "FractionCSP3",
+    "TPSA",
+    "LabuteASA",
+    "Chi0v",
+    "Chi1v",
+    "Chi2v"
+  ],
+  "top5_features": [
+    "PCA_2",
+    "PCA_5",
+    "PCA_1",
+    "PCA_37",
+    "PCA_3"
+  ],
+  "top5_importance": [
+    0.07496655688922946,
+    0.04324620597033582,
+    0.03598855389573325,
+    0.03453532854290778,
+    0.022953362775969266
+  ],
+  "top_physchem": [
+    "FractionCSP3",
+    "Chi0v",
+    "MolWt",
+    "TPSA",
+    "LabuteASA"
+  ],
+  "morgan_representation": "PCA-reduced Morgan features",
+  "total_pca_variance_explained": 0.9500449984925128
+}

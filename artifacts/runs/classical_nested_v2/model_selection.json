@@ -1,0 +1,10 @@
+{
+  "direction": "minimize",
+  "selected_model": "ridge_combined",
+  "selected_representation": "ecfp6_2048_plus_rdkit2d",
+  "selected_rmse_mean": 0.7418132006737563,
+  "selection_data": "development repeated outer-fold OOF predictions only",
+  "selection_metric": "mean per-repeat pooled RMSE",
+  "temporal_test_consulted": false,
+  "tie_breaker": "lexicographic model name"
+}

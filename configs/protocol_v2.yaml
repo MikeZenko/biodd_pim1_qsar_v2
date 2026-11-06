@@ -1,0 +1,114 @@
+schema_version: "2.0"
+protocol_id: pim1-publication-v2
+status: split-protocol-locked-before-modeling
+
+dataset:
+  target_chembl_id: CHEMBL2147
+  primary_variant: strict_biochemical
+  identity_column: standardized_parent_inchi_key
+  structure_column: standardized_parent_smiles
+  scaffold_column: scaffold_smiles
+  document_year_column: document_year
+  measurement_event_id_column: event_id
+  endpoint: pIC50
+  aggregation: median
+  required_filters:
+    standard_type: IC50
+    standard_relation: "="
+    standard_units: nM
+    standard_flag: 1
+    bao_format: BAO_0000357
+    potential_duplicate: 0
+    data_validity_comment: null
+  sensitivity_variants:
+    - broad_all_assays
+    - strict_without_extreme_potency_tail
+
+temporal_test:
+  # This is the fallback when a true version-to-version ChEMBL release delta
+  # is unavailable. It must be described as a publication-year split.
+  method: first_eligible_document_year
+  development_through_year: 2018
+  test_from_year: 2019
+  cutoff_selection:
+    rule: latest_cutoff_meeting_all_minimum_counts
+    expected_selected_cutoff: 2018
+    minimum_development_compounds: 750
+    minimum_temporal_test_compounds: 250
+    minimum_new_temporal_test_scaffolds: 100
+    outcome_columns_permitted: false
+  exclude_identity_overlap: true
+  development_labels_use_post_cutoff_records: false
+  evaluate_selected_candidate_only: true
+  allow_non_audit_replay: false
+
+outer_validation:
+  splitter: stratified_group_kfold
+  group: bemis_murcko_scaffold
+  regression_activity_bins: 5
+  folds: 5
+  repeats: 3
+  seeds: [1101, 1102, 1103]
+
+inner_tuning:
+  splitter: stratified_group_kfold
+  group: bemis_murcko_scaffold
+  regression_activity_bins: 5
+  folds: 3
+  creation_scope: within_each_outer_training_partition
+  precomputed_at_split_lock: false
+  preprocessing_inside_pipeline: true
+  shared_splits_across_candidates: true
+
+selection:
+  primary_metric: RMSE
+  direction: minimize
+  secondary_metrics: [MAE, R2]
+  final_test_metrics_permitted: false
+  paired_fold_p_values: false
+
+representations:
+  - ecfp6_2048
+  - rdkit2d
+  - ecfp6_2048_plus_rdkit2d
+  - molecular_graph
+  - molecular_graph_plus_rdkit2d
+
+candidate_families:
+  baselines: [development_mean, tanimoto_knn]
+  classical: [ridge, random_forest, gradient_boosting, svr]
+  graph: [chemprop_dmpnn, edge_aware_gine]
+
+graph_training:
+  selected_configuration_model_seeds: [2101, 2102, 2103]
+  early_stopping_source: inner_training_folds_only
+  outer_refit_epoch_rule: median_inner_best_epoch
+
+uncertainty:
+  final_test_bootstrap:
+    unit: bemis_murcko_scaffold_cluster
+    replicates: 10000
+    confidence_level: 0.95
+    method: percentile
+    seed: 3101
+  repeated_cv_summary: per_repeat_pooled_oof
+
+artifact_policy:
+  root: artifacts/runs
+  split_lock_root: artifacts/split_locks
+  split_lock_id: chembl37_strict_temporal2018_scaffold3x5_v1
+  split_lock_sources:
+    curated_dir: data/curated/chembl37_pim1_v2
+    measurement_events: strict_measurement_events.csv
+    temporal_feasibility: temporal_feasibility.csv
+    curation_manifest: curation_manifest.json
+  cache_key_inputs:
+    - dataset_sha256
+    - split_manifest_sha256
+    - protocol_sha256
+    - code_sha256
+    - environment_sha256
+    - seed
+  atomic_writes: true
+  completion_marker: RUN_COMPLETE
+  legacy_results_are_confirmatory: false

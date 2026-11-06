@@ -1,0 +1,320 @@
+{
+  "broad_record_chronology": {
+    "count": 4,
+    "definition": "Temporal identities with any broad-cohort eligible record at or before the 2018 cutoff, despite first meeting the strict cohort after the cutoff.",
+    "identity_rows": [
+      {
+        "earlier_strict_exclusion_reasons": "bao_format_not_single_protein",
+        "first_broad_record_year": 2016,
+        "first_record_year": 2024,
+        "standardized_parent_inchi_key": "DDQXBYGNFGPJRL-CLZWFORCSA-N"
+      },
+      {
+        "earlier_strict_exclusion_reasons": "assay_confidence_not_strict|assay_relationship_not_direct",
+        "first_broad_record_year": 2016,
+        "first_record_year": 2019,
+        "standardized_parent_inchi_key": "VFYCNKMVBINXBE-LLVKDONJSA-N"
+      },
+      {
+        "earlier_strict_exclusion_reasons": "assay_confidence_not_strict|assay_relationship_not_direct",
+        "first_broad_record_year": 2013,
+        "first_record_year": 2024,
+        "standardized_parent_inchi_key": "VRQXRVAKPDCRCI-ZNMIVQPWSA-N"
+      },
+      {
+        "earlier_strict_exclusion_reasons": "assay_confidence_not_strict|assay_relationship_not_direct",
+        "first_broad_record_year": 2016,
+        "first_record_year": 2024,
+        "standardized_parent_inchi_key": "XRNVABDYQLHODA-JCNLHEQBSA-N"
+      }
+    ],
+    "remaining_strict_chronology_count": 280,
+    "sensitivity_point_metrics": {
+      "MAE": 0.7528010745215357,
+      "R2": 0.46335217674520424,
+      "RMSE": 0.9761450824700881
+    },
+    "sensitivity_scaffold_bootstrap": {
+      "bootstrap_standard_errors": {
+        "MAE": 0.045285268356024526,
+        "R2": 0.07061691329911707,
+        "RMSE": 0.05246520551737465
+      },
+      "cluster_column": "scaffold_smiles",
+      "confidence_intervals": {
+        "MAE": [
+          0.6680364964178247,
+          0.8445488734045423
+        ],
+        "R2": [
+          0.2932690106901164,
+          0.575532621449425
+        ],
+        "RMSE": [
+          0.8754493472471083,
+          1.0801060525602624
+        ]
+      },
+      "confidence_level": 0.95,
+      "invalid_replicates": {
+        "MAE": 0,
+        "R2": 0,
+        "RMSE": 0
+      },
+      "n_bootstrap": 10000,
+      "n_clusters": 157,
+      "point_estimates": {
+        "MAE": 0.7528010745215357,
+        "R2": 0.46335217674520424,
+        "RMSE": 0.9761450824700881
+      },
+      "seed": 4301,
+      "valid_replicates": {
+        "MAE": 10000,
+        "R2": 10000,
+        "RMSE": 10000
+      }
+    }
+  },
+  "information_boundary": "Consumes immutable selected-model predictions only; no fitting, tuning, candidate comparison, or prediction changes are permitted.",
+  "n_temporal_compounds": 284,
+  "nearest_neighbor_potency_discordance": {
+    "ci_lower": 0.12202403483999533,
+    "ci_upper": 0.41062255461148783,
+    "cluster_column": "scaffold_smiles",
+    "invalid_replicates": 0,
+    "n": 284,
+    "n_bootstrap": 10000,
+    "n_clusters": 160,
+    "point_estimate": 0.27124505767166085,
+    "valid_replicates": 10000,
+    "x": "nearest_neighbor_potency_gap",
+    "y": "absolute_error"
+  },
+  "primary_uncertainty_by_cluster": {
+    "assay_cluster": {
+      "bootstrap_standard_errors": {
+        "MAE": 0.07119071492302563,
+        "R2": 0.18966267629974093,
+        "RMSE": 0.07913755900307892
+      },
+      "cluster_column": "assay_cluster",
+      "confidence_intervals": {
+        "MAE": [
+          0.6366808361449663,
+          0.9142383954588456
+        ],
+        "R2": [
+          -0.04042437712761657,
+          0.6597625960968989
+        ],
+        "RMSE": [
+          0.835049745478888,
+          1.1444155941164047
+        ]
+      },
+      "confidence_level": 0.95,
+      "invalid_replicates": {
+        "MAE": 0,
+        "R2": 0,
+        "RMSE": 0
+      },
+      "n_bootstrap": 10000,
+      "n_clusters": 49,
+      "point_estimates": {
+        "MAE": 0.7501013151047887,
+        "R2": 0.46976325472684255,
+        "RMSE": 0.9724403541126546
+      },
+      "seed": 4101,
+      "valid_replicates": {
+        "MAE": 10000,
+        "R2": 10000,
+        "RMSE": 10000
+      }
+    },
+    "document_cluster": {
+      "bootstrap_standard_errors": {
+        "MAE": 0.08282724363382729,
+        "R2": 0.1875083365956104,
+        "RMSE": 0.09495743167554695
+      },
+      "cluster_column": "document_cluster",
+      "confidence_intervals": {
+        "MAE": [
+          0.6013682690275102,
+          0.9200326054904121
+        ],
+        "R2": [
+          -0.00713474724157883,
+          0.682132989020442
+        ],
+        "RMSE": [
+          0.7869284344110778,
+          1.14955475354164
+        ]
+      },
+      "confidence_level": 0.95,
+      "invalid_replicates": {
+        "MAE": 0,
+        "R2": 0,
+        "RMSE": 0
+      },
+      "n_bootstrap": 10000,
+      "n_clusters": 38,
+      "point_estimates": {
+        "MAE": 0.7501013151047887,
+        "R2": 0.46976325472684255,
+        "RMSE": 0.9724403541126546
+      },
+      "seed": 4101,
+      "valid_replicates": {
+        "MAE": 10000,
+        "R2": 10000,
+        "RMSE": 10000
+      }
+    },
+    "scaffold_smiles": {
+      "bootstrap_standard_errors": {
+        "MAE": 0.04502802433729361,
+        "R2": 0.06920365426139376,
+        "RMSE": 0.05230306352795539
+      },
+      "cluster_column": "scaffold_smiles",
+      "confidence_intervals": {
+        "MAE": [
+          0.6663137101311715,
+          0.8411457304338957
+        ],
+        "R2": [
+          0.3118814775639748,
+          0.5818625482949534
+        ],
+        "RMSE": [
+          0.8711593784594104,
+          1.0766001620141057
+        ]
+      },
+      "confidence_level": 0.95,
+      "invalid_replicates": {
+        "MAE": 0,
+        "R2": 0,
+        "RMSE": 0
+      },
+      "n_bootstrap": 10000,
+      "n_clusters": 160,
+      "point_estimates": {
+        "MAE": 0.7501013151047887,
+        "R2": 0.46976325472684255,
+        "RMSE": 0.9724403541126546
+      },
+      "seed": 4101,
+      "valid_replicates": {
+        "MAE": 10000,
+        "R2": 10000,
+        "RMSE": 10000
+      }
+    }
+  },
+  "schema_version": "temporal_robustness_audit_v2",
+  "source_centered_ordering": {
+    "assay": {
+      "centered_R2": -0.14625287251723296,
+      "centered_spearman_rho": 0.24038192772201641,
+      "group_column": "assay_cluster",
+      "minimum_group_size": 3,
+      "n": 252,
+      "n_groups": 23
+    },
+    "document": {
+      "centered_R2": -0.03119815625437994,
+      "centered_spearman_rho": 0.30335836824785567,
+      "group_column": "document_cluster",
+      "minimum_group_size": 3,
+      "n": 261,
+      "n_groups": 19
+    }
+  },
+  "source_inventory": {
+    "assay_source_sets": 49,
+    "document_source_sets": 38,
+    "multi_assay_labels": 4,
+    "multi_document_labels": 2,
+    "scaffold_clusters": 160
+  },
+  "status": "post_hoc_descriptive",
+  "temporal_degradation": {
+    "assay_cluster": {
+      "absolute_error_linear_slope_per_year": {
+        "ci_lower": 0.027354429552580304,
+        "ci_upper": 0.13034525042606726,
+        "invalid_replicates": 0,
+        "point_estimate": 0.08002920226100652,
+        "valid_replicates": 10000
+      },
+      "cluster_column": "assay_cluster",
+      "confidence_level": 0.95,
+      "first_year": 2019,
+      "first_year_rmse": 0.7950723209001903,
+      "last_year": 2024,
+      "last_year_rmse": 1.2614732970004596,
+      "n_bootstrap": 10000,
+      "n_clusters": 49,
+      "rmse_delta": {
+        "ci_lower": 0.1547897623904928,
+        "ci_upper": 0.7525251826449969,
+        "invalid_replicates": 2,
+        "point_estimate": 0.4664009761002693,
+        "valid_replicates": 9998
+      }
+    },
+    "document_cluster": {
+      "absolute_error_linear_slope_per_year": {
+        "ci_lower": 0.003301565495295826,
+        "ci_upper": 0.12021837060933922,
+        "invalid_replicates": 0,
+        "point_estimate": 0.08002920226100652,
+        "valid_replicates": 10000
+      },
+      "cluster_column": "document_cluster",
+      "confidence_level": 0.95,
+      "first_year": 2019,
+      "first_year_rmse": 0.7950723209001903,
+      "last_year": 2024,
+      "last_year_rmse": 1.2614732970004596,
+      "n_bootstrap": 10000,
+      "n_clusters": 38,
+      "rmse_delta": {
+        "ci_lower": -0.12082783865447909,
+        "ci_upper": 0.7064810619821545,
+        "invalid_replicates": 25,
+        "point_estimate": 0.4664009761002693,
+        "valid_replicates": 9975
+      }
+    },
+    "scaffold_smiles": {
+      "absolute_error_linear_slope_per_year": {
+        "ci_lower": 0.037658771846847315,
+        "ci_upper": 0.12295055277776197,
+        "invalid_replicates": 0,
+        "point_estimate": 0.08002920226100652,
+        "valid_replicates": 10000
+      },
+      "cluster_column": "scaffold_smiles",
+      "confidence_level": 0.95,
+      "first_year": 2019,
+      "first_year_rmse": 0.7950723209001903,
+      "last_year": 2024,
+      "last_year_rmse": 1.2614732970004596,
+      "n_bootstrap": 10000,
+      "n_clusters": 160,
+      "rmse_delta": {
+        "ci_lower": 0.19036588433837662,
+        "ci_upper": 0.7328508765299458,
+        "invalid_replicates": 0,
+        "point_estimate": 0.4664009761002693,
+        "valid_replicates": 10000
+      }
+    }
+  }
+}

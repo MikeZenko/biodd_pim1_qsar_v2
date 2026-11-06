@@ -1,0 +1,13 @@
+{
+  "fold": 2,
+  "r2": 0.6041782136522984,
+  "rmse": 0.8583991791822357,
+  "mae": 0.6845407217388029,
+  "best_params": {
+    "metric": "euclidean",
+    "n_neighbors": "12",
+    "weights": "distance"
+  },
+  "best_inner_cv_score": 0.6465486785667804,
+  "time_seconds": 5.288074016571045
+}

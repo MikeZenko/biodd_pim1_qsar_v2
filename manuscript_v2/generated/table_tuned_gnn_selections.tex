@@ -1,0 +1,29 @@
+\begin{table}[H]
+\centering
+\caption{Hyperparameters selected independently in the 15 outer folds of each post hoc graph family.}
+\label{tab:tuned-gnn-selections}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{L{0.25\textwidth}L{0.22\textwidth}L{0.22\textwidth}L{0.22\textwidth}}
+\toprule
+\textbf{Selection summary} & \textbf{GINE} & \textbf{D-MPNN} & \textbf{CheMeleon} \\ 
+\midrule
+Descriptor fusion (yes/no) & yes: 15 & no: 13; yes: 2 & no: 11; yes: 4 \\
+Depth, median [range] & 3 [3, 3] & 5 [2, 5] & 6 [6, 6] \\
+Message width, median [range] & 128 [128, 256] & 512 [256, 512] & 2048 [2048, 2048] \\
+Head width, median [range] & 128 [128, 512] & 256 [256, 256] & 256 [256, 512] \\
+Head layers, median [range] & 2 [2, 3] & 3 [2, 3] & 3 [3, 3] \\
+Dropout, median [range] & 0.100 [0.100, 0.121] & 0.010 [0.010, 0.294] & 0.082 [0.082, 0.387] \\
+Learning rate, median [range] & 0.000300 [0.000171, 0.000300] & 0.000248 [0.000248, 0.000312] & 0.001507 [0.000301, 0.001507] \\
+Nonzero weight decay & 15/15 & 15/15 & 15/15 \\
+Batch-size selections & 32: 1; 64: 14 & 128: 13; 32: 2 & 128: 15 \\
+Pooling selections & mean: 15 & norm: 13; sum: 2 & mean: 15 \\
+Normalization selections & batch: 14; none: 1 & batch: 15 & none: 15 \\
+Residual updates (yes/no) & yes: 15 & no: 15 & no: 15 \\
+Initialization selections & kaiming uniform: 1; xavier uniform: 14 & chemprop default: 15 & pretrained chemeleon: 15 \\
+Activation selections & relu: 15 & relu: 15 & leakyrelu: 11; relu: 4 \\
+Featurization selections & rich atom bond v1: 15 & chemprop v1: 13; chemprop v2: 2 & chemprop v2: 15 \\
+\bottomrule
+\end{tabular}
+\par\vspace{3pt}\parbox{0.95\textwidth}{\footnotesize \textit{Note.} Counts are out of 15 outer folds. Numeric entries are median [minimum, maximum]. CheMeleon depth, message width, mean pooling, and v2 featurization were fixed by the pretrained encoder contract; its downstream head and descriptor fusion were tuned. Its initialization entry denotes the frozen pretrained encoder; each downstream head used seeded Xavier initialization.}
+\end{table}

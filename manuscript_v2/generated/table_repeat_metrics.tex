@@ -1,0 +1,48 @@
+\begingroup
+\small
+\begin{longtable}{L{0.40\textwidth}rrrrr}
+\caption{Complete pooled out-of-fold metrics by repeat.}\label{tab:repeat-metrics}\\
+\toprule
+\textbf{Candidate} & \textbf{Repeat} & \textbf{$n$} & \textbf{RMSE} & \textbf{MAE} & \textbf{$R^2$} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Candidate} & \textbf{Repeat} & \textbf{$n$} & \textbf{RMSE} & \textbf{MAE} & \textbf{$R^2$} \\
+\midrule
+\endhead
+Chemprop D-MPNN (graph) & 1 & 803 & 1.159 & 0.946 & 0.216 \\
+Chemprop D-MPNN (graph) & 2 & 803 & 1.158 & 0.927 & 0.217 \\
+Chemprop D-MPNN (graph) & 3 & 803 & 1.109 & 0.915 & 0.283 \\
+Chemprop D-MPNN (graph + RDKit2D) & 1 & 803 & 1.218 & 1.001 & 0.135 \\
+Chemprop D-MPNN (graph + RDKit2D) & 2 & 803 & 1.197 & 0.979 & 0.163 \\
+Chemprop D-MPNN (graph + RDKit2D) & 3 & 803 & 1.228 & 0.998 & 0.120 \\
+Development mean & 1 & 803 & 1.309 & 1.079 & -0.001 \\
+Development mean & 2 & 803 & 1.309 & 1.079 & -0.001 \\
+Development mean & 3 & 803 & 1.309 & 1.078 & -0.001 \\
+Edge-aware GINE (graph) & 1 & 803 & 0.998 & 0.786 & 0.419 \\
+Edge-aware GINE (graph) & 2 & 803 & 0.997 & 0.781 & 0.419 \\
+Edge-aware GINE (graph) & 3 & 803 & 0.958 & 0.731 & 0.464 \\
+Edge-aware GINE (graph + RDKit2D) & 1 & 803 & 0.973 & 0.762 & 0.447 \\
+Edge-aware GINE (graph + RDKit2D) & 2 & 803 & 0.846 & 0.668 & 0.582 \\
+Edge-aware GINE (graph + RDKit2D) & 3 & 803 & 0.861 & 0.674 & 0.567 \\
+Gradient boosting (ECFP6 + RDKit2D) & 1 & 803 & 0.770 & 0.605 & 0.653 \\
+Gradient boosting (ECFP6 + RDKit2D) & 2 & 803 & 0.764 & 0.598 & 0.659 \\
+Gradient boosting (ECFP6 + RDKit2D) & 3 & 803 & 0.796 & 0.624 & 0.630 \\
+Random forest (ECFP6 + RDKit2D) & 1 & 803 & 0.775 & 0.605 & 0.649 \\
+Random forest (ECFP6 + RDKit2D) & 2 & 803 & 0.770 & 0.605 & 0.654 \\
+Random forest (ECFP6 + RDKit2D) & 3 & 803 & 0.794 & 0.617 & 0.632 \\
+Random forest (ECFP6) & 1 & 803 & 0.795 & 0.619 & 0.631 \\
+Random forest (ECFP6) & 2 & 803 & 0.785 & 0.603 & 0.640 \\
+Random forest (ECFP6) & 3 & 803 & 0.801 & 0.616 & 0.625 \\
+RBF-SVR (ECFP6 + RDKit2D) & 1 & 803 & 0.733 & 0.571 & 0.686 \\
+RBF-SVR (ECFP6 + RDKit2D) & 2 & 803 & 0.738 & 0.562 & 0.682 \\
+RBF-SVR (ECFP6 + RDKit2D) & 3 & 803 & 0.761 & 0.580 & 0.662 \\
+Ridge (ECFP6 + RDKit2D) & 1 & 803 & 0.744 & 0.578 & 0.677 \\
+Ridge (ECFP6 + RDKit2D) & 2 & 803 & 0.730 & 0.562 & 0.689 \\
+Ridge (ECFP6 + RDKit2D) & 3 & 803 & 0.752 & 0.582 & 0.670 \\
+Tanimoto kNN (ECFP6) & 1 & 803 & 0.873 & 0.660 & 0.555 \\
+Tanimoto kNN (ECFP6) & 2 & 803 & 0.895 & 0.676 & 0.532 \\
+Tanimoto kNN (ECFP6) & 3 & 803 & 0.885 & 0.667 & 0.543 \\
+\bottomrule
+\end{longtable}
+\endgroup

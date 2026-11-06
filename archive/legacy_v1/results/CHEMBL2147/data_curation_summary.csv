@@ -1,0 +1,8 @@
+Metric,Value
+raw_activity_records,4852
+modeling_molecule_target_medians,3110
+raw_maximum_ic50_nm,56511000.0
+upper_cap_records_affected,0
+high_potency_raw_measurements,167
+high_potency_molecule_target_medians,141
+high_potency_single_measurement_medians,124

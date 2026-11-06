@@ -1,0 +1,674 @@
+{
+  "contract_sha256": "ca6cec23c49826924e9a9281100c9dce20383aa003c466c4877e114103c84823",
+  "family": "edge_aware_gine",
+  "fold": 4,
+  "n_outer_train": 641,
+  "n_outer_validation": 162,
+  "outer_prediction_sha256": "a89fcd8ca51fcffe292908e646cbfd8bfce62c7a7b87a7aa50a226ce4c3319a1",
+  "repeat": 2,
+  "reranking": [
+    {
+      "candidate_id": "edge_aware_gine-65810dcb699a",
+      "seed_mean_inner_rmse": 0.7870867555163601,
+      "seed_results": [
+        {
+          "candidate": {
+            "activation": "relu",
+            "batch_size": 64,
+            "depth": 3,
+            "dropout": 0.1,
+            "encoder_training": "random",
+            "family": "edge_aware_gine",
+            "featurization": "rich_atom_bond_v1",
+            "ffn_hidden_dim": 128,
+            "ffn_layers": 2,
+            "hidden_dim": 128,
+            "initialization": "xavier_uniform",
+            "learning_rate": 0.0003,
+            "normalization": "batch",
+            "pooling": "mean",
+            "representation": "graph_plus_rdkit2d",
+            "residual": true,
+            "weight_decay": 1e-05
+          },
+          "candidate_id": "edge_aware_gine-65810dcb699a",
+          "contract_sha256": "ca6cec23c49826924e9a9281100c9dce20383aa003c466c4877e114103c84823",
+          "family": "edge_aware_gine",
+          "fold": 4,
+          "inner_folds": [
+            {
+              "inner_fold": 0,
+              "n_train": 427,
+              "n_validation": 214,
+              "parameter_count": 145540,
+              "rmse": 0.7876608577518378,
+              "selected_epoch": 28
+            },
+            {
+              "inner_fold": 1,
+              "n_train": 428,
+              "n_validation": 213,
+              "parameter_count": 145540,
+              "rmse": 0.7538472576168341,
+              "selected_epoch": 28
+            },
+            {
+              "inner_fold": 2,
+              "n_train": 427,
+              "n_validation": 214,
+              "parameter_count": 145540,
+              "rmse": 0.826052215360169,
+              "selected_epoch": 19
+            }
+          ],
+          "median_epoch": 28,
+          "pooled_inner_rmse": 0.7897925593312312,
+          "repeat": 2,
+          "runtime_seconds": 46.18163242004812,
+          "schema_version": "gnn_tuned_posthoc_v1",
+          "seed": 7301,
+          "temporal_test_consulted": false
+        },
+        {
+          "candidate": {
+            "activation": "relu",
+            "batch_size": 64,
+            "depth": 3,
+            "dropout": 0.1,
+            "encoder_training": "random",
+            "family": "edge_aware_gine",
+            "featurization": "rich_atom_bond_v1",
+            "ffn_hidden_dim": 128,
+            "ffn_layers": 2,
+            "hidden_dim": 128,
+            "initialization": "xavier_uniform",
+            "learning_rate": 0.0003,
+            "normalization": "batch",
+            "pooling": "mean",
+            "representation": "graph_plus_rdkit2d",
+            "residual": true,
+            "weight_decay": 1e-05
+          },
+          "candidate_id": "edge_aware_gine-65810dcb699a",
+          "contract_sha256": "ca6cec23c49826924e9a9281100c9dce20383aa003c466c4877e114103c84823",
+          "family": "edge_aware_gine",
+          "fold": 4,
+          "inner_folds": [
+            {
+              "inner_fold": 0,
+              "n_train": 427,
+              "n_validation": 214,
+              "parameter_count": 145540,
+              "rmse": 0.7722510337005688,
+              "selected_epoch": 49
+            },
+            {
+              "inner_fold": 1,
+              "n_train": 428,
+              "n_validation": 213,
+              "parameter_count": 145540,
+              "rmse": 0.7686222471350481,
+              "selected_epoch": 50
+            },
+            {
+              "inner_fold": 2,
+              "n_train": 427,
+              "n_validation": 214,
+              "parameter_count": 145540,
+              "rmse": 0.8247271862286817,
+              "selected_epoch": 106
+            }
+          ],
+          "median_epoch": 50,
+          "pooled_inner_rmse": 0.7889813969206835,
+          "repeat": 2,
+          "runtime_seconds": 114.7580567218829,
+          "schema_version": "gnn_tuned_posthoc_v1",
+          "seed": 7302,
+          "temporal_test_consulted": false
+        },
+        {
+          "candidate": {
+            "activation": "relu",
+            "batch_size": 64,
+            "depth": 3,
+            "dropout": 0.1,
+            "encoder_training": "random",
+            "family": "edge_aware_gine",
+            "featurization": "rich_atom_bond_v1",
+            "ffn_hidden_dim": 128,
+            "ffn_layers": 2,
+            "hidden_dim": 128,
+            "initialization": "xavier_uniform",
+            "learning_rate": 0.0003,
+            "normalization": "batch",
+            "pooling": "mean",
+            "representation": "graph_plus_rdkit2d",
+            "residual": true,
+            "weight_decay": 1e-05
+          },
+          "candidate_id": "edge_aware_gine-65810dcb699a",
+          "contract_sha256": "ca6cec23c49826924e9a9281100c9dce20383aa003c466c4877e114103c84823",
+          "family": "edge_aware_gine",
+          "fold": 4,
+          "inner_folds": [
+            {
+              "inner_fold": 0,
+              "n_train": 427,
+              "n_validation": 214,
+              "parameter_count": 145540,
+              "rmse": 0.7882533277620174,
+              "selected_epoch": 45
+            },
+            {
+              "inner_fold": 1,
+              "n_train": 428,
+              "n_validation": 213,
+              "parameter_count": 145540,
+              "rmse": 0.7811763350280465,
+              "selected_epoch": 21
+            },
+            {
+              "inner_fold": 2,
+              "n_train": 427,
+              "n_validation": 214,
+              "parameter_count": 145540,
+              "rmse": 0.7779878729766936,
+              "selected_epoch": 32
+            }
+          ],
+          "median_epoch": 32,
+          "pooled_inner_rmse": 0.7824863102971658,
+          "repeat": 2,
+          "runtime_seconds": 82.08292967895977,
+          "schema_version": "gnn_tuned_posthoc_v1",
+          "seed": 7303,
+          "temporal_test_consulted": false
+        }
+      ],
+      "seed_sd_inner_rmse": 0.0032698183716304147
+    },
+    {
+      "candidate_id": "edge_aware_gine-feb8e5f0e434",
+      "seed_mean_inner_rmse": 0.808717149719711,
+      "seed_results": [
+        {
+          "candidate": {
+            "activation": "relu",
+            "batch_size": 32,
+            "depth": 3,
+            "dropout": 0.12125138993536022,
+            "encoder_training": "random",
+            "family": "edge_aware_gine",
+            "featurization": "rich_atom_bond_v1",
+            "ffn_hidden_dim": 512,
+            "ffn_layers": 3,
+            "hidden_dim": 256,
+            "initialization": "kaiming_uniform",
+            "learning_rate": 0.00017083686810309237,
+            "normalization": "none",
+            "pooling": "mean",
+            "representation": "graph_plus_rdkit2d",
+            "residual": true,
+            "weight_decay": 1e-07
+          },
+          "candidate_id": "edge_aware_gine-feb8e5f0e434",
+          "contract_sha256": "ca6cec23c49826924e9a9281100c9dce20383aa003c466c4877e114103c84823",
+          "family": "edge_aware_gine",
+          "fold": 4,
+          "inner_folds": [
+            {
+              "inner_fold": 0,
+              "n_train": 427,
+              "n_validation": 214,
+              "parameter_count": 853508,
+              "rmse": 0.7569976986569239,
+              "selected_epoch": 60
+            },
+            {
+              "inner_fold": 1,
+              "n_train": 428,
+              "n_validation": 213,
+              "parameter_count": 853508,
+              "rmse": 0.7983034451241914,
+              "selected_epoch": 36
+            },
+            {
+              "inner_fold": 2,
+              "n_train": 427,
+              "n_validation": 214,
+              "parameter_count": 853508,
+              "rmse": 0.871382502546334,
+              "selected_epoch": 27
+            }
+          ],
+          "median_epoch": 36,
+          "pooled_inner_rmse": 0.8102944951253086,
+          "repeat": 2,
+          "runtime_seconds": 127.54105538805015,
+          "schema_version": "gnn_tuned_posthoc_v1",
+          "seed": 7301,
+          "temporal_test_consulted": false
+        },
+        {
+          "candidate": {
+            "activation": "relu",
+            "batch_size": 32,
+            "depth": 3,
+            "dropout": 0.12125138993536022,
+            "encoder_training": "random",
+            "family": "edge_aware_gine",
+            "featurization": "rich_atom_bond_v1",
+            "ffn_hidden_dim": 512,
+            "ffn_layers": 3,
+            "hidden_dim": 256,
+            "initialization": "kaiming_uniform",
+            "learning_rate": 0.00017083686810309237,
+            "normalization": "none",
+            "pooling": "mean",
+            "representation": "graph_plus_rdkit2d",
+            "residual": true,
+            "weight_decay": 1e-07
+          },
+          "candidate_id": "edge_aware_gine-feb8e5f0e434",
+          "contract_sha256": "ca6cec23c49826924e9a9281100c9dce20383aa003c466c4877e114103c84823",
+          "family": "edge_aware_gine",
+          "fold": 4,
+          "inner_folds": [
+            {
+              "inner_fold": 0,
+              "n_train": 427,
+              "n_validation": 214,
+              "parameter_count": 853508,
+              "rmse": 0.7667947582269798,
+              "selected_epoch": 81
+            },
+            {
+              "inner_fold": 1,
+              "n_train": 428,
+              "n_validation": 213,
+              "parameter_count": 853508,
+              "rmse": 0.8110247432482911,
+              "selected_epoch": 36
+            },
+            {
+              "inner_fold": 2,
+              "n_train": 427,
+              "n_validation": 214,
+              "parameter_count": 853508,
+              "rmse": 0.8373438585817876,
+              "selected_epoch": 50
+            }
+          ],
+          "median_epoch": 50,
+          "pooled_inner_rmse": 0.805572029071723,
+          "repeat": 2,
+          "runtime_seconds": 262.9044989340473,
+          "schema_version": "gnn_tuned_posthoc_v1",
+          "seed": 7302,
+          "temporal_test_consulted": false
+        },
+        {
+          "candidate": {
+            "activation": "relu",
+            "batch_size": 32,
+            "depth": 3,
+            "dropout": 0.12125138993536022,
+            "encoder_training": "random",
+            "family": "edge_aware_gine",
+            "featurization": "rich_atom_bond_v1",
+            "ffn_hidden_dim": 512,
+            "ffn_layers": 3,
+            "hidden_dim": 256,
+            "initialization": "kaiming_uniform",
+            "learning_rate": 0.00017083686810309237,
+            "normalization": "none",
+            "pooling": "mean",
+            "representation": "graph_plus_rdkit2d",
+            "residual": true,
+            "weight_decay": 1e-07
+          },
+          "candidate_id": "edge_aware_gine-feb8e5f0e434",
+          "contract_sha256": "ca6cec23c49826924e9a9281100c9dce20383aa003c466c4877e114103c84823",
+          "family": "edge_aware_gine",
+          "fold": 4,
+          "inner_folds": [
+            {
+              "inner_fold": 0,
+              "n_train": 427,
+              "n_validation": 214,
+              "parameter_count": 853508,
+              "rmse": 0.7601562305977534,
+              "selected_epoch": 60
+            },
+            {
+              "inner_fold": 1,
+              "n_train": 428,
+              "n_validation": 213,
+              "parameter_count": 853508,
+              "rmse": 0.7885438929668401,
+              "selected_epoch": 26
+            },
+            {
+              "inner_fold": 2,
+              "n_train": 427,
+              "n_validation": 214,
+              "parameter_count": 853508,
+              "rmse": 0.8774301009330112,
+              "selected_epoch": 29
+            }
+          ],
+          "median_epoch": 29,
+          "pooled_inner_rmse": 0.8102849249621012,
+          "repeat": 2,
+          "runtime_seconds": 188.06742586102337,
+          "schema_version": "gnn_tuned_posthoc_v1",
+          "seed": 7303,
+          "temporal_test_consulted": false
+        }
+      ],
+      "seed_sd_inner_rmse": 0.002223939569743463
+    },
+    {
+      "candidate_id": "edge_aware_gine-33afb3d3139c",
+      "seed_mean_inner_rmse": 0.852937043767508,
+      "seed_results": [
+        {
+          "candidate": {
+            "activation": "relu",
+            "batch_size": 32,
+            "depth": 4,
+            "dropout": 0.08033549315567404,
+            "encoder_training": "random",
+            "family": "edge_aware_gine",
+            "featurization": "rich_atom_bond_v1",
+            "ffn_hidden_dim": 64,
+            "ffn_layers": 2,
+            "hidden_dim": 256,
+            "initialization": "xavier_uniform",
+            "learning_rate": 0.0009833408130751266,
+            "normalization": "none",
+            "pooling": "mean",
+            "representation": "graph_plus_rdkit2d",
+            "residual": false,
+            "weight_decay": 1e-08
+          },
+          "candidate_id": "edge_aware_gine-33afb3d3139c",
+          "contract_sha256": "ca6cec23c49826924e9a9281100c9dce20383aa003c466c4877e114103c84823",
+          "family": "edge_aware_gine",
+          "fold": 4,
+          "inner_folds": [
+            {
+              "inner_fold": 0,
+              "n_train": 427,
+              "n_validation": 214,
+              "parameter_count": 600389,
+              "rmse": 0.7804199879693435,
+              "selected_epoch": 73
+            },
+            {
+              "inner_fold": 1,
+              "n_train": 428,
+              "n_validation": 213,
+              "parameter_count": 600389,
+              "rmse": 0.7979332195475948,
+              "selected_epoch": 53
+            },
+            {
+              "inner_fold": 2,
+              "n_train": 427,
+              "n_validation": 214,
+              "parameter_count": 600389,
+              "rmse": 0.9117191269410181,
+              "selected_epoch": 42
+            }
+          ],
+          "median_epoch": 53,
+          "pooled_inner_rmse": 0.8321147575662171,
+          "repeat": 2,
+          "runtime_seconds": 184.2828377741389,
+          "schema_version": "gnn_tuned_posthoc_v1",
+          "seed": 7301,
+          "temporal_test_consulted": false
+        },
+        {
+          "candidate": {
+            "activation": "relu",
+            "batch_size": 32,
+            "depth": 4,
+            "dropout": 0.08033549315567404,
+            "encoder_training": "random",
+            "family": "edge_aware_gine",
+            "featurization": "rich_atom_bond_v1",
+            "ffn_hidden_dim": 64,
+            "ffn_layers": 2,
+            "hidden_dim": 256,
+            "initialization": "xavier_uniform",
+            "learning_rate": 0.0009833408130751266,
+            "normalization": "none",
+            "pooling": "mean",
+            "representation": "graph_plus_rdkit2d",
+            "residual": false,
+            "weight_decay": 1e-08
+          },
+          "candidate_id": "edge_aware_gine-33afb3d3139c",
+          "contract_sha256": "ca6cec23c49826924e9a9281100c9dce20383aa003c466c4877e114103c84823",
+          "family": "edge_aware_gine",
+          "fold": 4,
+          "inner_folds": [
+            {
+              "inner_fold": 0,
+              "n_train": 427,
+              "n_validation": 214,
+              "parameter_count": 600389,
+              "rmse": 0.795130925092072,
+              "selected_epoch": 72
+            },
+            {
+              "inner_fold": 1,
+              "n_train": 428,
+              "n_validation": 213,
+              "parameter_count": 600389,
+              "rmse": 0.8985119765893025,
+              "selected_epoch": 34
+            },
+            {
+              "inner_fold": 2,
+              "n_train": 427,
+              "n_validation": 214,
+              "parameter_count": 600389,
+              "rmse": 0.8844901316147112,
+              "selected_epoch": 34
+            }
+          ],
+          "median_epoch": 34,
+          "pooled_inner_rmse": 0.8605361889952128,
+          "repeat": 2,
+          "runtime_seconds": 258.0992064489983,
+          "schema_version": "gnn_tuned_posthoc_v1",
+          "seed": 7302,
+          "temporal_test_consulted": false
+        },
+        {
+          "candidate": {
+            "activation": "relu",
+            "batch_size": 32,
+            "depth": 4,
+            "dropout": 0.08033549315567404,
+            "encoder_training": "random",
+            "family": "edge_aware_gine",
+            "featurization": "rich_atom_bond_v1",
+            "ffn_hidden_dim": 64,
+            "ffn_layers": 2,
+            "hidden_dim": 256,
+            "initialization": "xavier_uniform",
+            "learning_rate": 0.0009833408130751266,
+            "normalization": "none",
+            "pooling": "mean",
+            "representation": "graph_plus_rdkit2d",
+            "residual": false,
+            "weight_decay": 1e-08
+          },
+          "candidate_id": "edge_aware_gine-33afb3d3139c",
+          "contract_sha256": "ca6cec23c49826924e9a9281100c9dce20383aa003c466c4877e114103c84823",
+          "family": "edge_aware_gine",
+          "fold": 4,
+          "inner_folds": [
+            {
+              "inner_fold": 0,
+              "n_train": 427,
+              "n_validation": 214,
+              "parameter_count": 600389,
+              "rmse": 0.8058683882940345,
+              "selected_epoch": 90
+            },
+            {
+              "inner_fold": 1,
+              "n_train": 428,
+              "n_validation": 213,
+              "parameter_count": 600389,
+              "rmse": 0.8508787146427522,
+              "selected_epoch": 65
+            },
+            {
+              "inner_fold": 2,
+              "n_train": 427,
+              "n_validation": 214,
+              "parameter_count": 600389,
+              "rmse": 0.9365678507327785,
+              "selected_epoch": 21
+            }
+          ],
+          "median_epoch": 65,
+          "pooled_inner_rmse": 0.8661601847410942,
+          "repeat": 2,
+          "runtime_seconds": 321.25702456897125,
+          "schema_version": "gnn_tuned_posthoc_v1",
+          "seed": 7303,
+          "temporal_test_consulted": false
+        }
+      ],
+      "seed_sd_inner_rmse": 0.014901521936226878
+    }
+  ],
+  "schema_version": "gnn_tuned_posthoc_v1",
+  "screening": [
+    {
+      "candidate_id": "edge_aware_gine-65810dcb699a",
+      "pooled_inner_rmse": 0.7897925593312312
+    },
+    {
+      "candidate_id": "edge_aware_gine-448bfac1f3b3",
+      "pooled_inner_rmse": 0.978634113238581
+    },
+    {
+      "candidate_id": "edge_aware_gine-1070db5a6a8d",
+      "pooled_inner_rmse": 1.0865675152098966
+    },
+    {
+      "candidate_id": "edge_aware_gine-8095ef5644d9",
+      "pooled_inner_rmse": 0.8614020555164984
+    },
+    {
+      "candidate_id": "edge_aware_gine-4d310dcb49e5",
+      "pooled_inner_rmse": 0.9682592699513689
+    },
+    {
+      "candidate_id": "edge_aware_gine-d41b59fe7eab",
+      "pooled_inner_rmse": 0.9317495245224051
+    },
+    {
+      "candidate_id": "edge_aware_gine-eb116e72f8c6",
+      "pooled_inner_rmse": 0.8561531157792873
+    },
+    {
+      "candidate_id": "edge_aware_gine-8ff5ab6d5886",
+      "pooled_inner_rmse": 1.3321571313038454
+    },
+    {
+      "candidate_id": "edge_aware_gine-fbb7ee1749fa",
+      "pooled_inner_rmse": 0.8853863684524343
+    },
+    {
+      "candidate_id": "edge_aware_gine-a78380492241",
+      "pooled_inner_rmse": 1.071326453886286
+    },
+    {
+      "candidate_id": "edge_aware_gine-da15afde169b",
+      "pooled_inner_rmse": 1.0373587625002822
+    },
+    {
+      "candidate_id": "edge_aware_gine-b2a966b22b93",
+      "pooled_inner_rmse": 1.124968111296385
+    },
+    {
+      "candidate_id": "edge_aware_gine-d7610d410363",
+      "pooled_inner_rmse": 0.9967656205379705
+    },
+    {
+      "candidate_id": "edge_aware_gine-0c8aecdccd1c",
+      "pooled_inner_rmse": 1.2532465419632837
+    },
+    {
+      "candidate_id": "edge_aware_gine-6930a1ac4794",
+      "pooled_inner_rmse": 1.107373772643782
+    },
+    {
+      "candidate_id": "edge_aware_gine-b2136ff0b31e",
+      "pooled_inner_rmse": 0.9442110502314306
+    },
+    {
+      "candidate_id": "edge_aware_gine-33afb3d3139c",
+      "pooled_inner_rmse": 0.8321147575662171
+    },
+    {
+      "candidate_id": "edge_aware_gine-feb8e5f0e434",
+      "pooled_inner_rmse": 0.8102944951253086
+    },
+    {
+      "candidate_id": "edge_aware_gine-5465975be642",
+      "pooled_inner_rmse": 1.1488108477663554
+    },
+    {
+      "candidate_id": "edge_aware_gine-dfecab79a4e3",
+      "pooled_inner_rmse": 1.294279840937303
+    },
+    {
+      "candidate_id": "edge_aware_gine-eed9d5871875",
+      "pooled_inner_rmse": 0.8376325825584241
+    },
+    {
+      "candidate_id": "edge_aware_gine-ee114253c9ec",
+      "pooled_inner_rmse": 0.9174942122258135
+    },
+    {
+      "candidate_id": "edge_aware_gine-8e2a0a77e8a5",
+      "pooled_inner_rmse": 0.9352978202422056
+    },
+    {
+      "candidate_id": "edge_aware_gine-7d7c1fc9e0c3",
+      "pooled_inner_rmse": 2.756995125797497
+    }
+  ],
+  "selected_candidate": {
+    "activation": "relu",
+    "batch_size": 64,
+    "depth": 3,
+    "dropout": 0.1,
+    "encoder_training": "random",
+    "family": "edge_aware_gine",
+    "featurization": "rich_atom_bond_v1",
+    "ffn_hidden_dim": 128,
+    "ffn_layers": 2,
+    "hidden_dim": 128,
+    "initialization": "xavier_uniform",
+    "learning_rate": 0.0003,
+    "normalization": "batch",
+    "pooling": "mean",
+    "representation": "graph_plus_rdkit2d",
+    "residual": true,
+    "weight_decay": 1e-05
+  },
+  "selected_candidate_id": "edge_aware_gine-65810dcb699a",
+  "temporal_test_consulted": false
+}

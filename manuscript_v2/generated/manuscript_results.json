@@ -1,0 +1,785 @@
+{
+  "absolute_error_slope_per_year": 0.08002920226100652,
+  "absolute_error_slope_scaffold_lower": 0.037658771846847315,
+  "absolute_error_slope_scaffold_upper": 0.12295055277776197,
+  "assay_centered_count": 252,
+  "assay_centered_group_count": 23,
+  "assay_centered_r2": -0.14625287251723296,
+  "assay_centered_spearman": 0.24038192772201641,
+  "assay_context_audit": {
+    "assay_count": 122,
+    "assay_event_count_max": 65,
+    "assay_event_count_median": 3.0,
+    "assay_event_count_min": 1,
+    "assay_event_count_q1": 1.0,
+    "assay_event_count_q3": 11.75,
+    "assay_exclusive_scaffold_event_count": 925,
+    "assay_exclusive_scaffold_event_percent": 82.22222222222223,
+    "assay_ge_ten_event_count": 37,
+    "assay_lt_five_event_count": 71,
+    "atp_at_km_assay_count": 3,
+    "atp_at_km_assays": [
+      {
+        "assay_chembl_id": "CHEMBL4687896",
+        "assay_descriptions": [
+          "Inhibition of human PIM1 using full length BAD peptide substrate in presence of ATP at Km concentration"
+        ],
+        "atp_concentrations_um": [],
+        "condition": "ATP at Km",
+        "document_chembl_ids": [
+          "CHEMBL4680285"
+        ],
+        "event_count": 1
+      },
+      {
+        "assay_chembl_id": "CHEMBL5212833",
+        "assay_descriptions": [
+          "Selectivity interaction (Kinase panel (Millipore, radiometric filter-binding assay, conc. ATP = Km)) EUB0000613a PIM1"
+        ],
+        "atp_concentrations_um": [],
+        "condition": "ATP at Km",
+        "document_chembl_ids": [
+          "CHEMBL5212743"
+        ],
+        "event_count": 1
+      },
+      {
+        "assay_chembl_id": "CHEMBL5446217",
+        "assay_descriptions": [
+          "Affinity Biochemical interaction: (Mobility shift assay (Caliper Life Sciences, conc. ATP = Km)) EUB0001547a PIM1"
+        ],
+        "atp_concentrations_um": [],
+        "condition": "ATP at Km",
+        "document_chembl_ids": [
+          "CHEMBL5446079"
+        ],
+        "event_count": 1
+      }
+    ],
+    "atp_at_km_event_count": 3,
+    "atp_mention_assay_count": 34,
+    "atp_mention_event_count": 365,
+    "atp_mention_event_percent": 32.44444444444444,
+    "cross_assay_compound_count": 18,
+    "cross_document_compound_count": 14,
+    "definitions": {
+      "assay_exclusive_scaffold_event": "an event whose Bemis--Murcko scaffold occurs in exactly one representative assay",
+      "atp_mention": "case-insensitive whole-word ATP in the pinned assay description",
+      "numeric_atp": "a positive numeric nM, uM, microM, or mM value immediately modifying ATP in the pinned assay description",
+      "partition_event_counts": "development label events at or before the cutoff and all events for first-seen-after-cutoff temporal identities"
+    },
+    "description_count": 89,
+    "development_assay_count": 68,
+    "development_document_count": 62,
+    "development_event_count": 822,
+    "development_temporal_assay_intersection_count": 0,
+    "development_temporal_document_intersection_count": 0,
+    "document_count": 102,
+    "event_count": 1125,
+    "largest_assay_event_count": 65,
+    "largest_assay_event_percent": 5.777777777777778,
+    "matched_numeric_atp_pair_count": 1,
+    "matched_numeric_atp_pairs": [
+      {
+        "document_chembl_id": "CHEMBL2046384",
+        "high_atp_assay_chembl_id": "CHEMBL2049742",
+        "high_atp_standard_value_nm": 100.0,
+        "high_atp_um": 5000.0,
+        "low_atp_assay_chembl_id": "CHEMBL2049739",
+        "low_atp_standard_value_nm": 9.0,
+        "low_atp_um": 50.0,
+        "pic50_delta_high_minus_low_atp": -1.0457574905599998,
+        "standardized_parent_inchi_key": "WLJWSUVXFQUAHY-JYVXZMADSA-N"
+      }
+    ],
+    "multi_assay_scaffold_count": 33,
+    "numeric_atp_assay_count": 8,
+    "numeric_atp_assays": [
+      {
+        "assay_chembl_id": "CHEMBL1061942",
+        "assay_descriptions": [
+          "Inhibition of PIM1 in the presence of 20uM ATP"
+        ],
+        "atp_concentrations_um": [
+          20.0
+        ],
+        "condition": "numeric",
+        "document_chembl_ids": [
+          "CHEMBL1150976"
+        ],
+        "event_count": 4
+      },
+      {
+        "assay_chembl_id": "CHEMBL1919015",
+        "assay_descriptions": [
+          "Inhibition of human recombinant Pim1 using RSRHSSYPAGT as substrate by radiometric assay in the presence of 30 uM [ATP]"
+        ],
+        "atp_concentrations_um": [
+          30.0
+        ],
+        "condition": "numeric",
+        "document_chembl_ids": [
+          "CHEMBL1914433"
+        ],
+        "event_count": 53
+      },
+      {
+        "assay_chembl_id": "CHEMBL2020770",
+        "assay_descriptions": [
+          "Inhibition of human recombinant Pim1 using RSRHSSYPAGT as substrate and 30 uM ATP by radiometric assay"
+        ],
+        "atp_concentrations_um": [
+          30.0
+        ],
+        "condition": "numeric",
+        "document_chembl_ids": [
+          "CHEMBL2016532"
+        ],
+        "event_count": 40
+      },
+      {
+        "assay_chembl_id": "CHEMBL2049739",
+        "assay_descriptions": [
+          "Inhibition of human PIM1 using FITC-(AHX)RSRHSSYPAGT-COOH as substrate after 90 mins by mobility shift assay in presence of 50 uM ATP"
+        ],
+        "atp_concentrations_um": [
+          50.0
+        ],
+        "condition": "numeric",
+        "document_chembl_ids": [
+          "CHEMBL2046384"
+        ],
+        "event_count": 10
+      },
+      {
+        "assay_chembl_id": "CHEMBL2049742",
+        "assay_descriptions": [
+          "Inhibition of human PIM1 using FITC-(AHX)RSRHSSYPAGT-COOH as substrate after 90 mins by mobility shift assay in presence of 5 mM ATP"
+        ],
+        "atp_concentrations_um": [
+          5000.0
+        ],
+        "condition": "numeric",
+        "document_chembl_ids": [
+          "CHEMBL2046384"
+        ],
+        "event_count": 7
+      },
+      {
+        "assay_chembl_id": "CHEMBL4011954",
+        "assay_descriptions": [
+          "Inhibition of PIM1 (unknown origin) pretreated for 30 mins followed by substrate addition measured after 5 hrs in presence of 1 mM ATP"
+        ],
+        "atp_concentrations_um": [
+          1000.0
+        ],
+        "condition": "numeric",
+        "document_chembl_ids": [
+          "CHEMBL4011589"
+        ],
+        "event_count": 1
+      },
+      {
+        "assay_chembl_id": "CHEMBL4831324",
+        "assay_descriptions": [
+          "Inhibition of PIM1 (unknown origin) in presence of 1 mM ATP without preincubation"
+        ],
+        "atp_concentrations_um": [
+          1000.0
+        ],
+        "condition": "numeric",
+        "document_chembl_ids": [
+          "CHEMBL4828769"
+        ],
+        "event_count": 1
+      },
+      {
+        "assay_chembl_id": "CHEMBL4831325",
+        "assay_descriptions": [
+          "Inhibition of PIM1 (unknown origin) in presence of 1 mM ATP with preincubation"
+        ],
+        "atp_concentrations_um": [
+          1000.0
+        ],
+        "condition": "numeric",
+        "document_chembl_ids": [
+          "CHEMBL4828769"
+        ],
+        "event_count": 1
+      }
+    ],
+    "numeric_atp_event_count": 117,
+    "numeric_atp_event_percent": 10.4,
+    "numeric_atp_fold_range": 250.0,
+    "numeric_atp_max_um": 5000.0,
+    "numeric_atp_min_um": 20.0,
+    "quarantined_post_cutoff_development_event_count": 11,
+    "scaffold_count": 518,
+    "single_event_assay_count": 44,
+    "single_event_compound_count": 1063,
+    "single_event_compound_percent": 97.79208831646734,
+    "status": "post_hoc_descriptive",
+    "temporal_assay_count": 48,
+    "temporal_document_count": 36,
+    "temporal_event_count": 292,
+    "top_five_assay_event_count": 255,
+    "top_five_assay_event_percent": 22.666666666666668,
+    "top_ten_assay_event_count": 434,
+    "top_ten_assay_event_percent": 38.577777777777776
+  },
+  "best_graph_delta": 0.0704342823458,
+  "best_graph_delta_lower": 0.0285305068323,
+  "best_graph_delta_upper": 0.113993108169,
+  "best_graph_model": "edge_aware_gine_graph_plus_rdkit2d",
+  "best_graph_model_text": "Edge-aware GINE (graph + RDKit2D)",
+  "best_graph_rmse": 0.893470187627,
+  "between_year_variance_percent": 31.836132603735,
+  "broad_compound_count": 3106,
+  "broad_eligible_count": 4380,
+  "broad_event_count": 3356,
+  "calibration_intercept": 0.38205695198542694,
+  "calibration_slope": 0.9300427424677257,
+  "chemprop_version": "2.2.4",
+  "classical_python_version": "3.12.3",
+  "conclusion_finding": "the sealed temporal audit revealed cohort-level degradation and failure of the evaluated reliability diagnostics to identify high-error predictions",
+  "coverage_lower_percent": 75.18511759935119,
+  "coverage_upper_percent": 86.73835125448028,
+  "cross_cutoff_identity_count": 7,
+  "cross_cutoff_maximum_shift": 0.7061485889599997,
+  "cross_cutoff_median_shift": 0.05923758096999965,
+  "descriptor_ablation_conclusion": "improved GINE but not the D-MPNN",
+  "development_count": 803,
+  "development_rmse": 0.741813200674,
+  "development_scaffold_count": 369,
+  "discussion_model_finding": "the bounded development comparison selected a regularized ECFP6-plus-descriptor model, without establishing a general ranking of fixed and learned representations",
+  "dispersion_half_count": 10,
+  "dispersion_one_count": 6,
+  "document_centered_count": 261,
+  "document_centered_group_count": 19,
+  "document_centered_r2": -0.03119815625437994,
+  "document_centered_spearman": 0.30335836824785567,
+  "document_cluster_r2_lower": -0.00713474724157883,
+  "document_cluster_r2_upper": 0.682132989020442,
+  "document_cluster_rmse_lower": 0.7869284344110778,
+  "document_cluster_rmse_upper": 1.14955475354164,
+  "earlier_broad_record_count": 4,
+  "gnn_training_duration_audit": {
+    "checkpoint_count": 60,
+    "inner_epoch_cap_hit_count": 0,
+    "inner_epoch_count": 180,
+    "inner_epoch_max": 63,
+    "inner_epoch_min": 1,
+    "max_epochs": 80,
+    "refit_epoch_cap_hit_count": 0,
+    "refit_epoch_count": 60,
+    "refit_epoch_max": 43,
+    "refit_epoch_min": 1,
+    "status": "realized_checkpoint_audit",
+    "total_epoch_cap_hit_count": 0
+  },
+  "homologous_excluded_count": 2973,
+  "inside_ad_rmse": 0.9539732031317475,
+  "interval_fold_span": 319.21357295181326,
+  "interval_width": 2.50408134926,
+  "model_comparison_conclusion": "under the prespecified modest search budget, none of the four evaluated graph variants improved on the leading ECFP6-plus-descriptor models",
+  "multi_event_compound_count": 24,
+  "nearest_neighbor_gap_error_lower": 0.12202403483999533,
+  "nearest_neighbor_gap_error_rho": 0.27124505767166085,
+  "nearest_neighbor_gap_error_upper": 0.41062255461148783,
+  "new_scaffold_rmse": 0.9798637042768445,
+  "new_temporal_compound_count": 251,
+  "new_temporal_compound_percent": 88.38028169014085,
+  "new_temporal_scaffold_count": 149,
+  "no_high_tail_compound_count": 1072,
+  "no_high_tail_event_count": 1110,
+  "no_high_tail_temporal_rmse": 0.9683575926966494,
+  "numpy_version": "2.5.1",
+  "outer_fold_count": 5,
+  "outer_repeat_count": 3,
+  "outside_ad_count": 154,
+  "outside_ad_rmse": 0.9877608004022221,
+  "pandas_version": "3.0.3",
+  "pyg_version": "2.8.0",
+  "rdkit_version": "2026.3.3",
+  "runner_up_delta": 0.00186574473793,
+  "runner_up_delta_lower": -0.0205342512298,
+  "runner_up_delta_upper": 0.0243339790016,
+  "runner_up_model": "rbf_svr_combined",
+  "runner_up_model_text": "RBF-SVR (ECFP6 + RDKit2D)",
+  "runner_up_rmse": 0.744033552881,
+  "seen_scaffold_rmse": 0.9140067667068446,
+  "seen_temporal_compound_count": 33,
+  "selected_model": "ridge_combined",
+  "selected_model_text": "Ridge (ECFP6 + RDKit2D)",
+  "similarity_error_rho": 0.041885141780418675,
+  "sklearn_version": "1.9.0",
+  "snapshot_activity_count": 4861,
+  "snapshot_assay_count": 986,
+  "snapshot_parent_count": 3112,
+  "strict_chronology_sensitivity_count": 280,
+  "strict_chronology_sensitivity_r2": 0.46335217674520424,
+  "strict_chronology_sensitivity_rmse": 0.9761450824700881,
+  "strict_compound_count": 1087,
+  "strict_event_count": 1125,
+  "structure_failure_count": 0,
+  "temporal_annual_metrics": [
+    {
+      "mae": 0.6064028057005746,
+      "mean_observed": 8.177412475705516,
+      "mean_predicted": 8.083634183327932,
+      "n": 87,
+      "n_scaffolds": 48,
+      "pearson_r": 0.8129093050935826,
+      "r2": 0.6447464302414749,
+      "rmse": 0.7950723209001903,
+      "sd_observed": 1.33394342020899,
+      "spearman_rho": 0.8421455565173298,
+      "year": 2019
+    },
+    {
+      "mae": 0.666340885347627,
+      "mean_observed": 7.329323933274746,
+      "mean_predicted": 7.622472229723051,
+      "n": 59,
+      "n_scaffolds": 24,
+      "pearson_r": 0.3317191416780152,
+      "r2": -0.05294897502224605,
+      "rmse": 0.8295588844970656,
+      "sd_observed": 0.8084321118363831,
+      "spearman_rho": 0.33811299504472675,
+      "year": 2020
+    },
+    {
+      "mae": 0.6465309975726471,
+      "mean_observed": 6.6145306137511755,
+      "mean_predicted": 7.015434160497941,
+      "n": 34,
+      "n_scaffolds": 24,
+      "pearson_r": 0.5055861784662073,
+      "r2": 0.0677106026519495,
+      "rmse": 0.8996041901860328,
+      "sd_observed": 0.9317000033634997,
+      "spearman_rho": 0.5265571403198899,
+      "year": 2021
+    },
+    {
+      "mae": 0.7528068129216001,
+      "mean_observed": 6.3862819965152,
+      "mean_predicted": 6.724854245930401,
+      "n": 25,
+      "n_scaffolds": 16,
+      "pearson_r": -0.40011601253052864,
+      "r2": -0.8934950038378755,
+      "rmse": 1.0147634566399821,
+      "sd_observed": 0.7374502673109078,
+      "spearman_rho": -0.29846153846153844,
+      "year": 2022
+    },
+    {
+      "mae": 0.9940504311606666,
+      "mean_observed": 6.109416562986666,
+      "mean_predicted": 6.1121834173059995,
+      "n": 15,
+      "n_scaffolds": 12,
+      "pearson_r": -0.05917752383706889,
+      "r2": -0.7270670304752263,
+      "rmse": 1.2338151817309113,
+      "sd_observed": 0.9388484919153657,
+      "spearman_rho": 0.03214285714285714,
+      "year": 2023
+    },
+    {
+      "mae": 1.0611583367151667,
+      "mean_observed": 6.5113218681098335,
+      "mean_predicted": 6.616644893886335,
+      "n": 60,
+      "n_scaffolds": 36,
+      "pearson_r": 0.36406211349382844,
+      "r2": -0.006309376030323666,
+      "rmse": 1.2614732970004596,
+      "sd_observed": 1.2575124752208489,
+      "spearman_rho": 0.3490885856229932,
+      "year": 2024
+    },
+    {
+      "mae": 0.3937840618674999,
+      "mean_observed": 6.34748271985,
+      "mean_predicted": 6.0718522500775,
+      "n": 4,
+      "n_scaffolds": 3,
+      "pearson_r": 0.13011183982034608,
+      "r2": -1.0892404457507396,
+      "rmse": 0.5896918071876767,
+      "sd_observed": 0.40797249230273486,
+      "spearman_rho": -0.19999999999999998,
+      "year": 2025
+    }
+  ],
+  "temporal_count": 284,
+  "temporal_coverage_percent": 81.33802816901408,
+  "temporal_drift_analysis_status": "post_hoc_descriptive",
+  "temporal_drift_metric_definitions": {
+    "annual_sd_observed": "population SD (ddof=0) within each year",
+    "between_year_target_variance_percent": "100 times between-year target sum of squares divided by total target sum of squares",
+    "within_year_centered_r2": "R2 after subtracting each year-specific mean separately from observed and predicted pIC50",
+    "within_year_centered_spearman": "Spearman correlation after subtracting each year-specific mean separately from observed and predicted pIC50"
+  },
+  "temporal_generalization_gap": 0.23062715343858786,
+  "temporal_high_tail_removed": 7,
+  "temporal_mae": 0.7501013151049507,
+  "temporal_mae_lower": 0.6661455933913857,
+  "temporal_mae_upper": 0.839984129631828,
+  "temporal_r2": 0.4697632547269154,
+  "temporal_r2_lower": 0.31085285382035205,
+  "temporal_r2_upper": 0.5822636379595582,
+  "temporal_rmse": 0.9724403541125879,
+  "temporal_rmse_2019": 0.7950723209001903,
+  "temporal_rmse_2024": 1.2614732970004596,
+  "temporal_rmse_increase": 0.4664009761002693,
+  "temporal_rmse_increase_percent": 58.66145303262534,
+  "temporal_rmse_increase_scaffold_lower": 0.19036588433837662,
+  "temporal_rmse_increase_scaffold_upper": 0.7328508765299458,
+  "temporal_rmse_lower": 0.8717589594365994,
+  "temporal_rmse_upper": 1.0746880499009706,
+  "temporal_robustness_audit": {
+    "broad_record_chronology": {
+      "count": 4,
+      "definition": "Temporal identities with any broad-cohort eligible record at or before the 2018 cutoff, despite first meeting the strict cohort after the cutoff.",
+      "identity_rows": [
+        {
+          "earlier_strict_exclusion_reasons": "bao_format_not_single_protein",
+          "first_broad_record_year": 2016,
+          "first_record_year": 2024,
+          "standardized_parent_inchi_key": "DDQXBYGNFGPJRL-CLZWFORCSA-N"
+        },
+        {
+          "earlier_strict_exclusion_reasons": "assay_confidence_not_strict|assay_relationship_not_direct",
+          "first_broad_record_year": 2016,
+          "first_record_year": 2019,
+          "standardized_parent_inchi_key": "VFYCNKMVBINXBE-LLVKDONJSA-N"
+        },
+        {
+          "earlier_strict_exclusion_reasons": "assay_confidence_not_strict|assay_relationship_not_direct",
+          "first_broad_record_year": 2013,
+          "first_record_year": 2024,
+          "standardized_parent_inchi_key": "VRQXRVAKPDCRCI-ZNMIVQPWSA-N"
+        },
+        {
+          "earlier_strict_exclusion_reasons": "assay_confidence_not_strict|assay_relationship_not_direct",
+          "first_broad_record_year": 2016,
+          "first_record_year": 2024,
+          "standardized_parent_inchi_key": "XRNVABDYQLHODA-JCNLHEQBSA-N"
+        }
+      ],
+      "remaining_strict_chronology_count": 280,
+      "sensitivity_point_metrics": {
+        "MAE": 0.7528010745215357,
+        "R2": 0.46335217674520424,
+        "RMSE": 0.9761450824700881
+      },
+      "sensitivity_scaffold_bootstrap": {
+        "bootstrap_standard_errors": {
+          "MAE": 0.045285268356024526,
+          "R2": 0.07061691329911707,
+          "RMSE": 0.05246520551737465
+        },
+        "cluster_column": "scaffold_smiles",
+        "confidence_intervals": {
+          "MAE": [
+            0.6680364964178247,
+            0.8445488734045423
+          ],
+          "R2": [
+            0.2932690106901164,
+            0.575532621449425
+          ],
+          "RMSE": [
+            0.8754493472471083,
+            1.0801060525602624
+          ]
+        },
+        "confidence_level": 0.95,
+        "invalid_replicates": {
+          "MAE": 0,
+          "R2": 0,
+          "RMSE": 0
+        },
+        "n_bootstrap": 10000,
+        "n_clusters": 157,
+        "point_estimates": {
+          "MAE": 0.7528010745215357,
+          "R2": 0.46335217674520424,
+          "RMSE": 0.9761450824700881
+        },
+        "seed": 4301,
+        "valid_replicates": {
+          "MAE": 10000,
+          "R2": 10000,
+          "RMSE": 10000
+        }
+      }
+    },
+    "information_boundary": "Consumes immutable selected-model predictions only; no fitting, tuning, candidate comparison, or prediction changes are permitted.",
+    "n_temporal_compounds": 284,
+    "nearest_neighbor_potency_discordance": {
+      "ci_lower": 0.12202403483999533,
+      "ci_upper": 0.41062255461148783,
+      "cluster_column": "scaffold_smiles",
+      "invalid_replicates": 0,
+      "n": 284,
+      "n_bootstrap": 10000,
+      "n_clusters": 160,
+      "point_estimate": 0.27124505767166085,
+      "valid_replicates": 10000,
+      "x": "nearest_neighbor_potency_gap",
+      "y": "absolute_error"
+    },
+    "primary_uncertainty_by_cluster": {
+      "assay_cluster": {
+        "bootstrap_standard_errors": {
+          "MAE": 0.07119071492302563,
+          "R2": 0.18966267629974093,
+          "RMSE": 0.07913755900307892
+        },
+        "cluster_column": "assay_cluster",
+        "confidence_intervals": {
+          "MAE": [
+            0.6366808361449663,
+            0.9142383954588456
+          ],
+          "R2": [
+            -0.04042437712761657,
+            0.6597625960968989
+          ],
+          "RMSE": [
+            0.835049745478888,
+            1.1444155941164047
+          ]
+        },
+        "confidence_level": 0.95,
+        "invalid_replicates": {
+          "MAE": 0,
+          "R2": 0,
+          "RMSE": 0
+        },
+        "n_bootstrap": 10000,
+        "n_clusters": 49,
+        "point_estimates": {
+          "MAE": 0.7501013151047887,
+          "R2": 0.46976325472684255,
+          "RMSE": 0.9724403541126546
+        },
+        "seed": 4101,
+        "valid_replicates": {
+          "MAE": 10000,
+          "R2": 10000,
+          "RMSE": 10000
+        }
+      },
+      "document_cluster": {
+        "bootstrap_standard_errors": {
+          "MAE": 0.08282724363382729,
+          "R2": 0.1875083365956104,
+          "RMSE": 0.09495743167554695
+        },
+        "cluster_column": "document_cluster",
+        "confidence_intervals": {
+          "MAE": [
+            0.6013682690275102,
+            0.9200326054904121
+          ],
+          "R2": [
+            -0.00713474724157883,
+            0.682132989020442
+          ],
+          "RMSE": [
+            0.7869284344110778,
+            1.14955475354164
+          ]
+        },
+        "confidence_level": 0.95,
+        "invalid_replicates": {
+          "MAE": 0,
+          "R2": 0,
+          "RMSE": 0
+        },
+        "n_bootstrap": 10000,
+        "n_clusters": 38,
+        "point_estimates": {
+          "MAE": 0.7501013151047887,
+          "R2": 0.46976325472684255,
+          "RMSE": 0.9724403541126546
+        },
+        "seed": 4101,
+        "valid_replicates": {
+          "MAE": 10000,
+          "R2": 10000,
+          "RMSE": 10000
+        }
+      },
+      "scaffold_smiles": {
+        "bootstrap_standard_errors": {
+          "MAE": 0.04502802433729361,
+          "R2": 0.06920365426139376,
+          "RMSE": 0.05230306352795539
+        },
+        "cluster_column": "scaffold_smiles",
+        "confidence_intervals": {
+          "MAE": [
+            0.6663137101311715,
+            0.8411457304338957
+          ],
+          "R2": [
+            0.3118814775639748,
+            0.5818625482949534
+          ],
+          "RMSE": [
+            0.8711593784594104,
+            1.0766001620141057
+          ]
+        },
+        "confidence_level": 0.95,
+        "invalid_replicates": {
+          "MAE": 0,
+          "R2": 0,
+          "RMSE": 0
+        },
+        "n_bootstrap": 10000,
+        "n_clusters": 160,
+        "point_estimates": {
+          "MAE": 0.7501013151047887,
+          "R2": 0.46976325472684255,
+          "RMSE": 0.9724403541126546
+        },
+        "seed": 4101,
+        "valid_replicates": {
+          "MAE": 10000,
+          "R2": 10000,
+          "RMSE": 10000
+        }
+      }
+    },
+    "schema_version": "temporal_robustness_audit_v2",
+    "source_centered_ordering": {
+      "assay": {
+        "centered_R2": -0.14625287251723296,
+        "centered_spearman_rho": 0.24038192772201641,
+        "group_column": "assay_cluster",
+        "minimum_group_size": 3,
+        "n": 252,
+        "n_groups": 23
+      },
+      "document": {
+        "centered_R2": -0.03119815625437994,
+        "centered_spearman_rho": 0.30335836824785567,
+        "group_column": "document_cluster",
+        "minimum_group_size": 3,
+        "n": 261,
+        "n_groups": 19
+      }
+    },
+    "source_inventory": {
+      "assay_source_sets": 49,
+      "document_source_sets": 38,
+      "multi_assay_labels": 4,
+      "multi_document_labels": 2,
+      "scaffold_clusters": 160
+    },
+    "status": "post_hoc_descriptive",
+    "temporal_degradation": {
+      "assay_cluster": {
+        "absolute_error_linear_slope_per_year": {
+          "ci_lower": 0.027354429552580304,
+          "ci_upper": 0.13034525042606726,
+          "invalid_replicates": 0,
+          "point_estimate": 0.08002920226100652,
+          "valid_replicates": 10000
+        },
+        "cluster_column": "assay_cluster",
+        "confidence_level": 0.95,
+        "first_year": 2019,
+        "first_year_rmse": 0.7950723209001903,
+        "last_year": 2024,
+        "last_year_rmse": 1.2614732970004596,
+        "n_bootstrap": 10000,
+        "n_clusters": 49,
+        "rmse_delta": {
+          "ci_lower": 0.1547897623904928,
+          "ci_upper": 0.7525251826449969,
+          "invalid_replicates": 2,
+          "point_estimate": 0.4664009761002693,
+          "valid_replicates": 9998
+        }
+      },
+      "document_cluster": {
+        "absolute_error_linear_slope_per_year": {
+          "ci_lower": 0.003301565495295826,
+          "ci_upper": 0.12021837060933922,
+          "invalid_replicates": 0,
+          "point_estimate": 0.08002920226100652,
+          "valid_replicates": 10000
+        },
+        "cluster_column": "document_cluster",
+        "confidence_level": 0.95,
+        "first_year": 2019,
+        "first_year_rmse": 0.7950723209001903,
+        "last_year": 2024,
+        "last_year_rmse": 1.2614732970004596,
+        "n_bootstrap": 10000,
+        "n_clusters": 38,
+        "rmse_delta": {
+          "ci_lower": -0.12082783865447909,
+          "ci_upper": 0.7064810619821545,
+          "invalid_replicates": 25,
+          "point_estimate": 0.4664009761002693,
+          "valid_replicates": 9975
+        }
+      },
+      "scaffold_smiles": {
+        "absolute_error_linear_slope_per_year": {
+          "ci_lower": 0.037658771846847315,
+          "ci_upper": 0.12295055277776197,
+          "invalid_replicates": 0,
+          "point_estimate": 0.08002920226100652,
+          "valid_replicates": 10000
+        },
+        "cluster_column": "scaffold_smiles",
+        "confidence_level": 0.95,
+        "first_year": 2019,
+        "first_year_rmse": 0.7950723209001903,
+        "last_year": 2024,
+        "last_year_rmse": 1.2614732970004596,
+        "n_bootstrap": 10000,
+        "n_clusters": 160,
+        "rmse_delta": {
+          "ci_lower": 0.19036588433837662,
+          "ci_upper": 0.7328508765299458,
+          "invalid_replicates": 0,
+          "point_estimate": 0.4664009761002693,
+          "valid_replicates": 10000
+        }
+      }
+    }
+  },
+  "temporal_scaffold_count": 160,
+  "torch_version": "2.12.1+cpu",
+  "tuned_gnn_best_delta": 0.00209714110721,
+  "tuned_gnn_best_delta_lower": -0.0383299918893,
+  "tuned_gnn_best_delta_upper": 0.0457971836572,
+  "tuned_gnn_best_family": "chemprop_chemeleon",
+  "tuned_gnn_best_mean_prediction_seed_sd": 0.170497595891,
+  "tuned_gnn_best_model_text": "nested-tuned frozen CheMeleon ensemble",
+  "tuned_gnn_best_rmse": 0.754236961146,
+  "tuned_gnn_best_rmse_sd": 0.0105450082223,
+  "tuned_gnn_best_within_repeat_seed_rmse_sd": 0.008643205863745241,
+  "tuned_gnn_candidate_budget": 24,
+  "tuned_gnn_inner_fits": 4050,
+  "tuned_gnn_random_draw_count": 23,
+  "tuned_gnn_rerank_count": 3,
+  "tuned_gnn_screening_evaluations": 1080,
+  "tuned_gnn_seed_count": 3,
+  "within_year_centered_r2_2020_2025": -0.04598709285038205,
+  "within_year_centered_r2_all": 0.2659537914647251,
+  "within_year_centered_spearman_2020_2025": 0.2855823239919925,
+  "within_year_centered_spearman_all": 0.5059558368694779
+}

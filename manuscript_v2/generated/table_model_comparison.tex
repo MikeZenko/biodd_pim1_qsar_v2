@@ -1,0 +1,25 @@
+\begin{table}[t]
+\centering
+\caption{Development performance on identical repeated scaffold-disjoint outer folds.}
+\label{tab:model-comparison}
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{L{0.29\textwidth}L{0.21\textwidth}R{0.14\textwidth}R{0.14\textwidth}R{0.14\textwidth}}
+\toprule
+\textbf{Candidate} & \textbf{Representation} & \textbf{RMSE} & \textbf{MAE} & \textbf{$R^2$} \\
+\midrule
+\textbf{Ridge (ECFP6 + RDKit2D)} & ECFP6 + 23 descriptors & 0.742 $\pm$ 0.009 & 0.574 $\pm$ 0.008 & 0.679 $\pm$ 0.008 \\
+RBF-SVR (ECFP6 + RDKit2D) & ECFP6 + 23 descriptors & 0.744 $\pm$ 0.012 & 0.571 $\pm$ 0.007 & 0.677 $\pm$ 0.010 \\
+Gradient boosting (ECFP6 + RDKit2D) & ECFP6 + 23 descriptors & 0.777 $\pm$ 0.014 & 0.609 $\pm$ 0.011 & 0.648 $\pm$ 0.013 \\
+Random forest (ECFP6 + RDKit2D) & ECFP6 + 23 descriptors & 0.780 $\pm$ 0.011 & 0.609 $\pm$ 0.005 & 0.645 $\pm$ 0.010 \\
+Random forest (ECFP6) & ECFP6 & 0.794 $\pm$ 0.006 & 0.613 $\pm$ 0.007 & 0.632 $\pm$ 0.006 \\
+Tanimoto kNN (ECFP6) & ECFP6 & 0.884 $\pm$ 0.009 & 0.668 $\pm$ 0.006 & 0.543 $\pm$ 0.010 \\
+Edge-aware GINE (graph + RDKit2D) & graph + 23 descriptors & 0.893 $\pm$ 0.056 & 0.701 $\pm$ 0.043 & 0.532 $\pm$ 0.060 \\
+Edge-aware GINE (graph) & molecular graph & 0.984 $\pm$ 0.019 & 0.766 $\pm$ 0.025 & 0.434 $\pm$ 0.021 \\
+Chemprop D-MPNN (graph) & molecular graph & 1.142 $\pm$ 0.023 & 0.929 $\pm$ 0.013 & 0.239 $\pm$ 0.031 \\
+Chemprop D-MPNN (graph + RDKit2D) & graph + 23 descriptors & 1.214 $\pm$ 0.013 & 0.993 $\pm$ 0.010 & 0.139 $\pm$ 0.018 \\
+Development mean & none & 1.309 $\pm$ 0.000 & 1.079 $\pm$ 0.000 & -0.001 $\pm$ 0.000 \\
+\bottomrule
+\end{tabular}
+\par\vspace{3pt}\parbox{0.94\textwidth}{\footnotesize \textit{Note.} Values are mean $\pm$ population SD across three pooled out-of-fold repeat metrics. The bold row was selected using mean RMSE only.}
+\end{table}

@@ -1,0 +1,119 @@
+{
+  "cohort_counts": {
+    "broad": {
+      "compounds": 3106,
+      "duplicate_records_collapsed": 1024,
+      "eligible_records": 4380,
+      "measurement_events": 3356
+    },
+    "strict": {
+      "compounds": 1087,
+      "duplicate_records_collapsed": 0,
+      "eligible_records": 1125,
+      "measurement_events": 1125
+    },
+    "strict_no_CHEMBL3705754": {
+      "compounds": 1087,
+      "events_removed": 0,
+      "measurement_events": 1125
+    },
+    "strict_no_high_tail": {
+      "compounds": 1072,
+      "events_removed": 15,
+      "measurement_events": 1110
+    }
+  },
+  "config": {
+    "high_potency_threshold": 10.0,
+    "high_tail_assay_id": "CHEMBL3705754",
+    "standard_flag": 1,
+    "standard_relation": "=",
+    "standard_type": "IC50",
+    "standard_units": "nM",
+    "strict_assay_type": "B",
+    "strict_bao_format": "BAO_0000357",
+    "strict_confidence_score": 9,
+    "strict_relationship_type": "D",
+    "target_chembl_id": "CHEMBL2147",
+    "target_organism": "Homo sapiens",
+    "target_tax_id": 9606
+  },
+  "curated_dataset_sha256": "3d4b301bb42c911056ace75ac03d4db12335e5c8ef8bfed95e8fe74a1789bd05",
+  "curation_protocol": "pim1_publication_curation_v2",
+  "exclusion_reason_counts": {
+    "broad:data_validity_warning": 11,
+    "broad:duplicate_source_event_collapsed": 1024,
+    "broad:potential_duplicate": 473,
+    "strict:assay_confidence_not_strict": 2973,
+    "strict:assay_relationship_not_direct": 2973,
+    "strict:assay_type_not_biochemical": 1,
+    "strict:bao_format_not_single_protein": 402,
+    "strict_no_high_tail:pIC50_above_prespecified_threshold": 15
+  },
+  "input_counts": {
+    "activities": 4861,
+    "assays": 986,
+    "parent_molecules": 3112,
+    "referenced_parent_molecules": 3112,
+    "structure_standardization_failures": 0
+  },
+  "measurement_dispersion": {
+    "strict_compounds_range_gt_0_5": 10,
+    "strict_compounds_range_gt_1": 6,
+    "strict_compounds_with_multiple_events": 24
+  },
+  "output_files_sha256": {
+    "broad_measurement_events.csv": "505ba8f9a0554db74bfaa6b3ba39b909056793fe9c06d02c16ff865ad6a15ce1",
+    "compound_broad.csv": "fcd93b9c367f1fa3e00d42d93a6e384894c395c3d556c77c93d158a2b6a0fe9e",
+    "compound_strict.csv": "1b05c9e96e1fdca9d6afa8f0e68bbdc0147bb08f101004419b2a682c159f0a9f",
+    "compound_strict_no_CHEMBL3705754.csv": "1b05c9e96e1fdca9d6afa8f0e68bbdc0147bb08f101004419b2a682c159f0a9f",
+    "compound_strict_no_high_tail.csv": "83e98bc1bc1c8adc176a8bcafd478d7eacad437ddb3fb2ed9ed4a148c3f315a2",
+    "event_lineage.csv": "7b43804f28a45310433a9fb3b696e203ad970ca31b7eaa94e1a6b1986a5dd4bb",
+    "exclusion_log.csv": "13aba4561ba5c4038c8c18cac97c1a3933fd4e9de6637bfe2fb19ed97fe8956b",
+    "record_qc.csv": "f8a1a3b4a9a7465aab2334c6d266c6ab006c8327a017a03196a22faa432dbb20",
+    "strict_measurement_dispersion.csv": "c01d8031b4e40de1aed315387a439a22f96967c403439f82d28fb0c5e9b2aaaa",
+    "strict_measurement_events.csv": "f5a79128033f3a69969b868f65b8d5c39194e065dce8eb43ec92909c78c88988",
+    "strict_no_CHEMBL3705754_events.csv": "f5a79128033f3a69969b868f65b8d5c39194e065dce8eb43ec92909c78c88988",
+    "strict_no_high_tail_events.csv": "385833a74086804dad049b2f14bdff86ae051eb679364e3e169de8d9922c4a4a",
+    "temporal_feasibility.csv": "8b425e60dd66fc2c088bd6be99da923c798eeb65686d29c5950592678b0c65cd"
+  },
+  "schema_version": "2.0",
+  "source_snapshot": {
+    "release": "ChEMBL_37",
+    "release_date": "2026-05-01",
+    "snapshot_id": "chembl37_pim1_ic50_20260501",
+    "snapshot_manifest_sha256": "90173b7636865926ed20e67032016d3b9bf85016f0a6f46e3f90d3f542f21d9a"
+  },
+  "structure_pipeline": {
+    "identity": "ChEMBL parent followed by structure-pipeline parent InChIKey",
+    "package": "chembl-structure-pipeline",
+    "required_version": "1.2.4",
+    "used_version": "1.2.4"
+  },
+  "temporal_feasibility": {
+    "basis": "first eligible strict measurement-event document year",
+    "candidate_cutoffs_reported": [
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "selected_cutoff": null
+  }
+}

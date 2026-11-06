@@ -1,0 +1,19 @@
+\begin{table}[H]
+\centering
+\caption{One-time temporal performance and prespecified diagnostics.}
+\label{tab:temporal}
+\small
+\begin{tabular}{L{0.40\textwidth}rrrrr}
+\toprule
+\textbf{Subset} & \textbf{$n$} & \textbf{Scaffolds} & \textbf{RMSE} & \textbf{MAE} & \textbf{$R^2$} \\
+\midrule
+Primary temporal test & 284 & 160 & 0.972 & 0.750 & 0.470 \\
+New scaffold & 251 & 149 & 0.980 & 0.748 & 0.439 \\
+Seen scaffold & 33 & 11 & 0.914 & 0.764 & 0.360 \\
+Inside training-defined AD & 130 & 67 & 0.954 & 0.744 & 0.500 \\
+Outside training-defined AD & 154 & 98 & 0.988 & 0.755 & 0.135 \\
+Sensitivity: observed pIC$_{50}\leq 10$ & 277 & 159 & 0.968 & 0.741 & 0.401 \\
+\bottomrule
+\end{tabular}
+\par\vspace{3pt}\parbox{0.94\textwidth}{\footnotesize \textit{Note.} Primary 95\% scaffold-cluster bootstrap CIs: RMSE 0.872--1.075; MAE 0.666--0.840; $R^2$ 0.311--0.582. Subgroup rows are descriptive and are not model-selection criteria. Subgroup $R^2$ values use subgroup-specific outcome variance and should not be interpreted as error-stratification evidence.}
+\end{table}

@@ -1,0 +1,49 @@
+{
+  "candidate_budget_per_family_per_outer_fold": 24,
+  "contract_sha256": "ca6cec23c49826924e9a9281100c9dce20383aa003c466c4877e114103c84823",
+  "families": [
+    "edge_aware_gine",
+    "chemprop_dmpnn",
+    "chemprop_chemeleon"
+  ],
+  "inner_fit_count": 4050,
+  "outer_refit_seeds": [
+    8101,
+    8102,
+    8103
+  ],
+  "output_hashes": {
+    "ensemble_oof_predictions.csv": "7d072ea22a319563354951cbacb2d8f2b8efd62691c08949ae9a20e125c597df",
+    "inner_trial_metrics.csv": "02ac57872dd712d1629561d233e054ff437d10917eacba1cbb1cbce99a580817",
+    "model_summary.csv": "416e880d32a1a3de66760335c95bb154ee302eb4956d29d0220b451251b1c499",
+    "paired_scaffold_bootstrap.csv": "985c9eedd230d40e612c555b3352299325158eea09e64d8e487b27fdf9688923",
+    "repeat_metrics.csv": "9078f94155651b2335a3857a1432c5508a81bef37779d315d360726b18b37b93",
+    "seed_metrics.csv": "aa5cfa2388063b8de30914b83b7bc340ee344e24ad52429269aa544eb264a66b",
+    "seed_oof_predictions.csv": "a8a239727ca374ed4f0fd317b016f649da173866ff175c1b0aae56a240d9841e",
+    "selected_hyperparameters.csv": "ad92fa5df778813917c8b97b98c7ec4cc8ea879a79c896a4915dbee48d6a4cbf"
+  },
+  "pretrained_checkpoint_sha256": "c376624d3407204e780a0ed13a9ac097cc9bb1c13ef89cdbc633c1715c183651",
+  "reference_predictions_sha256": "80562872beb0f8c829c42b00d71b5c185648528fdff3a8511151f583634a38d4",
+  "rerank_seeds": [
+    7301,
+    7302,
+    7303
+  ],
+  "rerank_top_candidates": 3,
+  "schema_version": "gnn_tuned_posthoc_v1",
+  "search_config_sha256": "32717f0c3661cff0fbd9ba549b09f1bc4ca7df68fdb3239042f80a77eace17b8",
+  "source_hashes": {
+    "assignments": "64d19328e538b01a77f16795e8f948c473be69b850fec6b1ac1833b436d8322d",
+    "code": "5b8d59f104dbb237a2d2528533896e1fd135abbce72af3bf515ab1d6d7b46fd7",
+    "development": "69cee6f6a8a0a3b9722b49be207b9834522d6542eee4328f8a363d58ddb87ff3",
+    "environment_manifest": "de78b5630e2fe80407aabcbd95443b77d811ab3b646a9f7cbffc1dfafc3baa4b",
+    "pretrained_checkpoint": "c376624d3407204e780a0ed13a9ac097cc9bb1c13ef89cdbc633c1715c183651",
+    "requirements": "a72976b981957159cd26e1d887ead5c754a4479d7329da7ac7227bc34ee08589",
+    "ridge_reference_predictions": "80562872beb0f8c829c42b00d71b5c185648528fdff3a8511151f583634a38d4",
+    "search_config": "32717f0c3661cff0fbd9ba549b09f1bc4ca7df68fdb3239042f80a77eace17b8",
+    "split_lock": "e15f71167ab378d946168dd913afbed2ea19c4c5268f8859e788de907ae8adfb"
+  },
+  "status": "post_hoc_development_only",
+  "temporal_test_consulted": false,
+  "trial_count": 1350
+}

@@ -1,0 +1,25 @@
+{
+  "contract_sha256": "7d104c0eaf410c9bdb6816497d87d6b1e4fdce1b1fdfa68980b608d0277acbee",
+  "metrics": {
+    "backend": "chemprop_dmpnn",
+    "fold": 1,
+    "inner_best_epochs": [
+      3,
+      2,
+      2
+    ],
+    "mae": 1.0514906496777838,
+    "model": "chemprop_dmpnn_graph_plus_rdkit2d",
+    "n_train": 643,
+    "n_validation": 160,
+    "r2": 0.0587596758711556,
+    "refit_epochs": 2,
+    "repeat": 0,
+    "rmse": 1.257116665258173,
+    "runtime_seconds": 22.161157374968752,
+    "variant": "graph_plus_rdkit2d"
+  },
+  "predictions_sha256": "db0b66339f75594481e0ee5312570176e45aa772866dac68a573a59abd95f45f",
+  "schema_version": "gnn_nested_v2",
+  "temporal_test_consulted": false
+}

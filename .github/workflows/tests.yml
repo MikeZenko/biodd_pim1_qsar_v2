@@ -1,0 +1,29 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          environment-file: environment.yml
+          activate-environment: biodd
+          python-version: "3.12"
+          auto-activate-base: false
+
+      - name: Run canonical v2 tests
+        shell: bash -el {0}
+        run: pytest tests/v2 -v
+
+      - name: Verify preserved legacy snapshot
+        shell: bash -el {0}
+        run: python scripts/12_manage_archive_manifest.py

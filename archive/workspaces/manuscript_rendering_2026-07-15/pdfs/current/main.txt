@@ -1,0 +1,990 @@
+A Release-Pinned and Temporally Sealed PIM1 QSAR
+                    Benchmark
+        Temporal reliability under joint chemical, cohort, and assay-provenance shift
+
+                                              Tair Narynov
+
+
+                                                 Abstract
+         QSAR performance estimated from public bioactivity data can be distorted by release
+     drift, assay mixing, structure leakage, and repeated test-set use. We created a release-pinned
+     benchmark of human PIM1 biochemical inhibition from ChEMBL 37. Standardization and
+     strict assay/target filters produced 1,125 measurement events for 1,087 compounds. An outcome-
+     blind count rule fixed 2018 as the cutoff, yielding 803 development compounds and a sealed
+     2019–2025 test of 284 unseen compounds. Under a prespecified, modest tuning budget, seven
+     fixed-representation/baseline candidates and four graph-neural-network variants shared repeated
+     scaffold-disjoint assignments; all selection was confined to development data. The selected Ridge
+     (ECFP6 + RDKit2D) achieved repeated-CV RMSE 0.742 pIC50 and one-time temporal RMSE
+     0.972 (95% scaffold-cluster bootstrap CI 0.872–1.075), with pooled R2 = 0.470. This aggregate
+     concealed time-local degradation: RMSE increased from 0.795 in 2019 to 1.261 in 2024, by 0.466
+     pIC50 (58.7%). In a post hoc year-aware audit, 31.8% of observed temporal variance lay between
+     cohort means; after within-year centering, post-2019 R2 was -0.046 and Spearman ρ was 0.286,
+     indicating weak and unstable prioritization within recent chemistry. A training-defined Tanimoto
+     domain described structural shift but did not identify error-prone predictions (ρ = 0.042 between
+     absolute error and neighbor similarity). Development and temporal labels shared no assay
+     or document identifiers, so the observed decline represents inseparable chemical, cohort, and
+     assay-provenance shift. A development-derived residual reference band was 2.504 pIC50 wide
+     (approximately a 319-fold IC50 span) and covered 81.3% of temporal cases when defined at a
+     90% development target, limiting its potency-threshold decision value. The best graph model
+     obtained development RMSE 0.893; under the fixed budget, the evaluated graph variants did not
+     justify their added flexibility, but this does not rank fixed and learned representations generally.
+     The principal finding is that sealed temporal evaluation revealed reliability failures obscured
+     by pooled performance. This retrospective biochemical-potency benchmark does not establish
+     prospective activity, selectivity, cellular efficacy, ADMET properties, or therapeutic value.
+
+Keywords: PIM1; QSAR; ChEMBL; temporal validation; scaffold split; graph neural network;
+assay provenance; applicability domain
+
+
+1    Introduction
+The proviral integration site for Moloney murine leukemia virus (PIM) family comprises constitutively
+active serine/threonine kinases PIM1, PIM2, and PIM3. PIM signaling has been implicated in
+hematological and solid malignancies, making the family a continuing target of inhibitor discovery
+(Nawijn et al., 2011; Tursynbay et al., 2016). A structure-based model of PIM1 biochemical potency
+can support hypothesis generation, but biochemical IC50 alone does not establish isoform selectivity,
+target engagement in cells, exposure, safety, or clinical efficacy.
+
+
+                                                      1
+   PIM1 has an atypical ATP-binding hinge: Pro123 lacks the backbone amide donor that supplies a
+canonical second hydrogen bond to the adenine moiety in many kinases (Kumar et al., 2005). More
+generally, under the assumptions of simple competitive inhibition, the Cheng–Prusoff relationship
+makes apparent IC50 conditional on substrate concentration (Cheng and Prusoff, 1973). Consequently,
+strict target and endpoint filters can reduce ambiguity in public PIM1 data without making
+measurements obtained under different ATP conditions experimentally equivalent.
+   Machine-learning QSAR methods can extract useful structure–activity patterns from public
+databases (Cherkasov et al., 2014). PIM1 studies have used small congeneric series for 3D-QSAR
+and ligand-based virtual screening (Aouidate et al., 2018; Asati et al., 2017), and more recent work
+has combined public bioactivity data with classification, docking, or generative design (Almukadi
+et al., 2023; Schneider et al., 2020). Yet a model comparison is only as credible as the experiment
+surrounding it. Database release changes can alter the available records; related structures can
+leak across random splits; model selection can consume the purported test set; and assay or
+target-confidence heterogeneity can dominate algorithmic differences.
+   Graph neural networks (GNNs) offer an appealing alternative to fixed molecular fingerprints
+because they learn task-specific graph representations. Directed message-passing neural networks
+(D-MPNNs) have reported strong molecular-property performance (Yang et al., 2019), while graph-
+isomorphism-derived operators provide expressive neighborhood aggregation (Xu et al., 2019; Hu
+et al., 2020). However, learned graph representations do not universally outperform carefully tuned
+fixed representations, particularly for modest, noisy bioactivity datasets (Deng et al., 2023). A
+fair PIM1 comparison therefore needs shared compound identities, shared splits, development-only
+tuning, and representation ablations.
+   Here we construct such a benchmark. Our primary contribution is an auditable test of temporal
+reliability: (i) a ChEMBL 37 snapshot with source files, release metadata, lineage, and SHA-256
+checksums; (ii) a stringent PIM1 biochemical cohort; (iii) an outcome-blind publication-year cutoff
+and immutable repeated scaffold assignments; and (iv) a one-time temporal evaluation, followed by
+an explicitly labeled post hoc audit of performance within annual chemistry cohorts. Calibration,
+residual-reference-band, scaffold-novelty, and similarity-domain diagnostics test whether common
+reliability summaries remain informative under that shift. A bounded comparison of classical
+ECFP6/descriptor methods, an edge-aware GINE, and a Chemprop D-MPNN is secondary. The
+goal is not a new learning architecture or a general ranking of representation families; it is a
+defensible account of what a target-specific model can and cannot support when chemistry and
+assay provenance change over time.
+
+
+2     Results
+2.1   Release-pinned curation reduced target ambiguity but retained multi-assay
+      heterogeneity
+The archived ChEMBL 37 query returned 4,861 activities, 986 target assays, and 3,112 parent
+molecules (Fig. 1). Broad record-level eligibility retained 4,380 records. The confirmatory cohort
+additionally required a biochemical assay, BAO single-protein format, direct target relationship,
+confidence score 9, and no assayed variant. It retained 1,125 measurement events and 1,087
+standardized parent compounds (Table 1). The largest reduction arose from excluding 2,973
+activity records linked to homologous rather than direct single-protein targets. This restriction is
+consequential: ChEMBL defines confidence score 9 as direct assignment to a single protein and
+score 8 as an assignment to a homologous single protein (Zdrazil et al., 2024).
+
+
+                                                 2
+                       Table 1. Curation flow for the release-pinned PIM1 dataset.
+
+  Stage                                                            Records/events          Compounds
+  ChEMBL 37 activity snapshot                                                   4,861              3,112
+  Broad exact human PIM1 IC50 eligibility                                       4,380                 —
+  Broad duplicate-collapsed measurement events                                  3,356              3,106
+  Strict direct single-protein biochemical events                               1,125              1,087
+  Strict sensitivity cohort, pIC50 ≤ 10                                         1,110              1,072
+   Note. Records are ChEMBL activity rows. Measurement events collapse only source-equivalent duplicates
+   using a documented signature. Compound identity is the standardized parent InChIKey.
+
+
+    An explicitly post hoc audit of the pinned assay metadata found that the strict events came
+from 122 assays in 102 documents. The median assay contributed only 3 events (range 1–65),
+and the largest representative assay accounted for 5.8% of events. Although descriptions for
+34 assays mentioned ATP, only 8 assays—covering 117/1,125 events (10.4%)—stated a numeric
+ATP concentration. The reported values spanned 20–5000 µM, a 250-fold range (Supplementary
+Table 7). Moreover, 97.8% of compounds had only one eligible event. Median aggregation therefore
+summarized the few repeats that existed but could not harmonize most single measurements.
+    The exhaustive bridge search within the machine-readable numeric-ATP subset found only one
+compound measured in the same document at two explicit ATP concentrations: 9 nM at 50 µM
+ATP versus 100 nM at 5000 µM ATP, a 1.046-pIC50 decrease (Dakin et al., 2012). This n = 1
+observation illustrates why ATP context may matter; it is not an assay-effect estimate or a basis for
+post hoc correction.
+    Structure standardization failed for 0 queried parents. Only 24 strict compounds had multiple
+independent measurement events; 10 had a pIC50 range above 0.5 and 6 above 1.0. Compound labels
+were medians of eligible measurement-event pIC50 values, preserving event lineage and dispersion
+fields rather than silently pooling raw rows.
+
+2.2   The count-only rule produced a demanding temporal test
+The prespecified cutoff rule selected the latest year satisfying at least 750 development compounds,
+250 temporal compounds, and 100 new temporal scaffolds; 2018 was the unique latest eligible
+cutoff. The immutable split contains 803 development compounds from 369 scaffolds and 284
+first-seen-after-cutoff compounds from 160 scaffolds. 149 temporal scaffolds were absent from
+development, accounting for 251 compounds (88.4%). Thus, the temporal test is predominantly a
+joint time-and-scaffold extrapolation, while retaining a small seen-scaffold subset for a prespecified
+diagnostic.
+    Eleven post-2018 measurement events belonged to seven development identities. They were
+quarantined in a cross-cutoff table and were not allowed to update development labels. Across
+those identities, the median absolute pre/post label shift was 0.059 pIC50 and the maximum was
+0.706. This shows why aggregating all records before a temporal split would introduce subtle
+future-information leakage.
+
+2.3   A bounded model search did not reward added graph flexibility
+All candidates used the same 3 repeated ×5-fold outer assignments. Each outer validation compound
+appeared exactly once per repeat, and no Bemis–Murcko scaffold crossed an outer train/validation
+
+                                                    3
+    Release-pinned curation                                             Locked information flow
+
+
+           ChEMBL 37                     Strict direct-assay                 Outcome-blind
+            snapshot                          curation                         split lock
+                                             1,125 events                        2018 cutoff
+          4,861 activities                 1,087 compounds                     count rule only
+
+
+
+
+                                                                          Shared 3 x 5                  Sealed temporal
+                                        Development
+                                                                           scaffold CV                        test
+                                        803 compounds                                                     284 compounds
+                                                                       7 fixed/base + 4 GNN
+                                         369 scaffolds                                                      2019-2025
+
+                                                                                                       opened after selection
+
+
+
+
+                                                                              Locked                        One-time
+                                                                             selection                     evaluation
+                                                                                                          temporal RMSE
+                                                                            Ridge model
+                                                                                                              0.972
+
+
+
+    Core inputs and outputs are linked by SHA-256 manifests; temporal labels are opened once after development-only selection.
+
+
+
+Figure 1. Study design and information boundaries. The temporal cutoff was chosen from compound and
+scaffold counts only. Temporal outcomes were unavailable to curation, split construction, candidate fitting,
+hyperparameter selection, and development-only model selection. The selected procedure was then refit on
+all development compounds and evaluated once on the sealed temporal partition.
+
+
+boundary. Figure 2 and Table 2 report pooled out-of-fold metrics calculated separately for each
+repeat and then summarized across repeats.
+   The Ridge (ECFP6 + RDKit2D) ranked first with RMSE 0.742 and was therefore locked before
+the temporal table was read. This development comparison used deliberately modest, prespecified
+search spaces: the graph arm comprised one edge-aware GINE and one Chemprop D-MPNN, each
+with and without descriptors, and did not evaluate pretraining or a broad architecture search. The
+strongest evaluated graph candidate was Edge-aware GINE (graph + RDKit2D) (RMSE 0.893). Its
+paired candidate-minus-selected RMSE difference was 0.070 pIC50 (95% scaffold-cluster bootstrap
+CI 0.029 to 0.114). The runner-up RBF-SVR (ECFP6 + RDKit2D) was nearly tied (RMSE 0.744);
+its paired RMSE difference was 0.002 (95% CI -0.021 to 0.024). Thus, selection of Ridge follows the
+locked point-estimate rule and is not evidence that it is meaningfully superior to the runner-up.
+Descriptor concatenation improved GINE but not the D-MPNN.
+   A post hoc audit of all 60 graph checkpoint manifests found that the 180 inner selected epochs
+ranged from 1 to 63 epochs, while the 60 outer refits used 1– 43 epochs. No selected or refit epoch
+count equaled the 80-epoch ceiling, so no outer refit was assigned the cap. The architecture and
+hyperparameter search nevertheless remained deliberately narrow. Each outer graph refit used
+one prespecified initialization; repeated partitions do not separately estimate optimization-seed
+variability, and the paired bootstrap intervals condition on these realized fits.
+   Under this fixed budget, the four evaluated graph variants did not improve on the leading
+ECFP6-plus-descriptor models or justify their added flexibility. This narrow, target-specific result
+
+
+                                                                4
+          Table 2. Development performance on identical repeated scaffold-disjoint outer folds.
+
+ Candidate                         Representation                      RMSE                MAE                 R2
+
+ Ridge (ECFP6 + RDKit2D)           ECFP6 + 23 descriptors         0.742 ± 0.009     0.574 ± 0.008    0.679 ± 0.008
+ RBF-SVR (ECFP6 + RDKit2D)         ECFP6 + 23 descriptors         0.744 ± 0.012     0.571 ± 0.007    0.677 ± 0.010
+ Gradient boosting (ECFP6 +        ECFP6 + 23 descriptors         0.777 ± 0.014     0.609 ± 0.011    0.648 ± 0.013
+ RDKit2D)
+ Random forest (ECFP6 + RDKit2D)   ECFP6 + 23 descriptors         0.780 ± 0.011     0.609 ± 0.005    0.645 ± 0.010
+ Random forest (ECFP6)             ECFP6                          0.794 ± 0.006     0.613 ± 0.007    0.632 ± 0.006
+ Tanimoto kNN (ECFP6)              ECFP6                          0.884 ± 0.009     0.668 ± 0.006    0.543 ± 0.010
+ Edge-aware GINE (graph +          graph + 23 descriptors         0.893 ± 0.056     0.701 ± 0.043    0.532 ± 0.060
+ RDKit2D)
+ Edge-aware GINE (graph)           molecular graph                0.984 ± 0.019     0.766 ± 0.025    0.434 ± 0.021
+ Chemprop D-MPNN (graph)           molecular graph                1.142 ± 0.023     0.929 ± 0.013    0.239 ± 0.031
+ Chemprop D-MPNN (graph +          graph + 23 descriptors         1.214 ± 0.013     0.993 ± 0.010    0.139 ± 0.018
+ RDKit2D)
+ Development mean                  none                           1.309 ± 0.000     1.079 ± 0.000   -0.001 ± 0.000
+
+  Note. Values are mean ± population SD across three pooled out-of-fold repeat metrics. The bold row was
+  selected using mean RMSE only.
+
+
+does not establish a general advantage of fixed over learned representations.
+
+2.4   Pooled temporal performance masked cohort-level degradation
+After development-only selection, the selected procedure was tuned on three scaffold-disjoint folds
+within the complete development set, refit without temporal labels, and evaluated once. It achieved
+RMSE 0.972 (95% CI 0.872–1.075), MAE 0.750 (95% CI 0.666–0.840), and R2 = 0.470 (95%
+CI 0.311–0.582; Table 3). Relative to the repeated-CV RMSE, the temporal error changed by
+0.231 pIC50 units. Confidence intervals resampled Bemis–Murcko scaffold clusters, not individual
+compounds.
+   The post hoc provenance audit showed an additional boundary: development labels came from
+68 assays in 62 documents, whereas temporal labels came from 48 assays in 36 documents. The two
+partitions shared 0 assay identifiers and 0 document identifiers. Temporal performance therefore
+reflects joint chemical, calendar-cohort, and assay/source-provenance shift; these components cannot
+be causally separated by this split.
+
+                 Table 3. One-time temporal performance and prespecified diagnostics.
+
+        Subset                                               n    Scaffolds       RMSE     MAE        R2
+        Primary temporal test                               284         160        0.972   0.750    0.470
+        New scaffold                                        251         149        0.980   0.748    0.439
+        Seen scaffold                                        33          11        0.914   0.764    0.360
+        Inside training-defined AD                          130          67        0.954   0.744    0.500
+        Outside training-defined AD                         154          98        0.988   0.755    0.135
+        Sensitivity: observed pIC50 ≤ 10                    277         159        0.968   0.741    0.401
+  Note. Primary 95% scaffold-cluster bootstrap CIs: RMSE 0.872–1.075; MAE 0.666–0.840; R2 0.311–0.582.
+  Subgroup rows are descriptive and are not model-selection criteria. Subgroup R2 values use subgroup-specific
+  outcome variance and should not be interpreted as error-stratification evidence.
+
+
+   The pooled R2 does not by itself describe prioritization within successive chemistry cohorts. In
+a post hoc audit, annual RMSE rose from 0.795 in 2019 to 1.261 in 2024: +0.466 pIC50 (58.7%).
+The four 2025 compounds were too few for an independent cohort interpretation. Annual R2 was
+                                                 5
+                                              Shared 3 x 5 scaffold-disjoint development validation
+
+                   Ridge (ECFP6 + RDKit2D)                         Baseline            Graph neural network
+                                                                   Classical           Selected
+
+                 RBF-SVR (ECFP6 + RDKit2D)
+
+
+        Gradient boosting (ECFP6 + RDKit2D)
+
+
+           Random forest (ECFP6 + RDKit2D)
+
+
+                     Random forest (ECFP6)
+
+
+                      Tanimoto kNN (ECFP6)
+
+
+        Edge-aware GINE (graph + RDKit2D)
+
+
+                   Edge-aware GINE (graph)
+
+
+                  Chemprop D-MPNN (graph)
+
+
+    Chemprop D-MPNN (graph + RDKit2D)
+
+
+                        Development mean
+
+                                              0.7     0.8     0.9       1.0    1.1     1.2      1.3
+                                                    Pooled out-of-fold RMSE (pIC50; lower is better)
+
+
+Figure 2. Development-only repeated scaffold-CV performance. Points show the mean pooled out-of-fold
+RMSE across three repeats; bars span the minimum and maximum repeat RMSE. Lower is better. Colors
+distinguish baselines, classical fixed representations, and graph neural networks. Model selection used only
+the mean repeat-level RMSE shown here.
+
+
+weak or negative in most cohorts after 2019 (Table 4), and annual rank correlations were unstable
+(Fig. 3).
+
+Table 4. Post hoc descriptive temporal performance by first eligible record year. These analyses were not
+prespecified and were not used for model selection.
+
+ Year       n     Observed mean (SD)       Predicted mean      RMSE        MAE             R2         r          ρs
+
+ 2019       87             8.177 (1.334)              8.084       0.795        0.606     0.645     0.813       0.842
+ 2020       59             7.329 (0.808)              7.622       0.830        0.666    -0.053     0.332       0.338
+ 2021       34             6.615 (0.932)              7.015       0.900        0.647     0.068     0.506       0.527
+ 2022       25             6.386 (0.737)              6.725       1.015        0.753    -0.893    -0.400      -0.298
+ 2023       15             6.109 (0.939)              6.112       1.234        0.994    -0.727    -0.059       0.032
+ 2024       60             6.511 (1.258)              6.617       1.261        1.061    -0.006     0.364       0.349
+2025∗        4             6.347 (0.408)              6.072       0.590        0.394    -1.089     0.130      -0.200
+ Note. Observed SD uses the population convention. Pearson r and Spearman ρs summarize within-cohort
+ association and are unstable in small cohorts. ∗ The 2025 row contains only four compounds and should not be
+ interpreted independently.
+
+
+
+
+                                                       6
+               a Pooled performance masks cohort structure                                                                                             b Annual error increases (post hoc)
+                                    Pooled RMSE = 0.972                                      2025                                                       2019 to 2024: +0.466 (+58.7%)
+                             10     Pooled R 2 = 0.470                                                                                           1.2
+                                                                                             2024
+                              9
+
+
+
+           Predicted pIC50                                                                          First record year   RMSE (pIC50)
+                                                                                             2023
+                                                                                                                                                 1.0
+                              8
+                                                                                             2022
+                              7
+                                                                                             2021
+                                                                                                                                                 0.8
+                              6
+                                                                                             2020
+
+                              5
+                                                                 2025 (n=4; low n)           2019                                                0.6
+
+                                              6           8                10                                                                          2019    2020   2021    2022   2023   2024   2025*
+                                                                                                                                                       n=87    n=59   n=34    n=25   n=15   n=60    n=4
+                                                  Observed pIC50
+                                                                                                                                                                      First record year
+
+
+                c Annual rank association is unstable (post hoc)                                                                           d Similarity AD does not stratify absolute error
+                             1.0    2020-2025 centered ρs = 0.286                                                                                       ρs = 0.042                          inside AD
+                                                                                                                                                 3.0    RMSE: 0.954 in / 0.988 out          outside AD
+
+
+
+
+                                                                                                                        Absolute error (pIC50)
+                                                                                                                                                 2.5
+                             0.5
+
+
+
+ Spearman ρs
+                                                                                                                                                 2.0
+
+                             0.0                                                                                                                 1.5
+
+                                                                                                                                                 1.0
+                 −0.5
+                                                                                                                                                 0.5
+
+                 −1.0                                                                                                                            0.0
+                                   2019   2020     2021   2022    2023    2024       2025*                                                                    0.2        0.4        0.6
+                                   n=87   n=59     n=34   n=25    n=15    n=60        n=4
+                                                                                                                                                              Mean 5-NN Tanimoto similarity
+                                                   First record year
+
+
+Figure 3. One-time temporal evaluation of the development-selected model. a, observed versus predicted
+pIC50 , with the identity line. b, RMSE by first eligible record year. c, Spearman rank correlation by first
+eligible record year. d, absolute error against mean Tanimoto similarity to the five nearest development
+compounds, with the training-defined applicability-domain threshold. Annual panels are post hoc descriptive
+audits; the 2025 estimates contain only four compounds.
+
+
+   Annual cohort means accounted for 31.8% of the observed temporal potency variance. After
+observed and predicted values were each centered within first-record year, pooled R2 was 0.266
+across 2019–2025. Excluding 2019, the within-year-centered R2 was -0.046 and Spearman ρ was
+0.286. Thus, the aggregate R2 = 0.470 partly reflects separation among annual cohorts with different
+mean potency, while rank ordering within more recent cohorts was weak and unstable. This is a
+cohort-composition effect, not evidence that the pooled metric is numerically incorrect, and the
+year-aware analysis is descriptive rather than a second confirmatory evaluation.
+
+2.5                           The evaluated reliability diagnostics did not identify temporal errors
+The observed-on-predicted calibration slope was 0.930 with intercept 0.382. An absolute-residual
+reference band defined by the finite-sample 90% quantile of locked development OOF errors had
+width 2.504 pIC50 and covered 81.3% of temporal compounds (95% scaffold-cluster CI 75.2–86.7%).
+This was not a conformal predictor: its scores came from fold-specific OOF fits after development-
+
+                                                                                                          7
+based candidate selection, whereas its centers came from a separate final refit. Moreover, ordinary
+exchangeability between development and future cases is not justified under the observed temporal
+chemical and assay/process shift (Tibshirani et al., 2019; Barber et al., 2023). The reported
+coverage is therefore empirical, not a distribution-free guarantee. Even apart from formal validity,
+the approximately 319-fold IC50 span has limited value for typical potency-threshold decisions.
+Conformal regression remains a useful QSAR framework when its construction and assumptions
+match the intended deployment setting (Svensson et al., 2018).
+    The applicability-domain threshold was the fifth percentile of development compounds’ mean
+Tanimoto similarity to their five nearest non-self development neighbors. 154 temporal compounds
+fell below it. Absolute error and mean neighbor similarity had Spearman ρ = 0.042. Inside- and
+outside-domain RMSE and MAE were nearly indistinguishable (RMSE 0.954 versus 0.988; Table 3),
+so the threshold described structural distance but failed to identify the predictions with larger
+errors. Although subgroup R2 differed, outcome spread and cohort composition also differed; that
+denominator-sensitive contrast should not be interpreted as evidence that the domain discriminated
+reliability. Performance on the 251 compounds with new scaffolds was RMSE 0.980, compared
+with 0.914 on the 33 seen-scaffold compounds. These subgroup estimates are descriptive and differ
+greatly in sample size.
+    Fifteen strict measurement events exceeded the prespecified pIC50 > 10 tail threshold. Removing
+the 7 such temporal compounds yielded RMSE 0.968. This sensitivity analysis was prespecified
+because extreme public-database potency values can be influential; it was not used to alter the
+primary model or endpoint.
+
+
+3    Discussion
+This study changes the evidential basis of the PIM1 analysis by replacing a mutable or ambiguously
+dated dataset with a release-pinned, lineage-preserving cohort and by enforcing immutable time and
+scaffold boundaries before model comparison. Candidate selection was completed without temporal
+outcomes, after which the locked procedure used the temporal set exactly once. That information
+boundary is the principal methodological contribution: every reported generalization failure can be
+interpreted without ambiguity about test-set reuse.
+   The most decision-relevant result is not the pooled temporal R2 , but the deterioration within
+successive chemistry cohorts. Error rose materially from 2019 to 2024, and the post hoc year-aware
+analysis found weak and unstable within-cohort ordering after 2019. Differences among annual
+mean potencies restored variation when cohorts were pooled and therefore made the aggregate R2
+more favorable than recent-cohort prioritization alone. This does not make the pooled estimate
+invalid; it shows that a single pooled statistic answers a different question from whether a model
+can rank compounds within the chemistry available in a particular year. Both views are needed for
+discovery decisions.
+   The negative reliability results reinforce that distinction. The locked Tanimoto threshold detected
+structural distance—more than half of temporal compounds lay outside it—but did not identify high-
+error predictions. Likewise, the development-residual reference band was wide, undercovered after
+temporal shift, and had limited threshold-decision value. Similarity and cross-validated residuals
+therefore described aspects of the shift without yielding a useful prediction- level reliability screen.
+This failure is informative: standard diagnostics that look sensible in development may not remain
+operational under combined chemical, assay, and cohort shift.
+   More elaborate structural-domain methods can sometimes separate uncertainty reliability on
+
+
+                                                   8
+nonrandom test sets (Hosni et al., 2026). The negative result here therefore concerns this simple
+mean-5-neighbor threshold, not the entire applicability-domain concept; it motivates direct validation
+of each proposed reliability rule under the deployment shift it is meant to address.
+   The representation comparison is secondary. Under the prespecified modest search budget, none
+of the four evaluated graph variants improved on the leading ECFP6-plus-descriptor candidates.
+This pattern is compatible with the lower data efficiency reported for some task-trained molecular
+representations (Deng et al., 2023), but the present experiment did not vary training-set size and
+therefore cannot identify data scarcity as the cause. The graph inputs contained chemically informed
+atom and bond attributes; unlike ECFP6, however, they did not encode radius-3 substructures a
+priori. Pretraining could alter the comparison, although published benefits are setting-dependent
+and downstream hyperparameters can be at least as consequential on small tasks (Sun et al.,
+2022). These results describe the four evaluated variants under the locked budget, not a sample-size
+threshold or a general representation ranking.
+   Publication-year validation is more decision-relevant than a random split and more realistic than
+scaffold CV alone, but it remains retrospective. Because public ChEMBL publication dates can
+pool distinct groups and projects, this split enforces a chronological information boundary without
+reproducing the feedback-driven order in which compounds are designed and tested within one
+medicinal-chemistry program (Sheridan, 2013; Landrum et al., 2023). It therefore combines chemical
+novelty with changes in assay, reporting, and deposition practice rather than isolating prospective
+model decay. The high prevalence of new scaffolds and complete assay/document turnover make
+those joint shifts explicit.
+   Several limitations bound interpretation. ChEMBL harmonizes reported endpoints but does
+not make assays experimentally identical. Even confidence-9 biochemical IC50 values can differ in
+substrate, ATP concentration, construct, protocol, and laboratory. Numeric ATP concentration
+was recoverable for only 10.4% of strict events, only 18 compounds bridged assays, and 82.2% of
+events belonged to scaffolds seen in a single assay. ATP normalization would additionally require
+the relevant kinetic parameters and inhibition mechanism; assay-effect estimation is confounded
+by chemistry and time. We therefore did not attempt a post hoc Cheng–Prusoff correction, assay
+random effect, or causal decomposition.
+   Document year is a publication-linked proxy for availability, not the date a result entered ChEMBL
+or became accessible to a model developer. The test is chronologically held out but arises from the
+same public database and literature-curation ecosystem; it is not independent external-laboratory or
+prospective validation. Median aggregation reduces replicate influence but can hide multimodality,
+so event-level lineage remains essential. Hyperparameter grids were deliberately bounded, the GNN
+arm did not estimate optimization-seed variability, and it covers neither every architecture nor
+pretraining strategy. Applicability-domain and calibration analyses diagnose this dataset; they do
+not prove uncertainty validity after distribution shift. Finally, the endpoint is PIM1 biochemical
+potency only. No inference is warranted about PIM2/PIM3 selectivity, kinome off-targets, cell
+permeability, toxicity, pharmacokinetics, or efficacy.
+   The decisive next study is a prospectively registered evaluation in which predictions are frozen
+before new outcomes are generated. It should include deliberately selected new scaffolds, a single
+biochemical assay system with reported ATP conditions, matched measurements against PIM1,
+PIM2, and PIM3, and a cellular substrate-phosphorylation or target-engagement assay. Kinome
+selectivity and ADME should remain separately defined endpoints. Such a study would test whether
+the present error and reliability estimates translate to genuine discovery use.
+
+
+
+
+                                                  9
+4     Methods
+4.1   Release snapshot and source provenance
+Data were queried from the ChEMBL REST interface for target CHEMBL2147 by requiring the
+standardized IC50 endpoint, exact equality, nM units, standard flag 1, and a nonmissing positive
+value. The snapshot records ChEMBL 37, release date 1 May 2026, the REST base URL, the official
+release-status response, and the official FTP release README, notes, and checksums. Activities,
+referenced assay records, target metadata, and parent-molecule records were written as compressed
+JSON lines or JSON with per-file SHA-256 values. A curation manifest links every downstream
+table to those hashes. ChEMBL is described by Zdrazil et al. (2024).
+
+4.2   Structure and activity curation
+Parent structures were processed with chembl-structure-pipeline==1.2.4, which implements
+ChEMBL-like structure standardization on RDKit (Bento et al., 2020). The standardized parent
+was serialized as canonical isomeric SMILES and identified by InChIKey. Bemis–Murcko scaffolds
+were generated with RDKit (Bemis and Murcko, 1996); acyclic compounds were assigned a common
+explicit acyclic group. The structure pipeline version was checked at runtime and no fallback
+standardizer was permitted.
+   Broad eligibility required human PIM1 target metadata, exact positive IC50 in nM, standard
+flag 1, no potential-duplicate flag, no data-validity warning, a valid document year, concordant
+assay target, and a standardizable parent structure. The strict primary cohort additionally required
+assay type B, BAO format BAO_0000357 (single protein), target relationship D, confidence score 9,
+and no variant accession or mutation. Equivalent source events were identified from parent, target,
+record, document, normalized assay description, endpoint, format, assay type, relation, value, and
+units; their activity identifiers remained in a lineage table.
+   Activity was transformed as
+
+                                    pIC50 = 9 − log10 (IC50 [nM]).
+
+Compound labels were the median eligible event pIC50 . Counts, standard deviation, median absolute
+deviation, range, first and last document year, event IDs, assay IDs, and document IDs were retained.
+The prespecified high-tail sensitivity cohort excluded events with pIC50 > 10.
+
+4.3   Post hoc assay-metadata audit
+After the sealed evaluation, we audited assay context directly from the pinned strict event table;
+this audit was descriptive and did not alter labels, model selection, or predictions. Events were
+grouped by representative assay, document, standardized-parent identity, and Bemis–Murcko scaffold.
+We counted case-insensitive whole-word mentions of ATP. Explicit positive concentrations were
+extracted only when a numeric nM, µM, or mM value immediately modified ATP in the archived
+description; values were normalized to µM. Descriptions stating ATP at Km without a numeric
+value were tabulated separately. Missing text was never interpreted as a constant or absent ATP
+condition.
+   Assay-size distributions, cross-assay compound bridges, and the proportion of events whose scaffold
+occurred in only one assay were computed without reference to prediction error. Development
+provenance used label events at or before the 2018 cutoff; quarantined later records for development
+identities were excluded. All events for first-seen-after-cutoff identities defined temporal provenance.
+
+                                                  10
+Assay and document intersections were then enumerated across partitions. Finally, we exhaustively
+searched for identities measured within the same document in different assays with different explicit
+ATP concentrations; no pair was selected by the direction or magnitude of its potency change.
+Because assay conditions, chemistry, and time were sparsely bridged, this audit was not used to fit
+an assay-effect model or normalize IC50 .
+
+4.4   Outcome-blind temporal sealing
+Compound identity was assigned to development or temporal test by its first eligible strict
+measurement-event document year. Before any candidate model was fit, a count-only feasibil-
+ity table enumerated each potential cutoff. The locked rule chose the latest cutoff with at least 750
+development compounds, 250 temporal compounds, and 100 scaffolds present only in the temporal
+partition. No activity value was permitted in cutoff selection. The selected cutoff was 2018, so
+development used events through 2018 and the test contained compounds first observed from 2019
+onward. Post-2018 records for identities already assigned to development were quarantined and
+never updated training labels. Development, temporal, cross-cutoff, and fold-assignment files were
+made immutable through a split manifest containing source and output hashes.
+   This construction is a retrospective publication-year temporal split, not a prospective experiment.
+It follows the rationale that time-split validation can better approximate future prediction than
+random resampling (Sheridan, 2013), while recognizing that simulated or historical splits have their
+own biases (Landrum et al., 2023).
+
+4.5   Fixed molecular representations and classical candidates
+ECFP6 fingerprints were generated with radius 3 and 2,048 bits (Rogers and Hahn, 2010). A
+23-variable RDKit descriptor vector contained molecular weight, calculated logP, hydrogen-bond
+counts, rotatable bonds, ring and aromatic-ring counts, heteroatom and heavy-atom counts, fraction
+sp3 , TPSA, Labute ASA, Balaban J, Bertz complexity, molecular connectivity indices, QED, formal
+charge, and related atom-count descriptors. The exact ordered descriptor list is stored in the feature
+manifest.
+   Seven prespecified fixed-representation or baseline candidates were evaluated: a training-mean
+baseline, unweighted Tanimoto k-nearest-neighbor regression on ECFP6, Ridge regression, random
+forest on ECFP6, random forest on ECFP6 plus descriptors, gradient boosting on the combined rep-
+resentation, and RBF support-vector regression on the combined representation. Median imputation
+and, where appropriate, descriptor scaling were inside each scikit-learn pipeline. Hyperparameter
+grids are reported in Supplementary Table 5.
+
+4.6   Graph neural networks
+Four graph candidates crossed two backends with two feature variants: molecular graph alone
+and graph plus the same 23 RDKit descriptors. The custom edge-aware GINE used explicit atom
+and bond features, three message-passing layers, hidden dimension 128, residual updates, batch
+normalization, mean pooling, a two-layer feed-forward head, and dropout 0.1. Its edge-aware
+convolution followed the GINE operator used in graph representation learning (Hu et al., 2020); the
+implementation used PyTorch Geometric (Fey and Lenssen, 2019).
+   The second backend used Chemprop 2.2.4 bond-directed message passing, mean aggregation,
+hidden dimension 128, depth 3, and a matched 128-dimensional feed-forward head (Yang et al.,
+2019; Graff et al., 2026). Both backends used batch size 64, Adam-family optimization, target
+
+                                                 11
+scaling estimated from the current training partition, maximum 80 epochs, and patience 10 with
+a minimum RMSE improvement of 0.001. Descriptor variants median-imputed and standardized
+descriptors from the current training rows only.
+
+4.7   Nested repeated scaffold validation and model selection
+Development validation used three repeats of five-fold StratifiedGroupKFold. Bemis–Murcko
+scaffold was the group and ranked pIC50 values were divided into five approximately equal strata.
+Seeds 1101, 1102, and 1103 created one immutable assignment table shared across all model families.
+Within each outer training partition, classical grids used three scaffold-disjoint inner folds with
+all preprocessing refit inside the pipeline. This fully nested design prevents the selection bias that
+results when tuning and assessment reuse the same observations (Varma and Simon, 2006).
+   For GNNs, the same outer partitions were used. Each outer training set was divided into three
+inner scaffold folds. Early stopping was performed independently on each inner validation fold; the
+median of the three selected epoch counts was then used for a fresh fit on the entire outer training
+partition. Outer validation labels were never monitored. Fixed GNN architectural settings bounded
+the comparison and kept every outer fold strictly assessment-only.
+   After completion, selected epoch counts and assigned refit durations were read from all graph
+checkpoint manifests, and each companion prediction hash was reverified. We compared every inner
+selected epoch and outer refit duration with the fixed 80-epoch ceiling. This checkpoint audit did
+not reconstruct how many epochs each inner loop evaluated before early stopping; it was descriptive
+and did not trigger new training or candidate changes.
+   RMSE was the prespecified primary metric; MAE and R2 were secondary. For each repeat,
+metrics were computed after pooling its complete set of 803 out-of-fold predictions. Candidates were
+ranked by mean repeat-level RMSE, with model name as an exact-tie breaker. For descriptive paired
+comparisons, predictions were first averaged across repeats for each compound, then scaffold clusters
+were resampled 10,000 times to estimate candidate-minus-selected RMSE and MAE intervals. The
+sealed temporal table was not read during selection.
+
+4.8   Final fitting, temporal metrics, uncertainty, and domain
+The selected classical candidate underwent a final three-fold, scaffold-disjoint grid search on all
+development compounds and was refit before temporal prediction. Had a GNN been selected, the
+prespecified procedure would have averaged three development-only refits with seeds 2101–2103;
+that conditional procedure was implemented before the temporal evaluation. Primary temporal
+RMSE, MAE, and R2 were accompanied by 95% percentile intervals from 10,000 bootstrap samples
+of temporal Bemis–Murcko scaffolds (seed 3101).
+   After the sealed primary evaluation, we performed a post hoc descriptive audit by first eligible
+record year; it was not used to select, tune, or refit the model. Annual RMSE, R2 , and Spearman
+correlation were calculated separately. The fraction of observed temporal variance between years
+was the weighted between-cohort sum of squares divided by the total observed sum of squares. To
+separate within-cohort ordering from annual mean differences, observed and predicted pIC50 values
+were each centered by their corresponding first-record-year mean before pooled R2 and Spearman
+correlation were calculated. We report this centered analysis for all temporal years and, to describe
+a horizon at least two years beyond the 2018 cutoff, for 2020–2025. Small annual cohorts, especially
+2025, make individual-year estimates unstable.
+   We applied the finite-sample order-statistic correction used in absolute-residual conformal intervals
+
+
+                                                  12
+to the selected model’s locked repeat-0 development OOF residuals. The resulting symmetric band
+is reported only as a reproducible development-residual reference: its scores came from fold-specific
+OOF models after development-based candidate selection, while its centers came from a separate
+final refit. Moreover, the exchangeability condition required by ordinary conformal validity is not
+justified for the chronologically shifted cases (Barber et al., 2023). Weighted conformal methods can
+address pure covariate shift under additional assumptions, including a stable conditional outcome
+distribution and a known or estimable train/test density ratio (Tibshirani et al., 2019); those
+assumptions were neither established nor used here. Temporal coverage was therefore evaluated
+empirically and scaffold-cluster bootstrapped. Calibration was summarized by the slope and intercept
+from observed-on-predicted linear regression and by five equal-count prediction bins.
+    The applicability domain was defined entirely from training structures. For every development
+compound, mean Tanimoto similarity to its five nearest non-self development neighbors was
+calculated; the fifth percentile was locked as the threshold. Each temporal compound’s mean
+and maximum similarity to development, nearest neighbor, and in/out-domain status were recorded.
+We additionally report error–similarity correlations and metrics by in/out-domain and new/seen-
+scaffold groups. Small subgroup comparisons are descriptive rather than hypothesis tests.
+
+4.9   Software, integrity checks, and reproducibility
+Classical analysis used Python 3.12.3, RDKit 2026.3.3, NumPy 2.5.1, pandas 3.0.3, and scikit-
+learn 1.9.0. GNN analysis used PyTorch 2.12.1+cpu, PyTorch Geometric 2.8.0, and Chemprop 2.2.4
+in an isolated CPU environment. Environment manifests record executable paths, installed-package
+inventories, platform details, and hashes. Unit and contract tests verify curation filters, standard-
+ization behavior, split disjointness, assignment inventories, training-only transforms, resumable
+checkpoints, model-selection blindness, and one-time temporal artifact sealing. Every production
+stage writes atomic files and a completion marker. SHA-256-linked manifests cover the release,
+curation, split, selection, temporal-evaluation, and manuscript stages; the GNN benchmark records
+its fixed contract and fold/checkpoint inventory.
+
+
+5     Data and code availability
+The complete reproducibility archive is prepared for submission as supplementary material. It
+contains the exact source snapshot, release metadata, curation tables, event lineage, immutable
+split, candidate predictions, selection record, temporal predictions, figures, environment manifests,
+and manuscript source. The file ARTIFACT_INDEX.md identifies confirmatory v2 artifacts and clearly
+separates them from legacy exploratory results. A versioned public mirror and archival DOI will be
+released with the accepted manuscript.
+
+
+6     Conclusion
+Release pinning and sealing converted this from an algorithm demonstration into an auditable
+reliability test. Pooled temporal performance remained moderate, but error increased by cohort
+and post-2019 ranking was weak amid inseparable chemical and assay-provenance turnover. The
+similarity domain did not identify high-error predictions; the residual reference band was wide
+and undercovered. Under the prespecified budget, graph models did not justify added flexibility, a
+conclusion limited to those configurations. The decisive next test is prospective, assay-consistent
+chemistry.
+
+                                                 13
+Author contributions
+T.N.: conceptualization, methodology, software, validation, formal analysis, investigation, data
+curation, visualization, writing, and project administration.
+
+
+Competing interests
+The author declares no competing interests.
+
+
+Use of computational tools
+Automated computational assistance was used for code development, testing, and manuscript editing.
+All scientific claims are tied to archived source records or generated analysis artifacts; responsibility
+for verification and submission remains with the author.
+
+
+
+A     Supplementary methods and results
+A.1    Prespecified candidate settings
+
+                   Table 5. Prespecified candidate representations and search spaces.
+
+ Candidate                    Representation        Settings or inner grid
+ Development mean             none                  fixed
+ Tanimoto kNN (ECFP6)         ECFP6                 n_neighbors: [3, 5, 10, 20]
+ Ridge (ECFP6 +               ECFP6 + 23            alpha: [0.1, 1.0, 10.0, 100.0]
+ RDKit2D)                     descriptors
+ Random forest (ECFP6)        ECFP6                 max_depth: [None, 20]; max_features: [sqrt,
+                                                    0.25]; min_samples_leaf: [1, 3]; n_estimators:
+                                                    [200]
+ Random forest (ECFP6         ECFP6 + 23            max_depth: [None, 20]; max_features: [sqrt,
+ + RDKit2D)                   descriptors           0.25]; min_samples_leaf: [1, 3]; n_estimators:
+                                                    [200]
+ Gradient boosting            ECFP6 + 23            learning_rate: [0.03, 0.1]; max_depth: [2];
+ (ECFP6 + RDKit2D)            descriptors           n_estimators: [100, 250]
+ RBF-SVR (ECFP6 +             ECFP6 + 23            C: [1.0, 10.0, 100.0]; epsilon: [0.1, 0.2]; gamma:
+ RDKit2D)                     descriptors           [scale, 0.001]
+ Edge-aware GINE              molecular graph       hidden=128; depth=3; dropout=0.1; max
+ (graph)                                            epochs=80; patience=10
+ Edge-aware GINE              graph + 23            hidden=128; depth=3; dropout=0.1; max
+ (graph + RDKit2D)            descriptors           epochs=80; patience=10
+ Chemprop D-MPNN              molecular graph       hidden=128; depth=3; dropout=0.1; max
+ (graph)                                            epochs=80; patience=10
+
+
+
+                                                   14
+ Candidate                        Representation           Settings or inner grid
+ Chemprop D-MPNN                  graph + 23               hidden=128; depth=3; dropout=0.1; max
+ (graph + RDKit2D)                descriptors              epochs=80; patience=10
+
+
+A.2     Curation exclusions
+
+                       Table 6. Logged record-level and sensitivity-cohort exclusions.
+
+      Cohort                     Reason                                                                Count
+      strict                     assay confidence not strict                                             2,973
+      strict                     assay relationship not direct                                           2,973
+      broad                      duplicate source event collapsed                                        1,024
+      broad                      potential duplicate                                                       473
+      strict                     bao format not single protein                                             402
+      strict_no_high_tail        pIC50 above prespecified threshold                                         15
+      broad                      data validity warning                                                      11
+      strict                     assay type not biochemical                                                  1
+
+
+A.3     Post hoc assay-context audit
+
+Table 7. Post hoc audit of strict assays whose pinned descriptions state a numeric ATP concentration or
+ATP at Km .
+
+         Assay                        Reported ATP condition Events Document(s)
+
+         CHEMBL1061942                20 µM                              4   CHEMBL1150976
+         CHEMBL1919015                30 µM                             53   CHEMBL1914433
+         CHEMBL2020770                30 µM                             40   CHEMBL2016532
+         CHEMBL2049739                50 µM                             10   CHEMBL2046384
+         CHEMBL2049742                5 mM                               7   CHEMBL2046384
+         CHEMBL4011954                1 mM                               1   CHEMBL4011589
+         CHEMBL4831324                1 mM                               1   CHEMBL4828769
+         CHEMBL4831325                1 mM                               1   CHEMBL4828769
+         CHEMBL4687896                ATP = Km (value unstated)          1   CHEMBL4680285
+         CHEMBL5212833                ATP = Km (value unstated)          1   CHEMBL5212743
+         CHEMBL5446217                ATP = Km (value unstated)          1   CHEMBL5446079
+   Note. This text audit is a lower bound on ATP metadata completeness: absence of a machine-readable concentration
+   does not imply that ATP was absent or constant. An exhaustive within-document identity bridge search found one
+   matched compound, in CHEMBL2046384, measured at 50 µM and 5 mM (9 versus 100 nM; ∆pIC50 = −1.046). This
+   n = 1 observation is illustrative, not an assay correction or causal estimate (Dakin et al., 2012).
+
+
+
+
+                                                         15
+A.4   Per-repeat development metrics
+
+                   Table 8. Complete pooled out-of-fold metrics by repeat.
+
+       Candidate                                  Repeat    n    RMSE        MAE        R2
+       Chemprop D-MPNN (graph)                         1   803    1.159      0.946    0.216
+       Chemprop D-MPNN (graph)                         2   803    1.158      0.927    0.217
+       Chemprop D-MPNN (graph)                         3   803    1.109      0.915    0.283
+       Chemprop D-MPNN (graph + RDKit2D)               1   803    1.218      1.001    0.135
+       Chemprop D-MPNN (graph + RDKit2D)               2   803    1.197      0.979    0.163
+       Chemprop D-MPNN (graph + RDKit2D)               3   803    1.228      0.998    0.120
+       Development mean                                1   803    1.309      1.079   -0.001
+       Development mean                                2   803    1.309      1.079   -0.001
+       Development mean                                3   803    1.309      1.078   -0.001
+       Edge-aware GINE (graph)                         1   803    0.998      0.786    0.419
+       Edge-aware GINE (graph)                         2   803    0.997      0.781    0.419
+       Edge-aware GINE (graph)                         3   803    0.958      0.731    0.464
+       Edge-aware GINE (graph + RDKit2D)               1   803    0.973      0.762    0.447
+       Edge-aware GINE (graph + RDKit2D)               2   803    0.846      0.668    0.582
+       Edge-aware GINE (graph + RDKit2D)               3   803    0.861      0.674    0.567
+       Gradient boosting (ECFP6 + RDKit2D)             1   803    0.770      0.605    0.653
+       Gradient boosting (ECFP6 + RDKit2D)             2   803    0.764      0.598    0.659
+       Gradient boosting (ECFP6 + RDKit2D)             3   803    0.796      0.624    0.630
+       Random forest (ECFP6 + RDKit2D)                 1   803    0.775      0.605    0.649
+       Random forest (ECFP6 + RDKit2D)                 2   803    0.770      0.605    0.654
+       Random forest (ECFP6 + RDKit2D)                 3   803    0.794      0.617    0.632
+       Random forest (ECFP6)                           1   803    0.795      0.619    0.631
+       Random forest (ECFP6)                           2   803    0.785      0.603    0.640
+       Random forest (ECFP6)                           3   803    0.801      0.616    0.625
+       RBF-SVR (ECFP6 + RDKit2D)                       1   803    0.733      0.571    0.686
+       RBF-SVR (ECFP6 + RDKit2D)                       2   803    0.738      0.562    0.682
+       RBF-SVR (ECFP6 + RDKit2D)                       3   803    0.761      0.580    0.662
+       Ridge (ECFP6 + RDKit2D)                         1   803    0.744      0.578    0.677
+       Ridge (ECFP6 + RDKit2D)                         2   803    0.730      0.562    0.689
+       Ridge (ECFP6 + RDKit2D)                         3   803    0.752      0.582    0.670
+       Tanimoto kNN (ECFP6)                            1   803    0.873      0.660    0.555
+       Tanimoto kNN (ECFP6)                            2   803    0.895      0.676    0.532
+       Tanimoto kNN (ECFP6)                            3   803    0.885      0.667    0.543
+
+
+
+
+                                             16
+A.5    Artifact integrity
+
+               Table 9. Primary provenance identifiers and abbreviated SHA-256 values.
+
+  Stage                          Identifier                              SHA-256 prefix
+  ChEMBL snapshot                chembl37_pim1_ic50_20260501             90173b7636865926...
+  Curated strict dataset         pim1_publication_curation_v2            3d4b301bb42c9110...
+  Immutable split                chembl37_strict_temporal2018_           80b4c761afdc693a...
+                                 scaffold3x5_v1
+  Classical benchmark            classical_nested_v2                     c938dac4e1fffcfd...
+  GNN benchmark contract         gnn_nested_v2                           7d104c0eaf410c9b...
+  Development selection          development_selection_v2                ac5b84f2f37cb71f...
+  Temporal evaluation            temporal_evaluation_manifest_v2         6a91f9fd6d221b3b...
+
+
+References
+Haifa Almukadi, Gada Ali Jadkarim, Arif Mohammed, Majid Almansouri, Nasreen Sultana, Noor Ah-
+  mad Shaik, and Babajan Banaganapalli. Combining machine learning and structure-based ap-
+  proaches to develop oncogene PIM kinase inhibitors. Frontiers in Chemistry, 11:1137444, 2023.
+  doi: 10.3389/fchem.2023.1137444.
+
+Abdellah Aouidate, Abdelali Ghaleb, Mohamed Ghamali, Abdelhakim Ousaa, Mohamed Choukrad,
+ Abdelaziz Sbai, Mohammed Bouachrine, and Tahar Lakhlifi. QSAR study and rustic ligand-based
+ virtual screening in a search for aminooxadiazole derivatives as PIM1 inhibitors. Chemistry
+ Central Journal, 12:32, 2018. doi: 10.1186/s13065-018-0401-x.
+
+Vivek Asati, Sanjay Kumar Bharti, and Ashish Kumar Budhwani. 3D-QSAR and virtual screening
+  studies of thiazolidine-2,4-dione analogues as PIM-1 kinase inhibitors. Journal of Molecular
+  Structure, 1133:278–293, 2017. doi: 10.1016/j.molstruc.2016.12.006.
+
+Rina Foygel Barber, Emmanuel J. Candès, Aaditya Ramdas, and Ryan J. Tibshirani. Conformal
+  prediction beyond exchangeability. The Annals of Statistics, 51(2):816–845, 2023. doi: 10.1214/
+  23-AOS2276.
+
+Guy W. Bemis and Mark A. Murcko. The properties of known drugs. 1. molecular frameworks.
+ Journal of Medicinal Chemistry, 39:2887–2893, 1996. doi: 10.1021/jm9602928.
+
+A. Patrícia Bento, Anne Hersey, Eloy Félix, Gregory Landrum, Anna Gaulton, Francis Atkin-
+  son, Louisa J. Bellis, Marleen De Veij, and Andrew R. Leach. An open source chemical
+  structure curation pipeline using RDKit. Journal of Cheminformatics, 12:51, 2020. doi:
+  10.1186/s13321-020-00456-1.
+
+Yung-Chi Cheng and William H. Prusoff. Relationship between the inhibition constant (ki ) and
+  the concentration of inhibitor which causes 50 per cent inhibition (i50 ) of an enzymatic reaction.
+ Biochemical Pharmacology, 22(23):3099–3108, 1973. doi: 10.1016/0006-2952(73)90196-2.
+
+Artem Cherkasov, Eugene N. Muratov, Denis Fourches, Alexandre Varnek, Igor I. Baskin, Mark
+  Cronin, John Dearden, Paola Gramatica, Yvonne C. Martin, Roberto Todeschini, Viviana
+  Consonni, Victor E. Kuz’min, Richard Cramer, Romualdo Benigni, Chihae Yang, James Rathman,
+
+
+                                                 17
+  Lothar Terfloth, Johann Gasteiger, Ann Richard, and Alexander Tropsha. QSAR modeling:
+  Where have you been? where are you going to? Journal of Medicinal Chemistry, 57:4977–5010,
+  2014. doi: 10.1021/jm4004285.
+
+Les A. Dakin, Michael H. Block, Huawei Chen, Erin Code, James E. Dowling, Xiaomei Feng,
+  Andrew D. Ferguson, Isabelle Green, Alexander W. Hird, Tina Howard, Erika K. Keeton,
+  Michelle L. Lamb, Paul D. Lyne, Hannah Pollard, Jon Read, Allan J. Wu, Tao Zhang, and
+  Xiaolan Zheng. Discovery of novel benzylidene-1,3-thiazolidine-2,4-diones as potent and selective
+  inhibitors of the PIM-1, PIM-2, and PIM-3 protein kinases. Bioorganic & Medicinal Chemistry
+  Letters, 22(14):4599–4604, 2012. doi: 10.1016/j.bmcl.2012.05.098.
+
+Jianyuan Deng, Zhibo Yang, Hehe Wang, Iwao Ojima, Dimitris Samaras, and Fusheng Wang. A sys-
+  tematic study of key elements underlying molecular property prediction. Nature Communications,
+  14:6395, 2023. doi: 10.1038/s41467-023-41948-6.
+
+Matthias Fey and Jan E. Lenssen. Fast graph representation learning with PyTorch Geometric.
+ arXiv preprint arXiv:1903.02428, 2019. doi: 10.48550/arXiv.1903.02428.
+
+David E. Graff, Nathan K. Morgan, Jackson W. Burns, Anna C. Doner, Brian Li, Shih-Cheng Li,
+ Joel Manu, Angiras Menon, Hao-Wei Pang, Haoyang Wu, Akshat Shirish Zalte, Jonathan W.
+ Zheng, Connor W. Coley, William H. Green, and Kevin P. Greenman. Chemprop v2: An
+ efficient, modular machine learning package for chemical property prediction. Journal of Chemical
+ Information and Modeling, 66(1):28–33, 2026. doi: 10.1021/acs.jcim.5c02332.
+
+Zied Hosni, Valerie J. Gillet, and Richard L. Marchese Robinson. Explicit applicability domain
+  calculations can help determine when uncertainty estimates are less reliable. ACS Omega, 11(3):
+  4722–4743, 2026. doi: 10.1021/acsomega.5c11875.
+
+Weihua Hu, Bowen Liu, Joseph Gomes, Marinka Zitnik, Percy Liang, Vijay Pande, and Jure
+ Leskovec. Strategies for pre-training graph neural networks. In International Conference on
+ Learning Representations, 2020. URL https://openreview.net/forum?id=HJlWWJSFDH.
+
+Abhinav Kumar, Valsan Mandiyan, Yoshihisa Suzuki, Chao Zhang, Julie Rice, James Tsai, Dean R.
+ Artis, Prabha Ibrahim, and Ryan Bremer. Crystal structures of proto-oncogene kinase Pim1: A
+ target of aberrant somatic hypermutations in diffuse large cell lymphoma. Journal of Molecular
+ Biology, 348(1):183–193, 2005. doi: 10.1016/j.jmb.2005.02.039.
+
+Gregory A. Landrum, Marc Beckers, Jessica Lanini, Nadine Schneider, Nikolaus Stiefl, and Sereina
+  Riniker. SIMPD: An algorithm for generating simulated time splits for validating machine learning
+  approaches. Journal of Cheminformatics, 15:119, 2023. doi: 10.1186/s13321-023-00787-9.
+
+Martijn C. Nawijn, Andrej Alendar, and Anton Berns. For better or for worse: The role of PIM
+ oncogenes in tumorigenesis. Nature Reviews Cancer, 11:23–34, 2011. doi: 10.1038/nrc2986.
+
+David Rogers and Mathew Hahn. Extended-connectivity fingerprints. Journal of Chemical Informa-
+ tion and Modeling, 50:742–754, 2010. doi: 10.1021/ci100050t.
+
+Petra Schneider, Martin Welin, Bo Svensson, Björn Walse, and Gisbert Schneider. Virtual screening
+  and design with machine intelligence applied to PIM-1 kinase inhibitors. Molecular Informatics,
+  39:2000109, 2020. doi: 10.1002/minf.202000109.
+
+
+
+                                                18
+Robert P. Sheridan. Time-split cross-validation as a method for estimating the goodness of
+ prospective prediction. Journal of Chemical Information and Modeling, 53:783–790, 2013. doi:
+ 10.1021/ci400084k.
+
+Ruoxi Sun, Hanjun Dai, and Adams Wei Yu. Does GNN pretraining help molecular rep-
+ resentation?   In Advances in Neural Information Processing Systems, volume 35, pages
+ 12096–12109, 2022. URL https://proceedings.neurips.cc/paper_files/paper/2022/hash/
+ 4ec360efb3f52643ac43fda570ec0118-Abstract-Conference.html.
+
+Fredrik Svensson, Nelson Aniceto, Ulf Norinder, Isidro Cortes-Ciriano, Ola Spjuth, Lars Carlsson,
+  and Andreas Bender. Conformal regression for quantitative structure–activity relationship
+  modeling—quantifying prediction uncertainty. Journal of Chemical Information and Modeling,
+  58:1132–1140, 2018. doi: 10.1021/acs.jcim.8b00054.
+
+Ryan J. Tibshirani, Rina Foygel Barber, Emmanuel J. Candès, and Aaditya Ramdas. Conformal
+  prediction under covariate shift. In Advances in Neural Information Processing Systems, volume 32,
+  pages 2530–2540, 2019. URL https://proceedings.neurips.cc/paper_files/paper/2019/
+  hash/8fb21ee7a2207526da55a679f0332de2-Abstract.html.
+
+Yermek Tursynbay, Jing Zhang, Zhi Li, Tursonjan Tokay, Zhaxybay Zhumadilov, De Wu, and
+  Yizheng Xie. PIM-1 kinase as cancer drug target: An update. Biomedical Reports, 4:140–146,
+  2016. doi: 10.3892/br.2015.561.
+
+Sudhir Varma and Richard Simon. Bias in error estimation when using cross-validation for model
+  selection. BMC Bioinformatics, 7:91, 2006. doi: 10.1186/1471-2105-7-91.
+
+Keyulu Xu, Weihua Hu, Jure Leskovec, and Stefanie Jegelka. How powerful are graph neural
+ networks? In International Conference on Learning Representations, 2019. URL https://
+ openreview.net/forum?id=ryGs6iA5Km.
+
+Kevin Yang, Kyle Swanson, Wengong Jin, Connor Coley, Philipp Eiden, Hua Gao, Angel Guzman-
+  Perez, Timothy Hopper, Brian Kelley, Miriam Mathea, Andrew Palmer, Volker Settels, Tommi
+ Jaakkola, Klavs Jensen, and Regina Barzilay. Analyzing learned molecular representations for
+  property prediction. Journal of Chemical Information and Modeling, 59:3370–3388, 2019. doi:
+ 10.1021/acs.jcim.9b00237.
+
+Barbara Zdrazil, Eloy Felix, Fiona Hunter, Emma J. Manners, James Blackshaw, Samantha Corbett,
+  Marleen de Veij, Harris Ioannidis, David M. Lopez, Juan F. Mosquera, Maria P. Magarinos,
+  Nicolas Bosc, Ricardo Arcila, Tevfik Kizil"oren, Anna Gaulton, A. Patrícia Bento, Melissa F.
+  Adasme, Peter Monecke, Gregory A. Landrum, and Andrew R. Leach. The ChEMBL database
+  in 2023: A drug discovery platform spanning multiple bioactivity data types and time periods.
+ Nucleic Acids Research, 52(D1):D1180–D1192, 2024. doi: 10.1093/nar/gkad1004.
+
+
+
+
+                                                19
+

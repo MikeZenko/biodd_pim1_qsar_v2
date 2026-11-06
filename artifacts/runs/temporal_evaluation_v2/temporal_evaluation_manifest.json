@@ -1,0 +1,64 @@
+{
+  "evaluation_sha256": "6a91f9fd6d221b3b1be8315b92d863e708c44894649312cbf70beae04c1b5c31",
+  "input_hashes": {
+    "development_sha256": "69cee6f6a8a0a3b9722b49be207b9834522d6542eee4328f8a363d58ddb87ff3",
+    "evaluation_code_sha256": "9d929006320c71a04e4471a2df6cebd53edaf1432d4d5fd99f625a2c7f03aaf5",
+    "model_selection_sha256": "c3767e2ae778a93148467d8c4cb9ab6f5ed93ab9b38e78d4ff9e1954921f6ea6",
+    "protocol_sha256": "d1cce259ec46c1f49188f87b4a9665caebc77afa9eed12497805b4273e8a8d66",
+    "selected_oof_sha256": "3846af09afd2cc52d0137b0b7d60dc458e7e248598cf429751376f546fd25928",
+    "split_lock_manifest_sha256": "e15f71167ab378d946168dd913afbed2ea19c4c5268f8859e788de907ae8adfb",
+    "temporal_test_sealed_sha256": "29bb90e66dd9e1613d6d64dc5623d095687b2486517360a62a4e4c2ec79a802f"
+  },
+  "one_time_selected_model_evaluation": true,
+  "output_hashes": {
+    "EVALUATION_STARTED.json": "cb95d3b1aabfb9029bc5d31dedb3334867fabfc669bf3e252b5792b9db65b94e",
+    "calibration_bins.csv": "5f13bd234d2956c71c485c1c62c79cae73ba6d89aa0492e4598f102b7a8ed24c",
+    "final_training_manifest.json": "c5495c144abfdd08ad09f2a62e953df9a010cef668d5bc943443246afc4804dd",
+    "model/selected_classical_model.joblib": "03ed55347557d295ba640bf93b296366b7c7c3aec750b6e116ef7939d4da7e5c",
+    "temporal_metrics.json": "2897d55a01cd3666cfe0cc9e87e77bb2b1ca5e74479997a606581f90ddfe1d85",
+    "temporal_predictions.csv": "53856b473b08c651ec925d71f67a3b139948c7e00066e0bfcf0ca094c4079858"
+  },
+  "primary_result": {
+    "bootstrap_standard_errors": {
+      "MAE": 0.04425210547714682,
+      "R2": 0.06873147832741963,
+      "RMSE": 0.05150729569775412
+    },
+    "confidence_intervals": {
+      "MAE": [
+        0.6661455933913857,
+        0.839984129631828
+      ],
+      "R2": [
+        0.31085285382035205,
+        0.5822636379595582
+      ],
+      "RMSE": [
+        0.8717589594365994,
+        1.0746880499009706
+      ]
+    },
+    "confidence_level": 0.95,
+    "invalid_replicates": {
+      "MAE": 0,
+      "R2": 0,
+      "RMSE": 0
+    },
+    "n_bootstrap": 10000,
+    "n_clusters": 160,
+    "point_estimates": {
+      "MAE": 0.7501013151049507,
+      "R2": 0.4697632547269154,
+      "RMSE": 0.9724403541125879
+    },
+    "seed": 3101,
+    "valid_replicates": {
+      "MAE": 10000,
+      "R2": 10000,
+      "RMSE": 10000
+    }
+  },
+  "schema_version": "temporal_evaluation_manifest_v2",
+  "selected_model": "ridge_combined",
+  "status": "complete"
+}

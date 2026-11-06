@@ -1,0 +1,20 @@
+\begin{table}[H]
+\centering
+\caption{Logged record-level and sensitivity-cohort exclusions.}
+\label{tab:curation-exclusions}
+\small
+\begin{tabular}{L{0.20\textwidth}L{0.56\textwidth}r}
+\toprule
+\textbf{Cohort} & \textbf{Reason} & \textbf{Count} \\
+\midrule
+strict & assay confidence not strict & 2,973 \\
+strict & assay relationship not direct & 2,973 \\
+broad & duplicate source event collapsed & 1,024 \\
+broad & potential duplicate & 473 \\
+strict & bao format not single protein & 402 \\
+strict\_no\_high\_tail & pIC50 above prespecified threshold & 15 \\
+broad & data validity warning & 11 \\
+strict & assay type not biochemical & 1 \\
+\bottomrule
+\end{tabular}
+\end{table}

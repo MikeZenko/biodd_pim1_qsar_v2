@@ -1,0 +1,29 @@
+{
+  "environment_sha256": "8a75f7bf5c12744165f5a5760dc4d67df664017be032539b0e0cdffc790adb9b",
+  "implementation": "CPython",
+  "label": "gnn",
+  "logical_cpu_count": 12,
+  "machine": "x86_64",
+  "packages": {
+    "PyYAML": "6.0.3",
+    "chembl-structure-pipeline": null,
+    "chemprop": "2.2.4",
+    "joblib": "1.5.3",
+    "lightning": "2.6.5",
+    "matplotlib": "3.11.0",
+    "numpy": "2.5.1",
+    "pandas": "3.0.3",
+    "pytest": "9.1.1",
+    "rdkit": "2026.3.3",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "seaborn": "0.13.2",
+    "torch": "2.12.1+cpu",
+    "torch-geometric": "2.8.0"
+  },
+  "platform": "Linux-6.17.0-1020-gcp-x86_64-with-glibc2.39",
+  "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+  "requirements_filename": "requirements-gnn.txt",
+  "requirements_sha256": "a72976b981957159cd26e1d887ead5c754a4479d7329da7ac7227bc34ee08589",
+  "torch_accelerator": "cpu"
+}

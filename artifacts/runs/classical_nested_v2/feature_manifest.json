@@ -1,0 +1,51 @@
+{
+  "canonical_smiles_sha256": "6ab702c7ae11fa7d3d18118648c7f7acb15fb4bd52cc469af18311956d022b28",
+  "ecfp": {
+    "count_simulation": false,
+    "implementation": "RDKit MorganGenerator",
+    "n_bits": 2048,
+    "radius": 3,
+    "use_bond_types": true,
+    "use_chirality": false
+  },
+  "ecfp_shape": [
+    803,
+    2048
+  ],
+  "learned_preprocessing": "none_at_feature_generation",
+  "n_rows": 803,
+  "physicochemical_descriptors": [
+    "MolWt",
+    "LogP",
+    "NumHDonors",
+    "NumHAcceptors",
+    "NumRotatableBonds",
+    "NumAromaticRings",
+    "NumHeteroatoms",
+    "FractionCSP3",
+    "TPSA",
+    "LabuteASA",
+    "BalabanJ",
+    "BertzCT",
+    "Chi0v",
+    "Chi1v",
+    "Chi2v",
+    "Chi3v",
+    "Chi4v",
+    "QED",
+    "NumRings",
+    "HeavyAtomCount",
+    "FormalCharge",
+    "NHOHCount",
+    "NOCount"
+  ],
+  "physicochemical_nonfinite_count": 0,
+  "physicochemical_shape": [
+    803,
+    23
+  ],
+  "row_ids_sha256": "7b941e5acb5510f32560361bfc27ec745eac1c642560a425b018b582311ea291",
+  "schema_sha256": "8d8e05f40fc0c823149a795b0198f0c85061b8b154b8cbc0275e5691cd71a477",
+  "schema_version": "classical_features_v2",
+  "standardized_structure_input": "canonical_parent_smiles"
+}

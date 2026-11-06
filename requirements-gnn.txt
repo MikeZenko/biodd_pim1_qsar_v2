@@ -1,0 +1,12 @@
+# Isolated GNN runtime for the publication-grade PIM1 benchmark.
+# Install this file into .venv-gnn; do not mix it into the validated
+# classical-model environment.
+
+-r requirements.txt
+
+# Prefer the official PyTorch CPU wheel on the current CPU-only VM.
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+torch==2.12.1
+torch-geometric==2.8.0
+chemprop==2.2.4

@@ -1,0 +1,58 @@
+{
+  "candidate": {
+    "activation": "elu",
+    "batch_size": 32,
+    "depth": 3,
+    "dropout": 0.15222176487489802,
+    "encoder_training": "random",
+    "family": "chemprop_dmpnn",
+    "featurization": "chemprop_organic",
+    "ffn_hidden_dim": 256,
+    "ffn_layers": 3,
+    "hidden_dim": 128,
+    "initialization": "chemprop_default",
+    "learning_rate": 0.0006115377681673886,
+    "normalization": "none",
+    "pooling": "norm",
+    "representation": "graph",
+    "residual": false,
+    "weight_decay": 1e-08
+  },
+  "candidate_id": "chemprop_dmpnn-ce1bf0c6e404",
+  "contract_sha256": "ca6cec23c49826924e9a9281100c9dce20383aa003c466c4877e114103c84823",
+  "family": "chemprop_dmpnn",
+  "fold": 3,
+  "inner_folds": [
+    {
+      "inner_fold": 0,
+      "n_train": 428,
+      "n_validation": 215,
+      "parameter_count": 210817,
+      "rmse": 0.9864422837004269,
+      "selected_epoch": 130
+    },
+    {
+      "inner_fold": 1,
+      "n_train": 429,
+      "n_validation": 214,
+      "parameter_count": 210817,
+      "rmse": 0.978788541430666,
+      "selected_epoch": 68
+    },
+    {
+      "inner_fold": 2,
+      "n_train": 429,
+      "n_validation": 214,
+      "parameter_count": 210817,
+      "rmse": 1.037985268092558,
+      "selected_epoch": 19
+    }
+  ],
+  "median_epoch": 68,
+  "pooled_inner_rmse": 1.001394014816803,
+  "repeat": 0,
+  "runtime_seconds": 432.2716622299049,
+  "schema_version": "gnn_tuned_posthoc_v1",
+  "seed": 7301,
+  "temporal_test_consulted": false
+}

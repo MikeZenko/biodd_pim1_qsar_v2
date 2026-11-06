@@ -1,0 +1,60 @@
+{
+  "purpose": "Provenance and curation audit for the frozen local PIM1 dataset used by the manuscript.",
+  "source_note": "This records the checked-in local export. The download script queries the live ChEMBL REST API and should not be used to reproduce the v33 freeze without a separately archived v33 export.",
+  "files_sha256": {
+    "bioactivity_data_raw.csv": "b3ced851f95d47c3f666dd5f86b358ccf92fd753b904bfe159b6e282ce5ce4ae",
+    "bioactivity_data_preprocessed.csv": "78611af37e2fd3e02e9e673926a33620642e2c54dc29881d0bd9fbb9d43555c2",
+    "pancreatic_cancer_bioactivity_data_3class_pIC50_morgan_fp.csv": "ea228fe00f799de91cd9f04bffb3643a097e2a6835bd2b8252ebddec595115db"
+  },
+  "record_counts": {
+    "raw_activity_records": 4852,
+    "preprocessed_activity_records": 4852,
+    "modeling_molecule_target_medians": 3110,
+    "unique_molecule_target_pairs_from_raw": 3110
+  },
+  "raw_filter_audit": {
+    "target_chembl_id": {
+      "CHEMBL2147": 4852
+    },
+    "standard_type": {
+      "IC50": 4852
+    },
+    "standard_relation": {
+      "=": 4852
+    },
+    "standard_units": {
+      "nM": 4852
+    },
+    "standard_flag": {
+      "1": 4852
+    }
+  },
+  "upper_ic50_cap": {
+    "cap_nm": 100000000.0,
+    "raw_maximum_nm": 56511000.0,
+    "records_affected": 0
+  },
+  "high_potency_tail": {
+    "definition": "pIC50 > 10 (nominal IC50 < 100 pM)",
+    "raw_measurements": 167,
+    "molecule_target_medians": 141,
+    "molecule_target_medians_with_one_raw_measurement": 124,
+    "reconciled_to_modeling_export": true,
+    "top_assays_by_high_potency_measurement": {
+      "CHEMBL3705754": 111,
+      "CHEMBL3888799": 16,
+      "CHEMBL5730248": 16,
+      "CHEMBL3864805": 8,
+      "CHEMBL4370145": 8,
+      "CHEMBL3812017": 2,
+      "CHEMBL3887608": 2,
+      "CHEMBL5730073": 2,
+      "CHEMBL4331738": 1,
+      "CHEMBL4687899": 1
+    }
+  },
+  "deduplication": {
+    "unit_of_aggregation": "molecule_chembl_id and target_chembl_id",
+    "endpoint_aggregation": "median record-level pIC50 per molecule-target pair"
+  }
+}

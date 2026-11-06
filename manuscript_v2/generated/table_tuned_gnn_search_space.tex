@@ -1,0 +1,39 @@
+\begingroup\scriptsize
+\begin{longtable}{L{0.18\textwidth}L{0.225\textwidth}L{0.225\textwidth}L{0.225\textwidth}}
+\caption{Exact post hoc graph-model candidate spaces and anchored baselines.}\label{tab:tuned-gnn-search-space}\\
+\toprule
+\textbf{Choice} & \textbf{GINE} & \textbf{D-MPNN} & \textbf{Frozen CheMeleon} \\ 
+\midrule
+\endfirsthead
+\multicolumn{4}{l}{\footnotesize\textit{Table \thetable\ continued}}\\
+\toprule
+\textbf{Choice} & \textbf{GINE} & \textbf{D-MPNN} & \textbf{Frozen CheMeleon} \\ 
+\midrule
+\endhead
+\midrule\multicolumn{4}{r}{\footnotesize\textit{Continued on next page}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Candidate construction & 1 baseline + 23 draws; seed 62017 & 1 baseline + 23 draws; seed 63026 & 1 baseline + 23 draws; seed 64035 \\
+Representation & graph, graph + RDKit2D & graph, graph + RDKit2D & graph, graph + RDKit2D \\
+Encoder depth & 2, 3, 4, 5, 6 & 2, 3, 4, 5, 6 & 6 (fixed) \\
+Message width & 64, 128, 256, 512 & 64, 128, 256, 512 & 2,048 (fixed) \\
+Head width & 64, 128, 256, 512 & 64, 128, 256, 512 & 64, 128, 256, 512 \\
+Head layers & 1, 2, 3 & 1, 2, 3 & 1, 2, 3 \\
+Dropout & continuous uniform [0, 0.4] & continuous uniform [0, 0.4] & continuous uniform [0, 0.4] \\
+Learning rate & log-uniform [$10^{-5}$, $3\times10^{-3}$] & log-uniform [$10^{-5}$, $3\times10^{-3}$] & log-uniform [$10^{-5}$, $3\times10^{-3}$] \\
+AdamW weight decay & 0, $10^{-8}$, $10^{-7}$, $10^{-6}$, $10^{-5}$, $10^{-4}$, $10^{-3}$ & 0, $10^{-8}$, $10^{-7}$, $10^{-6}$, $10^{-5}$, $10^{-4}$, $10^{-3}$ & 0, $10^{-8}$, $10^{-7}$, $10^{-6}$, $10^{-5}$, $10^{-4}$, $10^{-3}$ \\
+Batch size & 32, 64, 128 & 32, 64, 128 & 32, 64, 128 \\
+Pooling & mean, sum & mean, sum, size-normalized sum & mean (fixed) \\
+Normalization & none, batch, layer & none, batch & none, batch \\
+Residual updates & no, yes & no (fixed) & no (fixed) \\
+Initialization & Xavier uniform, Kaiming uniform & Chemprop default (seeded) & pretrained encoder; Xavier head \\
+Activation & ReLU (fixed) & ReLU, leaky ReLU, ELU & ReLU, leaky ReLU, ELU \\
+Atom/bond features & rich atom/bond v1 & Chemprop v1, Chemprop v2, Chemprop organic & Chemprop v2 (fixed) \\
+Encoder training & task-trained & task-trained & frozen \\
+Baseline: representation / encoder / head & graph + RDKit2D; 3 $\times$ 128; 2 $\times$ 128 & graph; 3 $\times$ 128; 2 $\times$ 128 & graph; 6 $\times$ 2,048 frozen; 2 $\times$ 128 \\
+Baseline: dropout / learning rate / weight decay / batch & 0.1 / $3\times10^{-4}$ / $10^{-5}$ / 64 & 0.1 / $3\times10^{-4}$ / 0 / 64 & 0.1 / $3\times10^{-4}$ / $10^{-5}$ / 64 \\
+Baseline: pool / normalization / activation & mean / batch / ReLU & mean / batch / ReLU & mean / batch / ReLU \\
+\multicolumn{4}{L{0.84\textwidth}}{\footnotesize \textit{Note.} Each family received one anchored baseline plus 23 deterministic random draws; the same family-specific candidate set was evaluated in every outer fold. Dropout was sampled uniformly and learning rate log-uniformly; other listed multi-value choices were categorical. Candidate hashes broke exact scoring ties. The complete machine-readable contract is \nolinkurl{configs/gnn_search_v1.yaml}.}\\
+\end{longtable}
+\endgroup

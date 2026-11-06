@@ -1,0 +1,33 @@
+{
+  "target_id": "CHEMBL2147",
+  "seed": 42,
+  "selected_model": "StackingEnsemble",
+  "selection_rule": "highest mean outer-fold nested-CV R2; holdout metrics were not used for selection",
+  "model_representation": "PCA-reduced Morgan fingerprints plus standardized selected physicochemical descriptors",
+  "data_sha256": "ea228fe00f799de91cd9f04bffb3643a097e2a6835bd2b8252ebddec595115db",
+  "selected_model_sha256": "e6ec9f7181a6f257847ea75f96076c49deae336a6a669d983fe79b1a15e39655",
+  "selected_model_transformers_sha256": "8503c3ed6851f14c99ed0ca6a23a3ce654041d4fcc401f5a648e367e8bc93856",
+  "total_compounds": 3110,
+  "total_scaffold_groups": 1205,
+  "development": {
+    "compounds": 2591,
+    "scaffold_groups": 964,
+    "median_pIC50": 7.619788758288394,
+    "minimum_pIC50": 1.2478670075023262,
+    "maximum_pIC50": 11.221848749616356,
+    "pIC50_gt_10": 121
+  },
+  "holdout": {
+    "compounds": 519,
+    "scaffold_groups": 241,
+    "median_pIC50": 7.58838029403677,
+    "minimum_pIC50": 4.20342566678957,
+    "maximum_pIC50": 11.0,
+    "pIC50_gt_10": 20
+  },
+  "holdout_metrics": {
+    "R2": 0.7046175640357281,
+    "RMSE": 0.710880223988075,
+    "MAE": 0.5423804023051855
+  }
+}

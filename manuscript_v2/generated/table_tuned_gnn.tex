@@ -1,0 +1,17 @@
+\begin{table}[H]
+\centering
+\caption{Post hoc development-only nested graph-model search.}
+\label{tab:tuned-gnn}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{L{0.24\textwidth}L{0.10\textwidth}R{0.13\textwidth}R{0.13\textwidth}R{0.13\textwidth}R{0.20\textwidth}}
+\toprule
+\textbf{Family} & \textbf{Encoder} & \textbf{RMSE} & \textbf{MAE} & \textbf{$R^2$} & \textbf{$\Delta$RMSE vs Ridge [95\% CI]} \\ 
+\midrule
+Frozen CheMeleon + tuned head & pretrained & 0.754 $\pm$ 0.011 & 0.583 $\pm$ 0.006 & 0.668 $\pm$ 0.009 & 0.002 [-0.038, 0.046] \\
+Tuned edge-aware GINE & random & 0.760 $\pm$ 0.012 & 0.596 $\pm$ 0.002 & 0.663 $\pm$ 0.010 & 0.013 [-0.027, 0.054] \\
+Tuned Chemprop D-MPNN & random & 0.779 $\pm$ 0.011 & 0.613 $\pm$ 0.008 & 0.645 $\pm$ 0.010 & 0.033 [-0.016, 0.083] \\
+\bottomrule
+\end{tabular}
+\par\vspace{3pt}\parbox{0.97\textwidth}{\footnotesize \textit{Note.} Values are mean $\pm$ population SD across three complete outer-CV repeats. Within every outer fold, each family received one anchored baseline plus 23 deterministic random draws over architecture, optimization, representation, and regularization; the top 3 were reranked over 3 initialization seeds. Outer predictions average 3 refits. Confidence intervals are paired 10,000-replicate scaffold-cluster bootstraps after averaging predictions across repeats; they are family-specific and not multiplicity-adjusted for choosing the lowest-RMSE family. This analysis was designed after the temporal results had been inspected and was not eligible to alter the locked temporal analysis.}
+\end{table}

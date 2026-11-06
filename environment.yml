@@ -1,0 +1,20 @@
+# BIODD Project Conda Environment
+# 
+# To create environment:
+#   conda env create -f environment.yml
+#
+# To activate:
+#   conda activate biodd
+#
+# Last updated: July 2026
+
+name: biodd
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+    - -r requirements.txt

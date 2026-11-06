@@ -1,0 +1,58 @@
+{
+  "candidate": {
+    "activation": "relu",
+    "batch_size": 128,
+    "depth": 5,
+    "dropout": 0.2724478608442748,
+    "encoder_training": "random",
+    "family": "edge_aware_gine",
+    "featurization": "rich_atom_bond_v1",
+    "ffn_hidden_dim": 512,
+    "ffn_layers": 3,
+    "hidden_dim": 256,
+    "initialization": "kaiming_uniform",
+    "learning_rate": 5.106004761795009e-05,
+    "normalization": "none",
+    "pooling": "mean",
+    "representation": "graph",
+    "residual": false,
+    "weight_decay": 1e-08
+  },
+  "candidate_id": "edge_aware_gine-6930a1ac4794",
+  "contract_sha256": "ca6cec23c49826924e9a9281100c9dce20383aa003c466c4877e114103c84823",
+  "family": "edge_aware_gine",
+  "fold": 0,
+  "inner_folds": [
+    {
+      "inner_fold": 0,
+      "n_train": 427,
+      "n_validation": 215,
+      "parameter_count": 1112582,
+      "rmse": 1.0272963693829245,
+      "selected_epoch": 57
+    },
+    {
+      "inner_fold": 1,
+      "n_train": 428,
+      "n_validation": 214,
+      "parameter_count": 1112582,
+      "rmse": 1.2621868360288389,
+      "selected_epoch": 32
+    },
+    {
+      "inner_fold": 2,
+      "n_train": 429,
+      "n_validation": 213,
+      "parameter_count": 1112582,
+      "rmse": 1.145624048185348,
+      "selected_epoch": 110
+    }
+  ],
+  "median_epoch": 57,
+  "pooled_inner_rmse": 1.1488699403902016,
+  "repeat": 2,
+  "runtime_seconds": 299.33324768883176,
+  "schema_version": "gnn_tuned_posthoc_v1",
+  "seed": 7301,
+  "temporal_test_consulted": false
+}

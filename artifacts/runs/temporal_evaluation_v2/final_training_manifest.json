@@ -1,0 +1,12 @@
+{
+  "best_params": {
+    "model__alpha": 10.0
+  },
+  "final_tuning": "3-fold scaffold-disjoint development-only GridSearchCV",
+  "inner_best_rmse": 0.7692932231174071,
+  "model_family": "classical",
+  "representation": "ecfp6_2048_plus_rdkit2d",
+  "seed": 6101,
+  "selected_model": "ridge_combined",
+  "temporal_labels_used_for_fit_or_tuning": false
+}

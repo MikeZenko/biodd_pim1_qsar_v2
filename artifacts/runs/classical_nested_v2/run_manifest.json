@@ -1,0 +1,141 @@
+{
+  "candidates": [
+    {
+      "name": "development_mean",
+      "param_grid": {},
+      "representation": "none",
+      "tune": false
+    },
+    {
+      "name": "tanimoto_knn_ecfp6",
+      "param_grid": {
+        "n_neighbors": [
+          3,
+          5,
+          10,
+          20
+        ]
+      },
+      "representation": "ecfp6_2048",
+      "tune": true
+    },
+    {
+      "name": "ridge_combined",
+      "param_grid": {
+        "model__alpha": [
+          0.1,
+          1.0,
+          10.0,
+          100.0
+        ]
+      },
+      "representation": "ecfp6_2048_plus_rdkit2d",
+      "tune": true
+    },
+    {
+      "name": "random_forest_ecfp6",
+      "param_grid": {
+        "max_depth": [
+          null,
+          20
+        ],
+        "max_features": [
+          "sqrt",
+          0.25
+        ],
+        "min_samples_leaf": [
+          1,
+          3
+        ],
+        "n_estimators": [
+          200
+        ]
+      },
+      "representation": "ecfp6_2048",
+      "tune": true
+    },
+    {
+      "name": "random_forest_combined",
+      "param_grid": {
+        "model__max_depth": [
+          null,
+          20
+        ],
+        "model__max_features": [
+          "sqrt",
+          0.25
+        ],
+        "model__min_samples_leaf": [
+          1,
+          3
+        ],
+        "model__n_estimators": [
+          200
+        ]
+      },
+      "representation": "ecfp6_2048_plus_rdkit2d",
+      "tune": true
+    },
+    {
+      "name": "gradient_boosting_combined",
+      "param_grid": {
+        "model__learning_rate": [
+          0.03,
+          0.1
+        ],
+        "model__max_depth": [
+          2
+        ],
+        "model__n_estimators": [
+          100,
+          250
+        ]
+      },
+      "representation": "ecfp6_2048_plus_rdkit2d",
+      "tune": true
+    },
+    {
+      "name": "rbf_svr_combined",
+      "param_grid": {
+        "model__C": [
+          1.0,
+          10.0,
+          100.0
+        ],
+        "model__epsilon": [
+          0.1,
+          0.2
+        ],
+        "model__gamma": [
+          "scale",
+          0.001
+        ]
+      },
+      "representation": "ecfp6_2048_plus_rdkit2d",
+      "tune": true
+    }
+  ],
+  "feature_manifest_sha256": "1eaa45f76378e3a7d3daf33ac8ca4eef26f1823b04fa7fe8e4837fe47252fd7f",
+  "input_lineage": {
+    "code_sha256": "7566d5f5a3bfce5ed60c060f21aa7e748e7da1720e20ab362f342a14b78265ec",
+    "development_sha256": "69cee6f6a8a0a3b9722b49be207b9834522d6542eee4328f8a363d58ddb87ff3",
+    "outer_fold_assignments_sha256": "64d19328e538b01a77f16795e8f948c473be69b850fec6b1ac1833b436d8322d",
+    "protocol_sha256": "d1cce259ec46c1f49188f87b4a9665caebc77afa9eed12497805b4273e8a8d66",
+    "python": "3.12.3",
+    "smoke": false,
+    "split_manifest_sha256": "e15f71167ab378d946168dd913afbed2ea19c4c5268f8859e788de907ae8adfb",
+    "temporal_test_sha256": null
+  },
+  "run_sha256": "c938dac4e1fffcfd6d60e74f5c3b576296d372bc7922b75adaf492a3cf1eee88",
+  "schema_version": "classical_nested_v2",
+  "selection": {
+    "direction": "minimize",
+    "selected_model": "ridge_combined",
+    "selected_representation": "ecfp6_2048_plus_rdkit2d",
+    "selected_rmse_mean": 0.7418132006737563,
+    "selection_data": "development repeated outer-fold OOF predictions only",
+    "selection_metric": "mean per-repeat pooled RMSE",
+    "temporal_test_consulted": false,
+    "tie_breaker": "lexicographic model name"
+  }
+}

@@ -1,0 +1,68 @@
+schema_version: gnn_search_v1
+status: post_hoc_development_only
+scientific_guardrail: >-
+  The 2019-2025 temporal outcomes were already inspected before this search was
+  designed. This benchmark may strengthen the development comparison but must
+  not be described as a newly prespecified temporal evaluation.
+
+outer_split_lock: chembl37_strict_temporal2018_scaffold3x5_v1
+inner_scaffold_folds: 3
+selection_metric: pooled_inner_oof_rmse
+candidate_budget_per_family: 24
+rerank_top_candidates: 3
+rerank_initialization_seeds: [7301, 7302, 7303]
+outer_refit_initialization_seeds: [8101, 8102, 8103]
+max_epochs: 160
+patience: 20
+min_delta_rmse: 0.001
+torch_threads_per_process: 3
+
+families:
+  edge_aware_gine:
+    representation: [graph, graph_plus_rdkit2d]
+    depth: [2, 3, 4, 5, 6]
+    hidden_dim: [64, 128, 256, 512]
+    ffn_hidden_dim: [64, 128, 256, 512]
+    ffn_layers: [1, 2, 3]
+    dropout: [0.0, 0.4]
+    learning_rate: [0.00001, 0.003]
+    weight_decay: [0.0, 0.00000001, 0.0000001, 0.000001, 0.00001, 0.0001, 0.001]
+    batch_size: [32, 64, 128]
+    pooling: [mean, add]
+    normalization: [none, batch, layer]
+    residual: [false, true]
+    initialization: [xavier_uniform, kaiming_uniform]
+    featurization: [rich_atom_bond_v1]
+
+  chemprop_dmpnn:
+    representation: [graph, graph_plus_rdkit2d]
+    depth: [2, 3, 4, 5, 6]
+    hidden_dim: [64, 128, 256, 512]
+    ffn_hidden_dim: [64, 128, 256, 512]
+    ffn_layers: [1, 2, 3]
+    dropout: [0.0, 0.4]
+    learning_rate: [0.00001, 0.003]
+    weight_decay: [0.0, 0.00000001, 0.0000001, 0.000001, 0.00001, 0.0001, 0.001]
+    batch_size: [32, 64, 128]
+    pooling: [mean, sum, norm]
+    normalization: [none, batch]
+    activation: [relu, leakyrelu, elu]
+    featurization: [chemprop_v1, chemprop_v2, chemprop_organic]
+
+  chemprop_chemeleon:
+    representation: [graph, graph_plus_rdkit2d]
+    encoder: [chemeleon]
+    encoder_training: [frozen]
+    ffn_hidden_dim: [64, 128, 256, 512]
+    ffn_layers: [1, 2, 3]
+    dropout: [0.0, 0.4]
+    learning_rate: [0.00001, 0.003]
+    weight_decay: [0.0, 0.00000001, 0.0000001, 0.000001, 0.00001, 0.0001, 0.001]
+    batch_size: [32, 64, 128]
+    normalization: [none, batch]
+    activation: [relu, leakyrelu, elu]
+    featurization: [chemprop_v2]
+    checkpoint:
+      source: https://zenodo.org/records/15460715/files/chemeleon_mp.pt
+      sha256: c376624d3407204e780a0ed13a9ac097cc9bb1c13ef89cdbc633c1715c183651
+      citation: https://doi.org/10.48550/arXiv.2506.15792

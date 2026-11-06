@@ -1,0 +1,53 @@
+{
+  "captured_utc": "2026-07-10T18:59:00.277993+00:00",
+  "counts": {
+    "activities": 4861,
+    "assays_for_target": 986,
+    "parent_molecules": 3112,
+    "referenced_assays": 251
+  },
+  "files_sha256": {
+    "CHEMBL_FTP_CHECKSUMS.txt": "e949808982cc9f0d08fa16b42ebe75b4e04b511d8b96693c973890e6e024e62a",
+    "CHEMBL_README.txt": "127e85ad43aefa88b5efdd168dbf6814114fdfcc529c23f76f83296a42b67fd3",
+    "CHEMBL_RELEASE_NOTES.txt": "218202b6e5e3747838073b86034c8da29836de6ad239d503cfe91897df8f40c7",
+    "activities.jsonl.gz": "18a880d698e004885901e359d6c78aa3e7998eec928c0e8142744f3700365d04",
+    "assays.jsonl.gz": "72412a5a75bac24d946f3c6d7a7a23edb543ccdf9d80c1106495c22ecbd5470d",
+    "chembl_status.json": "400bf2da7ddc4f4bac6d13b9da8f865ac6526b02f70182f7882e991fb93ac741",
+    "parent_molecules.jsonl.gz": "b488f4fdc574dd2cf0b76322f7bf5553a570bf7a3335eff3e8ec6ccc4d921db0",
+    "target.json": "4be6e0ae100da7324bbce70ea19f4959654fb7cd85c8841b4c1cbe07741212c2"
+  },
+  "query": {
+    "assay_resource_filter": {
+      "target_chembl_id": "CHEMBL2147"
+    },
+    "filters": {
+      "standard_flag": 1,
+      "standard_relation": "=",
+      "standard_type": "IC50",
+      "standard_units": "nM",
+      "standard_value__isnull": "false",
+      "target_chembl_id": "CHEMBL2147"
+    },
+    "parent_structure_source": "molecule endpoint for parent_molecule_chembl_id",
+    "resource": "activity",
+    "target_resource": "CHEMBL2147"
+  },
+  "schema_version": 1,
+  "snapshot_id": "chembl37_pim1_ic50_20260501",
+  "source": {
+    "api_base": "https://www.ebi.ac.uk/chembl/api/data",
+    "ftp_release_base": "https://ftp.ebi.ac.uk/pub/databases/chembl/ChEMBLdb/releases/chembl_37",
+    "release": "ChEMBL_37",
+    "release_date": "2026-05-01",
+    "release_status": {
+      "activities": 24527044,
+      "chembl_db_version": "ChEMBL_37",
+      "chembl_release_date": "2026-05-01",
+      "compound_records": 3824604,
+      "disinct_compounds": 2921148,
+      "publications": 101100,
+      "status": "UP",
+      "targets": 18552
+    }
+  }
+}

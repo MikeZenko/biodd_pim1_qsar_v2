@@ -1,0 +1,155 @@
+{
+  "applicability_domain": {
+    "absolute_error_pearson_p_descriptive": 0.7254551076098906,
+    "absolute_error_pearson_r": -0.020928576798670082,
+    "absolute_error_spearman_p_descriptive": 0.48202056207298655,
+    "absolute_error_spearman_rho": 0.041885141780418675,
+    "definition": "mean Tanimoto similarity to five development neighbors",
+    "group_metrics": [
+      {
+        "group": "inside",
+        "mae": 0.7443514696176255,
+        "n": 130,
+        "n_scaffolds": 67,
+        "r2": 0.49991266120158373,
+        "rmse": 0.9539732031317475
+      },
+      {
+        "group": "outside",
+        "mae": 0.7549550807760693,
+        "n": 154,
+        "n_scaffolds": 98,
+        "r2": 0.13494471827730625,
+        "rmse": 0.9877608004022221
+      }
+    ],
+    "inside_count": 130,
+    "mean_similarity_threshold": 0.2376573085784912,
+    "outside_count": 154,
+    "threshold_source": "development-only 5th percentile"
+  },
+  "calibration": {
+    "observed_on_prediction_intercept": 0.38205695198542694,
+    "observed_on_prediction_slope": 0.9300427424677257
+  },
+  "conformal": {
+    "absolute_residual_quantile": 1.25204067463,
+    "calibration_source": "selected-model development OOF residuals, locked repeat 0",
+    "coverage_cluster_bootstrap_ci": [
+      0.7518511759935118,
+      0.8673835125448028
+    ],
+    "empirical_temporal_coverage": 0.8133802816901409,
+    "finite_sample_probability": 0.9016189290161893,
+    "mean_interval_width": 2.50408134926,
+    "method": "cross-validated absolute-residual interval",
+    "nominal_coverage": 0.9,
+    "validity_scope": "descriptive under temporal distribution shift; this OOF construction is not claimed as a formal split-conformal coverage guarantee"
+  },
+  "prespecified_high_tail_sensitivity": {
+    "filter": "temporal compounds with observed pIC50 <= 10",
+    "metrics": {
+      "bootstrap_standard_errors": {
+        "MAE": 0.04552612734119014,
+        "R2": 0.07588601273373129,
+        "RMSE": 0.053366612140135834
+      },
+      "confidence_intervals": {
+        "MAE": [
+          0.6545516535949318,
+          0.8329750805030142
+        ],
+        "R2": [
+          0.2282256026082796,
+          0.5261556818767311
+        ],
+        "RMSE": [
+          0.8632111261933562,
+          1.0724006692306844
+        ]
+      },
+      "confidence_level": 0.95,
+      "invalid_replicates": {
+        "MAE": 0,
+        "R2": 0,
+        "RMSE": 0
+      },
+      "n_bootstrap": 10000,
+      "n_clusters": 159,
+      "point_estimates": {
+        "MAE": 0.7411855534031475,
+        "R2": 0.4012220886190979,
+        "RMSE": 0.9683575926966494
+      },
+      "seed": 3103,
+      "valid_replicates": {
+        "MAE": 10000,
+        "R2": 10000,
+        "RMSE": 10000
+      }
+    },
+    "removed_compounds": 7
+  },
+  "primary_metrics": {
+    "bootstrap_standard_errors": {
+      "MAE": 0.04425210547714682,
+      "R2": 0.06873147832741963,
+      "RMSE": 0.05150729569775412
+    },
+    "confidence_intervals": {
+      "MAE": [
+        0.6661455933913857,
+        0.839984129631828
+      ],
+      "R2": [
+        0.31085285382035205,
+        0.5822636379595582
+      ],
+      "RMSE": [
+        0.8717589594365994,
+        1.0746880499009706
+      ]
+    },
+    "confidence_level": 0.95,
+    "invalid_replicates": {
+      "MAE": 0,
+      "R2": 0,
+      "RMSE": 0
+    },
+    "n_bootstrap": 10000,
+    "n_clusters": 160,
+    "point_estimates": {
+      "MAE": 0.7501013151049507,
+      "R2": 0.4697632547269154,
+      "RMSE": 0.9724403541125879
+    },
+    "seed": 3101,
+    "valid_replicates": {
+      "MAE": 10000,
+      "R2": 10000,
+      "RMSE": 10000
+    }
+  },
+  "scaffold_novelty": {
+    "definition": "Bemis-Murcko scaffold present versus absent in development",
+    "group_metrics": [
+      {
+        "group": "new_scaffold",
+        "mae": 0.7482192661035946,
+        "n": 251,
+        "n_scaffolds": 149,
+        "r2": 0.4393452147893744,
+        "rmse": 0.9798637042768445
+      },
+      {
+        "group": "seen_scaffold",
+        "mae": 0.7644162938728408,
+        "n": 33,
+        "n_scaffolds": 11,
+        "r2": 0.36047050905131006,
+        "rmse": 0.9140067667068446
+      }
+    ]
+  },
+  "schema_version": "temporal_evaluation_v2"
+}

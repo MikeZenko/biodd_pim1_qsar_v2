@@ -1,0 +1,7 @@
+family,reference_model,metric,point_difference,ci_lower,ci_upper,bootstrap_replicates,cluster_count
+chemprop_chemeleon,ridge_combined,RMSE,0.00209714110721,-0.0383299918893,0.0457971836572,10000,369
+chemprop_chemeleon,ridge_combined,MAE,0.00161199843559,-0.0284430280019,0.032627639374,10000,369
+chemprop_dmpnn,ridge_combined,RMSE,0.0333997918113,-0.015725821654,0.0834705085761,10000,369
+chemprop_dmpnn,ridge_combined,MAE,0.0353106824436,-0.00401997159572,0.0734351248236,10000,369
+edge_aware_gine,ridge_combined,RMSE,0.0129702413073,-0.0271186302791,0.0539553851968,10000,369
+edge_aware_gine,ridge_combined,MAE,0.0187008702991,-0.0133633547724,0.0500926667937,10000,369

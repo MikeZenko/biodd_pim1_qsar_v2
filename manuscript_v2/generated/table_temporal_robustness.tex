@@ -1,0 +1,16 @@
+\begin{table}[H]
+\centering
+\caption{Post hoc robustness audits of the immutable temporal predictions.}
+\label{tab:temporal-robustness}
+\small
+\begin{tabular}{L{0.28\textwidth}rrrr}
+\toprule
+\textbf{Resampling unit} & \textbf{Clusters} & \textbf{RMSE 95\% CI} & \textbf{$R^2$ 95\% CI} & \textbf{$\Delta$RMSE 95\% CI} \\
+\midrule
+Bemis--Murcko scaffold & 160 & 0.871--1.077 & 0.312--0.582 & 0.190--0.733 \\
+Assay-source set & 49 & 0.835--1.144 & -0.040--0.660 & 0.155--0.753 \\
+Document-source set & 38 & 0.787--1.150 & -0.007--0.682 & -0.121--0.706 \\
+\bottomrule
+\end{tabular}
+\par\vspace{3pt}\parbox{0.94\textwidth}{\footnotesize \textit{Note.} All intervals use 10,000 percentile-bootstrap replicates. $\Delta$RMSE is 2024 minus 2019. Assay- and document-source sets are sorted combinations of the sources contributing to each aggregated compound label; they are dependence-sensitivity analyses, not replacements for the prespecified scaffold bootstrap. The strict-chronology sensitivity excluded 4 compounds with an earlier broad-cohort record and gave RMSE 0.976 and $R^2=0.463$.}
+\end{table}

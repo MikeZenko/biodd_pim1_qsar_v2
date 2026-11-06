@@ -1,0 +1,13 @@
+model,backend,variant,repeat,n_oof,rmse,mae,r2
+chemprop_dmpnn_graph,chemprop_dmpnn,graph,0,803,1.15861485489,0.946473732341,0.216249356647
+chemprop_dmpnn_graph,chemprop_dmpnn,graph,1,803,1.1578192698,0.926850518421,0.217325341892
+chemprop_dmpnn_graph,chemprop_dmpnn,graph,2,803,1.10853302891,0.915164474885,0.282541144216
+chemprop_dmpnn_graph_plus_rdkit2d,chemprop_dmpnn,graph_plus_rdkit2d,0,803,1.21750533833,1.00132654907,0.134551013284
+chemprop_dmpnn_graph_plus_rdkit2d,chemprop_dmpnn,graph_plus_rdkit2d,1,803,1.19737967345,0.978776368312,0.162926702467
+chemprop_dmpnn_graph_plus_rdkit2d,chemprop_dmpnn,graph_plus_rdkit2d,2,803,1.22766631387,0.998405658395,0.120045119816
+edge_aware_gine_graph,edge_aware_gine,graph,0,803,0.99757452308,0.786452221957,0.418980880352
+edge_aware_gine_graph,edge_aware_gine,graph,1,803,0.997368290158,0.780819172976,0.419221088742
+edge_aware_gine_graph,edge_aware_gine,graph,2,803,0.958118670462,0.731330936375,0.464032652864
+edge_aware_gine_graph_plus_rdkit2d,edge_aware_gine,graph_plus_rdkit2d,0,803,0.972873848273,0.762464174666,0.447397577828
+edge_aware_gine_graph_plus_rdkit2d,edge_aware_gine,graph_plus_rdkit2d,1,803,0.846111054573,0.667960947603,0.582020998687
+edge_aware_gine_graph_plus_rdkit2d,edge_aware_gine,graph_plus_rdkit2d,2,803,0.861425660034,0.673894791549,0.566753229393

@@ -1,0 +1,25 @@
+Metric,Value
+AD_Threshold,7.449865232172274
+k_Neighbors,5
+Threshold_Percentile,95
+Reliability_High_Upper_Distance_P50,4.800068893037535
+Reliability_Medium_Upper_Distance_P90,6.602926829148956
+Feature_Space,PCA-reduced Morgan fingerprints
+Test_In_Domain_Count,487
+Test_In_Domain_Percent,93.83429672447014
+Test_Outside_Count,32
+Test_Outside_Percent,6.165703275529865
+R2_Overall,0.7046175640357281
+R2_In_Domain,0.7126782008703917
+R2_Outside,0.2582538865230769
+RMSE_Overall,0.710880223988075
+RMSE_In_Domain,0.6890126357278529
+RMSE_Outside,0.9855106996999718
+R2_In_Domain_CI_Lower,0.6544131881521787
+R2_In_Domain_CI_Upper,0.760215281830955
+R2_Outside_CI_Lower,0.025796784722666773
+R2_Outside_CI_Upper,0.38888420867734486
+RMSE_In_Domain_CI_Lower,0.6397080529967453
+RMSE_In_Domain_CI_Upper,0.7460782404266878
+RMSE_Outside_CI_Lower,0.832094466339697
+RMSE_Outside_CI_Upper,1.1387435990340442

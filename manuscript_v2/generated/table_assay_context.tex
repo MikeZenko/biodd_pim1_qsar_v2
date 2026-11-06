@@ -1,0 +1,25 @@
+\begin{table}[H]
+\centering
+\caption{Post hoc audit of strict assays whose pinned descriptions state a numeric ATP concentration or ATP at $K_m$.}
+\label{tab:assay-context}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{L{0.23\textwidth}L{0.23\textwidth}rL{0.27\textwidth}}
+\toprule
+\textbf{Assay} & \textbf{Reported ATP condition} & \textbf{Events} & \textbf{Document(s)} \\
+\midrule
+CHEMBL1061942 & 20 $\mu$M & 4 & CHEMBL1150976 \\
+CHEMBL1919015 & 30 $\mu$M & 53 & CHEMBL1914433 \\
+CHEMBL2020770 & 30 $\mu$M & 40 & CHEMBL2016532 \\
+CHEMBL2049739 & 50 $\mu$M & 10 & CHEMBL2046384 \\
+CHEMBL2049742 & 5 mM & 7 & CHEMBL2046384 \\
+CHEMBL4011954 & 1 mM & 1 & CHEMBL4011589 \\
+CHEMBL4831324 & 1 mM & 1 & CHEMBL4828769 \\
+CHEMBL4831325 & 1 mM & 1 & CHEMBL4828769 \\
+CHEMBL4687896 & ATP = $K_m$ (value unstated) & 1 & CHEMBL4680285 \\
+CHEMBL5212833 & ATP = $K_m$ (value unstated) & 1 & CHEMBL5212743 \\
+CHEMBL5446217 & ATP = $K_m$ (value unstated) & 1 & CHEMBL5446079 \\
+\bottomrule
+\end{tabular}
+\par\vspace{2pt}\parbox{0.94\textwidth}{\scriptsize \textit{Note.} This text audit is a lower bound on ATP metadata completeness: absence of a machine-readable concentration does not imply that ATP was absent or constant. An exhaustive within-document identity bridge search found one matched compound, in CHEMBL2046384, measured at 50 $\mu$M and 5 mM (9 versus 100 nM; $\Delta$pIC$_{50}=-1.046$). This $n=1$ observation is illustrative, not an assay correction or causal estimate \citep{dakin2012pim}.}
+\end{table}

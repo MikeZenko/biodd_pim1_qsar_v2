@@ -1,0 +1,32 @@
+{
+  "backends": [
+    "edge_aware_gine",
+    "chemprop_dmpnn"
+  ],
+  "config": {
+    "batch_size": 64,
+    "depth": 3,
+    "dropout": 0.1,
+    "ffn_hidden_dim": 128,
+    "ffn_layers": 2,
+    "grad_clip": 5.0,
+    "hidden_dim": 128,
+    "inner_folds": 3,
+    "learning_rate": 0.0003,
+    "max_epochs": 80,
+    "min_delta": 0.001,
+    "patience": 10,
+    "seed_base": 5101,
+    "torch_threads": 4,
+    "weight_decay": 1e-05
+  },
+  "contract_sha256": "7d104c0eaf410c9bdb6816497d87d6b1e4fdce1b1fdfa68980b608d0277acbee",
+  "feature_manifest_sha256": "1eaa45f76378e3a7d3daf33ac8ca4eef26f1823b04fa7fe8e4837fe47252fd7f",
+  "schema_version": "gnn_nested_v2",
+  "smoke": false,
+  "temporal_test_consulted": false,
+  "variants": [
+    "graph",
+    "graph_plus_rdkit2d"
+  ]
+}

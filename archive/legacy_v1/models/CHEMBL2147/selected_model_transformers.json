@@ -1,0 +1,14 @@
+{
+  "target_id": "CHEMBL2147",
+  "seed": 42,
+  "selected_model": "StackingEnsemble",
+  "uses_raw_morgan_fingerprints": false,
+  "feature_count": 634,
+  "replayed_holdout_metrics": {
+    "R-Squared": 0.7046175640357281,
+    "RMSE": 0.710880223988075,
+    "MAE": 0.5423804023051855
+  },
+  "data_sha256": "ea228fe00f799de91cd9f04bffb3643a097e2a6835bd2b8252ebddec595115db",
+  "model_sha256": "e6ec9f7181a6f257847ea75f96076c49deae336a6a669d983fe79b1a15e39655"
+}

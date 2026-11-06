@@ -1,0 +1,24 @@
+{
+  "direction": "minimize",
+  "input_hashes": {
+    "classical_oof_sha256": "2fe420e694fe76bfb807cda4b8abc88e155977fc94de3706db77a6a0deb44a98",
+    "gnn_oof_sha256": "6f1f43e605680c0158a6e58283cd182daef8a0a2ab7bff259e41aebef5e33919",
+    "protocol_sha256": "d1cce259ec46c1f49188f87b4a9665caebc77afa9eed12497805b4273e8a8d66"
+  },
+  "output_hashes": {
+    "all_oof_predictions.csv": "3846af09afd2cc52d0137b0b7d60dc458e7e248598cf429751376f546fd25928",
+    "mean_oof_predictions.csv": "80562872beb0f8c829c42b00d71b5c185648528fdff3a8511151f583634a38d4",
+    "model_summary.csv": "10f84a4500015132504eb36d45da089385a2e85777a77fe524461a4bf495acdc",
+    "paired_scaffold_bootstrap.csv": "f96727bbef6007f064526dec857bc2f16a41ef517a986eba8d85ec150b5e888a",
+    "repeat_metrics.csv": "fa49342b1985aa3b8c09ea28dafbcf842d464700b062bed3400c8bf95b8b2c65"
+  },
+  "schema_version": "development_selection_v2",
+  "selected_model": "ridge_combined",
+  "selected_rmse_mean": 0.741813200673822,
+  "selected_rmse_sd": 0.009237749829099145,
+  "selection_data": "development repeated scaffold-disjoint OOF predictions only",
+  "selection_metric": "mean per-repeat pooled RMSE",
+  "selection_sha256": "ac5b84f2f37cb71f9503bfcc4abdad8674f54b157da1e6036fc20148c8e26519",
+  "temporal_test_consulted": false,
+  "tie_breaker": "lexicographic model name"
+}

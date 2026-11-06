@@ -1,0 +1,25 @@
+{
+  "contract_sha256": "7d104c0eaf410c9bdb6816497d87d6b1e4fdce1b1fdfa68980b608d0277acbee",
+  "metrics": {
+    "backend": "edge_aware_gine",
+    "fold": 0,
+    "inner_best_epochs": [
+      12,
+      49,
+      30
+    ],
+    "mae": 0.6490723064448363,
+    "model": "edge_aware_gine_graph_plus_rdkit2d",
+    "n_train": 642,
+    "n_validation": 161,
+    "r2": 0.5907471272826598,
+    "refit_epochs": 30,
+    "repeat": 0,
+    "rmse": 0.8366708908059404,
+    "runtime_seconds": 22.470082156010903,
+    "variant": "graph_plus_rdkit2d"
+  },
+  "predictions_sha256": "d1d39549aadcd3265a7e065be39f9b2e94ff271fd7fded8c99ed315e77a4a012",
+  "schema_version": "gnn_nested_v2",
+  "temporal_test_consulted": false
+}

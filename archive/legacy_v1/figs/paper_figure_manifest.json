@@ -1,0 +1,30 @@
+{
+  "target_id": "CHEMBL2147",
+  "seed": 42,
+  "selected_model": "StackingEnsemble",
+  "selection_rule": "highest mean outer-fold R2 from inner-tuned GroupKFold; holdout metrics were not used for selection",
+  "displayed_holdout_metrics": {
+    "R2": 0.7046175640357281,
+    "RMSE": 0.710880223988075
+  },
+  "input_sha256": {
+    "pancreatic_cancer_bioactivity_data_3class_pIC50_morgan_fp.csv": "ea228fe00f799de91cd9f04bffb3643a097e2a6835bd2b8252ebddec595115db",
+    "model_selection.json": "f65f708c5e4d96ceaebe4967810b7bd2f358b0b959d002825d0bcbc75c121aee",
+    "nested_cv_performance.csv": "fc7bec754454d6979f5c223e7b674db757df953996fd92e441736c234c59a93a",
+    "model_performance_test.csv": "823444af70f5fee90ee26af51ba29cf325888515a7c40bc46f6e18b9c361b0ad",
+    "holdout_predictions.csv": "37d2e675ad017ef144f6153c9b9e2b12d713a1dcdab7b2c048228a8ed399df32",
+    "split_manifest.json": "81524c3b088af7789ee8055140b14de14013055be59ad1d480ed99a74ea97f12",
+    "applicability_domain_summary.csv": "1ff6aa9e3413c20145c73679f5f01c83bf550fdfba6cdc30ef88897615fd8ba3",
+    "applicability_domain_per_compound.csv": "25147681e43e8cc8f78ca72ab8e7bc7d8c150714f44b312a2f53a9b2dfb87e01",
+    "physchem_importance.csv": "0f2750d70836bc4279795a37229d1d441eb311b6c5dbdef9b7b741e33692c022",
+    "ridge_coefficients.csv": "008219e83dfb149fead999f5da3cab9b053c7c2ce8f10d9eea202726f3e86054",
+    "interpretability_summary.json": "d2799b66fb61d86fb28fbd74b8c6e3082432900111a10babd9ae8f00919af262"
+  },
+  "generated_figures": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  ]
+}

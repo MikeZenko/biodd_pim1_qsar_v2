@@ -1,0 +1,15 @@
+{
+  "fold": 4,
+  "r2": 0.7175971949389015,
+  "rmse": 0.6837431814924301,
+  "mae": 0.5233695614213469,
+  "best_params": {
+    "max_depth": "None",
+    "max_features": "0.3",
+    "min_samples_leaf": "1",
+    "min_samples_split": "2",
+    "n_estimators": "145"
+  },
+  "best_inner_cv_score": 0.6445769697038045,
+  "time_seconds": 20.974534273147583
+}

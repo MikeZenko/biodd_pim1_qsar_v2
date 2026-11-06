@@ -1,0 +1,10 @@
+{
+  "selected_model": "StackingEnsemble",
+  "selection_rule": "highest mean outer-fold R2 from inner-tuned GroupKFold; holdout metrics were not used for selection",
+  "nested_cv_r2_mean": 0.6998763691155138,
+  "nested_cv_r2_std": 0.015011970645198179,
+  "holdout_r2_after_selection": 0.7046175640357281,
+  "random_seed": 42,
+  "stacking_protocol": "group_oof_v1",
+  "uses_raw_morgan_fingerprints": false
+}
