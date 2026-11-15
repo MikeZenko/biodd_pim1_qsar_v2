@@ -3,11 +3,11 @@
   "files_sha256": {
     "bibliography": "7af9b2c04da04b60f15498d9d898970453d7fb232329e23baa52125527819de8",
     "bibliography_output": "1c3b94513f1b51089ebc4de3dbaac6142393a39af70d5d5fddf908d0d37f13ed",
-    "compile_log": "e7f01ec078a3919daa9bb365355b2bea093db483e349ce1d42cfb3600e60dbe5",
-    "pdf": "b43e4709d8cf85bc9810090fa7f79c0dafc5e4476e4a131f0d7321074d5c5b68",
-    "source": "3ae8ddc02057bd9edb992107d5a2b7b08c9dfb0877d5d0a9a33301a014ffe4bc"
+    "compile_log": "30488b7e3bdfa46d8ec6c3f01627058b0d171cfe402ee43885534dfcfb2f5da8",
+    "pdf": "eccb5a2a133fbc58a449ecd0b128e716e10f1a26cb53b0cd1b857108d8c22a77",
+    "source": "cb53ed4bb9aa2c4d517e1d6a2de64e6945ed1b24dd1345ca066237c82f0ca8c4"
   },
-  "manuscript_sha256": "749e714f5752b0776b4c6d05b7f78a4d86835b1d8065e80a67354e35f4bee943",
+  "manuscript_sha256": "0d52133fd4d5b4d03d1aa1c0916ad093b872798e9b2c570c7b4bb8c88ba290be",
   "page_count": 25,
   "schema_version": "sealed_manuscript_v2",
   "selected_model": "ridge_combined",

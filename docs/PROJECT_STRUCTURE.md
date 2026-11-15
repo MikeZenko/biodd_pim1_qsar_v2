@@ -23,11 +23,12 @@ The canonical evidentiary boundary is defined in `ARTIFACT_INDEX.md`.
   input CSVs, tests, paper sources, models, results, plots, and logs remain
   together so their original relative paths still resolve when run from that
   directory.
-- `archive/workspaces/`: non-canonical rendering and inspection scratch.
-- `archive/local_state/`: machine-generated caches and editor/session files.
 
-No historical files were discarded during the July 2026 reorganization. The
-legacy snapshot is protected by `archive/legacy_v1/ARCHIVE_MANIFEST.json`.
+No historical files were discarded during the July 2026 reorganization. For
+public release, non-evidentiary `archive/workspaces/` and `archive/local_state/`
+caches were removed and gitignored; they were never part of the confirmatory
+record. The legacy snapshot is protected by
+`archive/legacy_v1/ARCHIVE_MANIFEST.json`.
 Verify it with:
 
 ```bash

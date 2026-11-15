@@ -56,6 +56,11 @@ def test_legacy_snapshot_is_self_contained() -> None:
         assert (LEGACY_ROOT / relative).exists(), relative
 
 
+def test_non_evidentiary_scratch_is_absent() -> None:
+    for relative in ("archive/local_state", "archive/workspaces"):
+        assert not (PROJECT_ROOT / relative).exists(), relative
+
+
 def test_legacy_archive_manifest_verifies() -> None:
     completed = subprocess.run(
         [sys.executable, str(PROJECT_ROOT / "scripts/12_manage_archive_manifest.py")],

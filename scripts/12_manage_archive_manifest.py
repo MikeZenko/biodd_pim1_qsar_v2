@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Write or verify the preserved legacy-v1 archive inventory."""
+"""Write or verify the preserved legacy-v1 archive inventory.
+
+Only `archive/legacy_v1/` is inventoried. Non-evidentiary `archive/workspaces/`
+and `archive/local_state/` caches are not part of the public tree.
+"""
 
 from __future__ import annotations
 
@@ -15,6 +19,25 @@ from typing import Any
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_ARCHIVE = PROJECT_ROOT / "archive" / "legacy_v1"
 MANIFEST_NAME = "ARCHIVE_MANIFEST.json"
+# Match root .gitignore so local LaTeX aux, editor files, and logs cannot
+# appear in a clone and then fail public verification.
+SKIP_NAMES = {".DS_Store", "Thumbs.db"}
+SKIP_SUFFIXES = {
+    ".aux",
+    ".bcf",
+    ".blg",
+    ".bbl",
+    ".fdb_latexmk",
+    ".fls",
+    ".lof",
+    ".log",
+    ".lot",
+    ".out",
+    ".run.xml",
+    ".swp",
+    ".synctex.gz",
+    ".toc",
+}
 
 
 def sha256_file(path: Path) -> str:
@@ -29,6 +52,8 @@ def inventory(archive: Path) -> dict[str, Any]:
     files: list[dict[str, Any]] = []
     for path in sorted(archive.rglob("*")):
         if not path.is_file() or path.name == MANIFEST_NAME:
+            continue
+        if path.name in SKIP_NAMES or path.suffix in SKIP_SUFFIXES:
             continue
         relative = path.relative_to(archive).as_posix()
         files.append(

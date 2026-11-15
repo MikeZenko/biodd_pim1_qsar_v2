@@ -147,10 +147,8 @@ PDF and sources are verified and sealed by `scripts/09_seal_manuscript.py`.
 - Results and models: `archive/legacy_v1/results/CHEMBL2147/` and
   `archive/legacy_v1/models/CHEMBL2147/`
 - Older 3,110-compound CSV files: `archive/legacy_v1/data/`
-- Runners and logs: `archive/legacy_v1/run_pipeline.sh`,
-  `archive/legacy_v1/run_vm_evaluation.sh`,
-  `archive/legacy_v1/pipeline_run.log`, and
-  `archive/legacy_v1/step6_rerun.log`
+- Runners: `archive/legacy_v1/run_pipeline.sh`,
+  `archive/legacy_v1/run_vm_evaluation.sh`
 - Integrity inventory: `archive/legacy_v1/ARCHIVE_MANIFEST.json`, verified by
   `scripts/12_manage_archive_manifest.py`
 
@@ -158,13 +156,15 @@ Legacy results used an older broad cohort, partial nesting, and a fixed reused
 scaffold holdout. They must be described only as prior exploratory work and are
 not a sensitivity analysis of v2.
 
-Non-evidentiary manuscript-rendering scratch and machine-local cache state are
-preserved separately under `archive/workspaces/` and `archive/local_state/`.
+Non-evidentiary manuscript-rendering scratch and machine-local cache state
+(`archive/workspaces/` and `archive/local_state/`) are not part of the public
+tree; they are gitignored and must not be reintroduced.
 
 ## Submission checklist
 
 - [ ] Add a public repository commit/tag containing the canonical v2 files.
 - [ ] Deposit an archival snapshot and insert its DOI in the manuscript.
+- [ ] Replace remaining placeholders: public GitHub URL and Zenodo DOI.
 - [ ] Confirm author name, affiliation, correspondence, funding, and acknowledgments.
 - [ ] Choose a journal and apply its article template and reporting requirements.
 - [ ] Preserve the completed temporal directory and all SHA-256 manifests.

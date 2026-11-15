@@ -19,7 +19,9 @@
   colorlinks=true,
   linkcolor={black!65!blue},
   citecolor={black!55!green},
-  urlcolor={black!65!blue}
+  urlcolor={black!65!blue},
+  pdftitle={A Release-Pinned and Temporally Sealed PIM1 QSAR Benchmark},
+  pdfauthor={Tair Michael Narynov}
 }
 
 \graphicspath{{figures/}}
@@ -34,7 +36,10 @@
 
 \title{\textbf{A Release-Pinned and Temporally Sealed PIM1 QSAR Benchmark}\\[3pt]
 \large Temporal reliability under joint chemical, cohort, and assay-provenance shift}
-\author{Tair Narynov}
+\author{Tair Michael Narynov\\[4pt]
+{\normalsize Victoria College, University of Toronto, Toronto, ON, Canada}\\[2pt]
+{\normalsize Correspondence: \href{mailto:t.narynov@mail.utoronto.ca}{t.narynov@mail.utoronto.ca}}\\[2pt]
+{\normalsize ORCID: \href{https://orcid.org/0009-0006-9003-415X}{0009-0006-9003-415X}}}
 \date{}
 
 \begin{document}
@@ -897,8 +902,12 @@ pretrained checkpoint hash, and paired-bootstrap result.
 
 \section{Data and code availability}
 
-The complete reproducibility archive is prepared for submission as supplementary
-material. It contains the exact source snapshot, release metadata, curation
+Code and confirmatory artifacts are available in the public GitHub repository
+\url{https://github.com/OWNER/biodd_pim1_qsar_v2}
+% TODO: replace OWNER with the public repository owner
+and an archival Zenodo snapshot (\texttt{doi:10.5281/zenodo.XXXXXXX}).
+% TODO: replace XXXXXXX with the deposited Zenodo record ID
+The archive contains the exact source snapshot, release metadata, curation
 tables, event lineage, immutable split, candidate predictions, selection record,
 temporal predictions, figures, environment manifests, and manuscript source. The
 hash-linked post hoc audit additionally contains source-set assignments,
@@ -907,8 +916,9 @@ expanded graph archive contains its search contract, 4,050 inner-fit records,
 selected configurations, seed-specific and ensemble OOF predictions, and the
 hash-pinned pretrained encoder provenance. The
 file \texttt{ARTIFACT\_INDEX.md} identifies confirmatory v2 artifacts and clearly
-separates them from legacy exploratory results. A versioned public mirror and
-archival DOI will be released with the accepted manuscript.
+separates them from legacy exploratory results. ChEMBL-derived tables are
+redistributed under {CC BY-SA}~3.0 with attribution to ChEMBL~37
+\citep{zdrazil2024chembl}.
 
 \section{Conclusion}
 
@@ -931,11 +941,13 @@ investigation, data curation, visualization, writing, and project administration
 \section*{Competing interests}
 The author declares no competing interests.
 
+\section*{Funding}
+This work received no external funding.
+
 \section*{Use of computational tools}
-Automated computational assistance was used for code development, testing, and
-manuscript editing. All scientific claims are tied to archived source records or
-generated analysis artifacts; responsibility for verification and submission
-remains with the author.
+Anthropic's Claude assisted with code implementation, testing, and manuscript
+editing. No AI tool is an author. The author designed the study, verified all
+code, outputs, and claims, and takes full responsibility for the work.
 
 \par\bigskip
 \appendix

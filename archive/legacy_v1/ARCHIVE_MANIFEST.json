@@ -1,7 +1,7 @@
 {
   "archive_id": "pim1_qsar_legacy_v1_20260720",
   "classification": "historical_noncanonical",
-  "file_count": 192,
+  "file_count": 186,
   "files": [
     {
       "bytes": 16025,
@@ -284,21 +284,6 @@
       "sha256": "c1a61146520476bcdae60817668cf370504f8b9791679db781fad96877883f2c"
     },
     {
-      "bytes": 13368,
-      "path": "paper.aux",
-      "sha256": "5af7457db64ec63f81410952c1b2c40270cf373f16903becdf8bb84b722438be"
-    },
-    {
-      "bytes": 29453,
-      "path": "paper.log",
-      "sha256": "2477a9bc9df315de38043613ae38e5379ed1665b6142b777a4d343f37d722c25"
-    },
-    {
-      "bytes": 4400,
-      "path": "paper.out",
-      "sha256": "abf489ca4f3c83e0f4fff16db2b4fd79714b9103e127cf542d34378d646c1777"
-    },
-    {
       "bytes": 428568,
       "path": "paper.pdf",
       "sha256": "845dcd68dd25fe872049aa28b7e34558b5495ffa918058ed27b4dffadeaa91f0"
@@ -307,11 +292,6 @@
       "bytes": 37768,
       "path": "paper.tex",
       "sha256": "a08ffc53f814ccb3d55aaadea613cb11eca4bb829ba0d01e456cc89b80506b1a"
-    },
-    {
-      "bytes": 68745,
-      "path": "pipeline_run.log",
-      "sha256": "05d3a03a705e9de59672466aed11e9ba9d7d94f4996a337ac72ffb9982a8db3e"
     },
     {
       "bytes": 65694,
@@ -507,11 +487,6 @@
       "bytes": 520,
       "path": "requirements.txt",
       "sha256": "abd591823df8ad26ac12062fb3d2b7f7e43f0864465ca0b5412e92f77ec02b3f"
-    },
-    {
-      "bytes": 6148,
-      "path": "results/.DS_Store",
-      "sha256": "74d808db4585077cea3ff1b9d62f77652364e0354bd1424024679387fbbcec18"
     },
     {
       "bytes": 1620,
@@ -944,11 +919,6 @@
       "sha256": "b9cc000fbb1b6f8bc8d4ce0d282eeac4a18b1ee2922161bc715f80b93a8c83ca"
     },
     {
-      "bytes": 2523,
-      "path": "step6_rerun.log",
-      "sha256": "c56814d794d6f6f4bda2c17463d5c4785819186fe3fd47e1c67c9e05423f864b"
-    },
-    {
       "bytes": 1603,
       "path": "tests/conftest.py",
       "sha256": "6da75cd5d41b30fc2bb6b572de231cbd1d55e401e44f211141dafa3823b5d920"
@@ -964,7 +934,7 @@
       "sha256": "8666e89fe7f31eec5163867ac34d17d3bfe874eced8f0f2f4a57d43101b0c809"
     }
   ],
-  "inventory_sha256": "abb9320331519c044faa3ebe49ac3b05cbb6b9874d7a3a9c45e35f33cea6b89a",
+  "inventory_sha256": "c31515e6c69016f58bbf6dcc0099c9d0f4dcbdf90364a8a40585d60948994fdd",
   "schema_version": "legacy_archive_manifest_v1",
-  "total_bytes": 254847745
+  "total_bytes": 254723108
 }
