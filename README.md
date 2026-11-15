@@ -217,8 +217,9 @@ ChEMBL 37 (Zdrazil et al., 2024).
 
 Until a journal version is available, cite the manuscript title:
 
-> Narynov, T. (2026). A Release-Pinned and Temporally Sealed PIM1 QSAR
+> Narynov, T. M. (2026). A Release-Pinned and Temporally Sealed PIM1 QSAR
 > Benchmark: Temporal Reliability under Chemical and Cohort Shift.
+> ORCID: https://orcid.org/0009-0006-9003-415X
 
 ## License
 

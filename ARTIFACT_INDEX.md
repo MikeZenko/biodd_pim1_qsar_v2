@@ -164,7 +164,7 @@ tree; they are gitignored and must not be reintroduced.
 
 - [ ] Add a public repository commit/tag containing the canonical v2 files.
 - [ ] Deposit an archival snapshot and insert its DOI in the manuscript.
-- [ ] Replace remaining placeholders: ORCID, named AI/LLM tools, public GitHub URL, and Zenodo DOI.
+- [ ] Replace remaining placeholders: public GitHub URL and Zenodo DOI.
 - [ ] Confirm author name, affiliation, correspondence, funding, and acknowledgments.
 - [ ] Choose a journal and apply its article template and reporting requirements.
 - [ ] Preserve the completed temporal directory and all SHA-256 manifests.

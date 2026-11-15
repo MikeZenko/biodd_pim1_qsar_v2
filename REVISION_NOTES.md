@@ -1,5 +1,15 @@
 # Revision Notes — pre-submission patch pass
 
+## 2026-11-15 author-detail substitutions
+
+Filled remaining author metadata without changing scientific numbers or
+sealed evaluation artifacts.
+
+- Byline and hyperref `pdfauthor` set to Tair Michael Narynov.
+- ORCID set to `0009-0006-9003-415X`.
+- Computational-tools disclosure names Anthropic's Claude for coding
+  assistance, testing, and manuscript editing.
+
 ## 2026-11-15 public-release packaging
 
 Packaging and manuscript metadata only. Canonical scientific artifacts, curated
