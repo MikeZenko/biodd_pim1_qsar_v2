@@ -172,8 +172,6 @@ manuscript_v2/                            Revised paper, figures, generated tabl
 src/pim1_qsar/                            Reusable curation, validation, model code
 tests/v2/                                 Unit and scientific-contract tests
 archive/legacy_v1/                        Preserved pre-v2 workflow and outputs
-archive/workspaces/                       Non-canonical rendering/work scratch
-archive/local_state/                      Preserved machine caches and editor state
 ```
 
 ## Tests
@@ -188,7 +186,9 @@ archive/local_state/                      Preserved machine caches and editor st
 
 Final validation produced 96 passing v2 tests in the local classical
 environment (three optional-dependency skips) and 21 passing targeted tests in
-the VM GNN environment (one expected skip). The suite includes pinned
+the VM GNN environment (one expected skip). After public-release packaging,
+the classical suite reports 98 passed and 2 optional-dependency skips when
+Chemprop/Torch are absent. The suite includes pinned
 assay-context, robustness-audit, GNN-duration, tuned-search lineage, exact
 trial/selection inventory, output-hash, and independently recomputed metric
 checks.
@@ -204,12 +204,29 @@ v2 results live under `artifacts/` and `manuscript_v2/`. Run
 
 ## Citation and release
 
-Insert the final journal citation, public repository commit, and archival DOI
-after depositing the v2 artifact set. Until then, cite the manuscript title:
+Code and confirmatory artifacts are available in the public GitHub repository
+and an archival Zenodo snapshot:
+
+- GitHub: `https://github.com/OWNER/biodd_pim1_qsar_v2`
+  (TODO: replace OWNER with the public repository owner)
+- Zenodo: `doi:10.5281/zenodo.XXXXXXX`
+  (TODO: replace with the deposited Zenodo DOI)
+
+ChEMBL-derived tables are redistributed under CC BY-SA 3.0 with attribution to
+ChEMBL 37 (Zdrazil et al., 2024).
+
+Until a journal version is available, cite the manuscript title:
 
 > Narynov, T. (2026). A Release-Pinned and Temporally Sealed PIM1 QSAR
 > Benchmark: Temporal Reliability under Chemical and Cohort Shift.
 
 ## License
 
-See `LICENSE`. ChEMBL-derived data remain subject to the source database terms.
+Source code is released under the MIT License (`LICENSE`).
+
+ChEMBL-derived data (the release snapshot, curated tables, split files, and
+any files containing ChEMBL records) are licensed under Creative Commons
+Attribution-ShareAlike 3.0 Unported. See `DATA_LICENSE.md`.
+
+Third-party notices, including Chemprop and the CheMeleon pretrained checkpoint
+(used by content hash from Zenodo and not redistributed here), are in `NOTICE`.

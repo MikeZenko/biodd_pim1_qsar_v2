@@ -32,3 +32,8 @@ Thumbs.db
 *.swp
 .idea/
 .vscode/
+
+# Non-evidentiary machine caches and rendering scratch.
+# Do not reintroduce these directories to the public tree.
+archive/local_state/
+archive/workspaces/

@@ -1,5 +1,27 @@
 # Revision Notes — pre-submission patch pass
 
+## 2026-11-15 public-release packaging
+
+Packaging and manuscript metadata only. Canonical scientific artifacts, curated
+tables, split locks, run outputs, the temporal evaluation directory, and audit
+directories were not modified, and no reported numbers were changed.
+
+- Added manuscript affiliation, correspondence email, an ORCID placeholder,
+  a funding statement, hyperref PDF metadata, a tightened AI-tool disclosure,
+  and public GitHub/Zenodo availability placeholders.
+- Added `DATA_LICENSE.md` and `NOTICE` so ChEMBL-derived files are licensed
+  CC BY-SA 3.0 with required attribution, while code remains MIT. Chemprop and
+  the hash-pinned CheMeleon checkpoint are recorded as third-party MIT
+  components that are not redistributed here.
+- Removed non-evidentiary `archive/workspaces/` and `archive/local_state/`
+  from the public tree and gitignored them. Scientific files under
+  `archive/legacy_v1/` were not modified. The legacy SHA-256 inventory was
+  rewritten to the 186 git-tracked files; gitignored LaTeX aux, `*.log`, and
+  `.DS_Store` entries were never present in a clone and are now skipped by
+  the verifier.
+- Corrected documentation that still described the sealed PDF as 21 pages; the
+  sealed manuscript is 25 pages.
+
 ## 2026-07-20 project structure consolidation
 
 The canonical v2 study and the earlier broad-cohort workflow are now physically
@@ -9,7 +31,8 @@ separated without deleting historical material.
   scripts, support modules, inputs, tests, paper, models, results, plots, and
   logs in a self-contained relative layout.
 - Moved non-canonical manuscript-rendering scratch into `archive/workspaces/`
-  and retained machine caches/session files under `archive/local_state/`.
+  and retained machine caches/session files under `archive/local_state/`
+  (later removed from the public tree; see the 2026-11-15 note).
 - Added `docs/PROJECT_STRUCTURE.md`, explicit archive documentation, a
   192-file SHA-256 archive inventory, and a verifier at
   `scripts/12_manage_archive_manifest.py`.
@@ -78,7 +101,7 @@ model selection and one-time temporal predictions were not changed.
   inaccessibility.
 - Added three audit contract tests, repaired the canonical artifact index,
   removed stale machine-specific bytecode, regenerated all manuscript assets,
-  and visually verified the clean 21-page PDF.
+  and visually verified the clean 25-page PDF.
 
 Validation after this pass: 114 passed and 2 optional-dependency skips in the
 complete classical test suite; 12 passed and 1 expected skip in the targeted GNN

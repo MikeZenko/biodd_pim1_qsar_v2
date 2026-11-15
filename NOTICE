@@ -1,0 +1,44 @@
+Third-party notices
+===================
+
+This file records third-party data, software, and model checkpoints used by
+the PIM1 QSAR benchmark. It is not a substitute for the licenses themselves.
+
+
+ChEMBL 37
+---------
+ChEMBL-derived files in this repository (release snapshot, curated tables,
+split files, and any files containing ChEMBL records) are licensed under
+CC BY-SA 3.0. See DATA_LICENSE.md.
+
+Source: https://www.ebi.ac.uk/chembl
+Citation: Zdrazil et al., Nucleic Acids Research 52, D1180–D1192 (2024).
+doi:10.1093/nar/gkad1004
+
+
+Chemprop
+--------
+The graph-model comparison uses Chemprop 2.2.4 as a runtime dependency. The
+Chemprop source is not vendored or redistributed in this repository.
+
+License: MIT License
+Copyright (c) 2024 The Chemprop Development Team and other Chemprop
+contributors.
+Upstream: https://github.com/chemprop/chemprop
+Citation: Graff et al., Chemprop v2 (see manuscript references).
+
+
+CheMeleon pretrained checkpoint
+-------------------------------
+The post hoc frozen-encoder arm downloads the CheMeleon D-MPNN weights from
+Zenodo by URL and verifies them against a pinned SHA-256 digest. The
+checkpoint file is not redistributed in this repository; it is stored locally
+at ~/.chemprop/chemeleon_mp.pt when that arm is run.
+
+Source: https://zenodo.org/records/15460715
+File: chemeleon_mp.pt
+SHA-256: c376624d3407204e780a0ed13a9ac097cc9bb1c13ef89cdbc633c1715c183651
+Upstream license: MIT License (Zenodo record 15460715 and
+https://github.com/JacksonBurns/chemeleon)
+Citation: Burns et al., arXiv:2506.15792; Burns, CheMeleon Foundation Model,
+Zenodo, doi:10.5281/zenodo.15460715
